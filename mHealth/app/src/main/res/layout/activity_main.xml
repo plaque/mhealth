@@ -18,6 +18,7 @@
     android:paddingRight="0dp"
     android:paddingStart="0dp"
     android:paddingTop="0dp"
+    android:background="@android:color/holo_blue_dark"
     tools:context="plaque.mhealth.MainActivity">
 
     <ImageView
@@ -27,7 +28,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/colorEdgeEffect" />
+        android:background="@color/colorPrimary" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -38,12 +39,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0"
-        android:weightSum="10">
+        android:weightSum="20">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="8"
             android:orientation="horizontal"
             android:weightSum="10">
 
@@ -51,22 +52,23 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:gravity="center"
+                android:gravity="bottom|center"
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/meds_button"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_vertical|center_horizontal|center"
+                    android:layout_margin="5dp"
                     android:background="@drawable/pill" />
 
                 <TextView
                     android:id="@+id/textView"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/meds_schedule" />
+                    android:text="@string/meds_schedule"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
             </LinearLayout>
 
@@ -74,22 +76,23 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:gravity="center"
+                android:gravity="bottom|center"
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/results_button"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
+                    android:layout_margin="5dp"
                     android:background="@drawable/cardiogram" />
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/health_results" />
+                    android:text="@string/health_results"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
             </LinearLayout>
 
@@ -99,7 +102,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="12"
             android:weightSum="10"
             android:orientation="horizontal">
 
@@ -111,10 +114,11 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/sitters_button"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
+                    android:layout_margin="5dp"
                     android:background="@drawable/nurse" />
 
                 <TextView
@@ -134,10 +138,11 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/pupils_button"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="5dp"
                     android:background="@drawable/fracture" />
 
                 <TextView

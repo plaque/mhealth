@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MedsActivity"
+            android:label="@string/title_activity_meds"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SittersActivity"
+            android:label="@string/title_activity_sitters"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PupilsActivity"
+            android:label="@string/title_activity_pupils"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ResultsActivity"
+            android:label="@string/title_activity_results"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

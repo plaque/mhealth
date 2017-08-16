@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">mHealth</string>
-    <string name="sitters">Opiekuni</string>
+    <string name="sitters">Opiekunowie</string>
     <string name="pupils">Podopieczni</string>
     <string name="health_results">Wyniki</string>
     <string name="meds_schedule">Lekarstwa</string>
+    <string name="title_activity_meds">MedsActivity</string>
+    <string name="title_activity_sitters">SittersActivity</string>
+    <string name="title_activity_pupils">PupilsActivity</string>
+    <string name="title_activity_results">ResultsActivity</string>
 </resources>
