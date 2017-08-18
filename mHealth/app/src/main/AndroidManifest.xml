@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_mhealth"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,19 +17,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MedsActivity"
+            android:name=".Activities.MedsActivity"
             android:label="@string/title_activity_meds"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".SittersActivity"
+            android:name=".Activities.SittersActivity"
             android:label="@string/title_activity_sitters"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".PupilsActivity"
+            android:name=".Activities.PupilsActivity"
             android:label="@string/title_activity_pupils"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ResultsActivity"
+            android:name=".Activities.ResultsActivity"
             android:label="@string/title_activity_results"
             android:theme="@style/AppTheme"/>
     </application>

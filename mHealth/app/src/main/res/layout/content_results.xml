@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="plaque.mhealth.ResultsActivity"
+    tools:context="plaque.mhealth.Activities.ResultsActivity"
     tools:showIn="@layout/activity_results">
 
 </android.support.constraint.ConstraintLayout>
