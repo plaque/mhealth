@@ -9,7 +9,7 @@ import plaque.mhealth.Model.Note
 /**
  * Created by szymon on 13.09.17.
  */
-class MedsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NotesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<ViewType>
     private var delegateAdapters = SparseArrayCompat<ViewTypeDelegateAdapter>()

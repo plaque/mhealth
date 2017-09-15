@@ -5,11 +5,7 @@ import java.util.*
 /**
  * Created by szymon on 30.08.17.
  */
-class OneTimeNote : Note {
+data class OneTimeNote(var date: Calendar, override var content: String, override var title: String,
+                       override var active: Boolean) : Note(content, title, active){
 
-    constructor(date: Calendar, content: String, title: String) : super(content, title){
-        this.date = date
-    }
-
-    var date: Calendar? = null
 }
