@@ -3,13 +3,15 @@ package plaque.mhealth.Retrofit
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
 
 /**
  * Created by szymon on 15.09.17.
  */
-
-class TokenInterceptor() : Interceptor {
+@Singleton
+class TokenInterceptor @Inject constructor() : Interceptor {
     private var sessionToken: String? = null
 
     @Throws(IOException::class)
@@ -23,6 +25,7 @@ class TokenInterceptor() : Interceptor {
         if(request.url().toString().contains("login")){
             response = chain.proceed(requestBuilder.build())
             sessionToken = response.header("Authorization")
+            print(sessionToken)
         }
         else{
 
