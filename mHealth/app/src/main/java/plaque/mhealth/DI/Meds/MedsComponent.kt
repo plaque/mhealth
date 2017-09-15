@@ -1,8 +1,6 @@
 package plaque.mhealth.DI.Meds
 
-import dagger.Component
-import plaque.mhealth.DI.AppModule
-import plaque.mhealth.DI.NetworkModule
+import dagger.Subcomponent
 import plaque.mhealth.Fragments.MedsFragment
 import javax.inject.Singleton
 
@@ -10,10 +8,7 @@ import javax.inject.Singleton
  * Created by szymon on 15.09.17.
  */
 @Singleton
-@Component(modules = arrayOf(
-        AppModule::class,
-        NetworkModule::class)
-)
+@Subcomponent(modules = arrayOf(MedsModule::class))
 
 interface MedsComponent {
 

@@ -1,9 +1,8 @@
 package plaque.mhealth.DI.Login
 
-import dagger.Component
+import dagger.Subcomponent
 import plaque.mhealth.Activities.LoginActivity
-import plaque.mhealth.DI.AppModule
-import plaque.mhealth.DI.NetworkModule
+import plaque.mhealth.DI.Scopes.UserScope
 import javax.inject.Singleton
 
 /**
@@ -11,11 +10,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(
-        AppModule::class,
-        LoginModule::class,
-        NetworkModule::class)
-)
+@Subcomponent(modules = arrayOf(LoginModule::class))
 
 interface LoginComponent {
 

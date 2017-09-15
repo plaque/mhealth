@@ -11,16 +11,22 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_meds.*
 import plaque.mhealth.Adapters.NotesAdapter
+import plaque.mhealth.DI.Meds.MedsModule
 import plaque.mhealth.Managers.MedsManager
 import plaque.mhealth.Model.Note
 import plaque.mhealth.Model.OneTimeNote
 import plaque.mhealth.R
+import plaque.mhealth.Retrofit.LoginRestAPI
+import plaque.mhealth.mHealthApp
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Created by szymon on 13.09.17.
  */
 class MedsFragment: RxBaseFragment(){
+
+    @Inject lateinit var api: LoginRestAPI
 
     private val medsManager by lazy { MedsManager() }
     var page: Int = 0
@@ -28,6 +34,7 @@ class MedsFragment: RxBaseFragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mHealthApp.appComponent.plus(MedsModule(this))
         page = arguments.getInt("page")
 
     }
@@ -39,6 +46,14 @@ class MedsFragment: RxBaseFragment(){
         meds_list.layoutManager = LinearLayoutManager(context)
         initAdapter()
 
+        api.user().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    user -> println(user)
+                },
+                {
+                    e -> Snackbar.make(meds_list, e.message.toString(), Snackbar.LENGTH_LONG).show()
+                })
 
 
         if (savedInstanceState == null) {
