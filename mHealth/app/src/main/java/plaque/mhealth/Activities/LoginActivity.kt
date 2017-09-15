@@ -21,8 +21,9 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mHealthApp.appComponent.plus(LoginModule(this))
         setContentView(R.layout.activity_login)
+
+        mHealthApp.loginComponent.inject(this)
 
         login.setOnClickListener{ _ -> getToken()}
     }
