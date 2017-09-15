@@ -10,7 +10,6 @@ import plaque.mhealth.Model.Login
 
 import plaque.mhealth.R
 import plaque.mhealth.Retrofit.LoginRestAPI
-import plaque.mhealth.Retrofit.UserAPI
 import plaque.mhealth.mHealthApp
 import javax.inject.Inject
 
