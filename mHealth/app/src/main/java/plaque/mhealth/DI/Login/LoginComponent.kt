@@ -1,12 +1,8 @@
 package plaque.mhealth.DI.Login
 
-import dagger.Component
 import dagger.Subcomponent
-import plaque.mhealth.Activities.LoginActivity
-import plaque.mhealth.DI.AppModule
-import plaque.mhealth.DI.NetworkModule
+import plaque.mhealth.Android.Activities.LoginActivity
 import plaque.mhealth.DI.Scopes.ActivityScope
-import javax.inject.Singleton
 
 /**
  * Created by szymon on 15.09.17.

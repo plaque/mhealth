@@ -3,9 +3,7 @@ package plaque.mhealth.DI
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import plaque.mhealth.Retrofit.LoginAPI
-import plaque.mhealth.Retrofit.LoginRestAPI
-import plaque.mhealth.Retrofit.TokenInterceptor
+import plaque.mhealth.Retrofit.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -50,6 +48,15 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideLoginAPI(retrofit: Retrofit): LoginAPI = retrofit.create(LoginAPI::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserAPI(retrofit: Retrofit): UserAPI = retrofit.create(UserAPI::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserRestAPI(userAPI: UserAPI): UserRestAPI = UserRestAPI(userAPI)
+
 
 
 }

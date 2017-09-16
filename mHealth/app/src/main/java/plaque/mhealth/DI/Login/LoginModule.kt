@@ -2,7 +2,7 @@ package plaque.mhealth.DI.Login
 
 import dagger.Module
 import dagger.Provides
-import plaque.mhealth.Activities.LoginActivity
+import plaque.mhealth.Android.Activities.LoginActivity
 import plaque.mhealth.DI.Scopes.ActivityScope
 
 /**

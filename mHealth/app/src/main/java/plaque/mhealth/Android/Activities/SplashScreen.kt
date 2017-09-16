@@ -1,4 +1,4 @@
-package plaque.mhealth.Activities
+package plaque.mhealth.Android.Activities
 
 import android.app.Activity
 import android.content.Intent

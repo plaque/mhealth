@@ -16,7 +16,4 @@ interface LoginAPI {
     @POST("/login")
     fun login(@Body login: Login) : Observable<retrofit2.Response<ResponseBody>>
 
-    @GET("/api/user")
-    fun user() : Observable<User>
-
 }

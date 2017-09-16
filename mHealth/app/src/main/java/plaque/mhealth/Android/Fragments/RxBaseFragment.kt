@@ -1,4 +1,4 @@
-package plaque.mhealth.Fragments
+package plaque.mhealth.Android.Fragments
 
 import android.support.v4.app.Fragment
 import io.reactivex.disposables.CompositeDisposable

@@ -11,7 +11,5 @@ import retrofit2.Response
  */
 class LoginRestAPI (private val loginAPI: LoginAPI){
 
-    fun user(): Observable<User> = loginAPI.user()
-
     fun login(login:Login): Observable<Response<ResponseBody>> = loginAPI.login(login)
 }

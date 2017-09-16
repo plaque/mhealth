@@ -1,7 +1,5 @@
-package plaque.mhealth.Fragments
+package plaque.mhealth.Android.Fragments
 
-import android.content.Intent
-import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
@@ -11,15 +9,11 @@ import android.view.ViewGroup
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_meds.*
-import plaque.mhealth.Activities.TasksActivity
 import plaque.mhealth.Adapters.NotesAdapter
 import plaque.mhealth.Managers.MedsManager
-import plaque.mhealth.Model.Note
-import plaque.mhealth.Model.OneTimeNote
 import plaque.mhealth.R
-import plaque.mhealth.Retrofit.LoginRestAPI
+import plaque.mhealth.Retrofit.UserRestAPI
 import plaque.mhealth.mHealthApp
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -30,7 +24,7 @@ class MedsFragment: RxBaseFragment(){
     private val medsManager by lazy { MedsManager() }
     var page: Int = 0
 
-    @Inject lateinit var api: LoginRestAPI
+    @Inject lateinit var api: UserRestAPI
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +41,7 @@ class MedsFragment: RxBaseFragment(){
 
         mHealthApp.medsComponent.inject(this)
 
-        api.user().subscribeOn(Schedulers.newThread())
+        api.getUser().subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     user -> println(user)
