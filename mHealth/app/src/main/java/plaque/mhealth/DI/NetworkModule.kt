@@ -3,6 +3,7 @@ package plaque.mhealth.DI
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import plaque.mhealth.DI.Scopes.ActivityScope
 import plaque.mhealth.Retrofit.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -36,18 +37,10 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(httpClient: OkHttpClient, converterFactory: GsonConverterFactory, callAdapterFactory: RxJava2CallAdapterFactory): Retrofit
             = Retrofit.Builder()
-            .baseUrl("http://192.168.0.10:8081")
+            .baseUrl("http://192.168.0.10:8081/")
             .addConverterFactory(converterFactory)
             .client(httpClient)
             .addCallAdapterFactory(callAdapterFactory).build()
-
-    @Provides
-    @Singleton
-    fun provideLoginRestAPI(loginAPI: LoginAPI): LoginRestAPI = LoginRestAPI(loginAPI)
-
-    @Provides
-    @Singleton
-    fun provideLoginAPI(retrofit: Retrofit): LoginAPI = retrofit.create(LoginAPI::class.java)
 
     @Provides
     @Singleton
@@ -55,7 +48,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUserRestAPI(userAPI: UserAPI): UserRestAPI = UserRestAPI(userAPI)
+    fun provideLoginAPI(retrofit: Retrofit): LoginAPI = retrofit.create(LoginAPI::class.java)
 
 
 

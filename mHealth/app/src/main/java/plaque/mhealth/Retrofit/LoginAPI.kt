@@ -13,7 +13,7 @@ import retrofit2.http.POST
  */
 interface LoginAPI {
 
-    @POST("/login")
+    @POST("login")
     fun login(@Body login: Login) : Observable<retrofit2.Response<ResponseBody>>
 
 }

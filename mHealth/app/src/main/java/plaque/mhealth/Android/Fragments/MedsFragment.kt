@@ -21,10 +21,10 @@ import javax.inject.Inject
  */
 class MedsFragment: RxBaseFragment(){
 
+    @Inject lateinit var api: UserRestAPI
+
     private val medsManager by lazy { MedsManager() }
     var page: Int = 0
-
-    @Inject lateinit var api: UserRestAPI
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,28 @@ class MedsFragment: RxBaseFragment(){
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     user -> println(user)
+                },
+                {
+                    e -> println(e.message.toString())
                 })
+
+        api.getPatients().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    patients -> println(patients)
+                },
+                        {
+                            e -> println(e.message.toString())
+                        })
+
+        api.getPatrons().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    patrons -> println(patrons)
+                },
+                        {
+                            e -> println(e.message.toString())
+                        })
 
         if (savedInstanceState == null) {
             requestMeds()

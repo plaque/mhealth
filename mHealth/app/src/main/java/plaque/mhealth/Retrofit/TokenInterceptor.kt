@@ -25,7 +25,6 @@ class TokenInterceptor @Inject constructor() : Interceptor {
         if(request.url().toString().contains("login")){
             response = chain.proceed(requestBuilder.build())
             sessionToken = response.header("Authorization")
-            print(sessionToken)
         }
         else{
 

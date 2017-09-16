@@ -1,11 +1,15 @@
 package plaque.mhealth.Commons
 
+import android.app.Activity
+import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
+import org.jetbrains.anko.find
 import plaque.mhealth.R
 
 /**
@@ -21,4 +25,9 @@ fun ImageView.loadImg(imageUrl: String) {
     } else {
         Picasso.with(context).load(imageUrl).into(this)
     }
+}
+inline fun View.snackbar(message: String){
+    val activity = context
+    if(activity is Activity) Snackbar.make(activity.find(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
+    else throw IllegalStateException("View needs to be attached to an Activity.")
 }

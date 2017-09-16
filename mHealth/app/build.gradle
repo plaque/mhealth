@@ -50,7 +50,7 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.11'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
-
+    compile "org.jetbrains.anko:anko:$anko_version"
     compile 'com.google.code.gson:gson:2.7'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

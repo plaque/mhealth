@@ -5,6 +5,7 @@ import plaque.mhealth.DI.Login.LoginComponent
 import plaque.mhealth.DI.Login.LoginModule
 import plaque.mhealth.DI.Meds.MedsComponent
 import plaque.mhealth.DI.Meds.MedsModule
+import plaque.mhealth.Retrofit.UserAPI
 import javax.inject.Singleton
 
 /**
@@ -16,7 +17,6 @@ import javax.inject.Singleton
         NetworkModule::class
 ))
 interface AppComponent {
-
 
     fun plus(medsModule: MedsModule): MedsComponent
 
