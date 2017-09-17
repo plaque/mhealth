@@ -24,12 +24,10 @@ class MedsFragment: RxBaseFragment(){
     @Inject lateinit var api: UserRestAPI
 
     private val medsManager by lazy { MedsManager() }
-    var page: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        page = arguments.getInt("page")
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -108,13 +106,6 @@ class MedsFragment: RxBaseFragment(){
     }
 
     companion object {
-        fun newInstance(page: Int): MedsFragment{
-            var medsFragment: MedsFragment = MedsFragment()
-            var bundle: Bundle? = Bundle()
-            bundle?.putInt("page", page)
-            medsFragment.arguments = bundle
-
-            return medsFragment
-        }
+        fun newInstance(): MedsFragment = MedsFragment()
     }
 }

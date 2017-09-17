@@ -12,14 +12,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        meds_button.setOnClickListener { _ -> startActivity(Intent(this, TasksActivity::class.java)) }
+        meds_button.setOnClickListener { _ ->  startActivityWithExtra(0) }
 
-        results_button.setOnClickListener { _ -> startActivity(Intent(this, TasksActivity::class.java)) }
+        results_button.setOnClickListener { _ -> startActivityWithExtra(1) }
 
-        sitters_button.setOnClickListener { _ -> startActivity(Intent(this, TasksActivity::class.java)) }
+        sitters_button.setOnClickListener { _ -> startActivityWithExtra(2) }
 
-        pupils_button.setOnClickListener { _ -> startActivity(Intent(this, TasksActivity::class.java)) }
+        pupils_button.setOnClickListener { _ -> startActivityWithExtra(3) }
+
     }
 
+    fun startActivityWithExtra(position: Int){
+        intent = Intent(this, TasksActivity::class.java)
+        intent.putExtra("position", position)
+        startActivity(intent)
+    }
 
 }

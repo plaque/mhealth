@@ -11,22 +11,12 @@ import plaque.mhealth.R
  */
 class SittersFragment: RxBaseFragment(){
 
-    var page: Int = 3
-
     companion object {
-        fun newInstance(page: Int): SittersFragment {
-            var sittersFragment: SittersFragment = SittersFragment()
-            var bundle: Bundle? = Bundle()
-            bundle?.putInt("page", page)
-            sittersFragment.arguments = bundle
-
-            return sittersFragment
-        }
+        fun newInstance(): SittersFragment = SittersFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        page = arguments.getInt("page")
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

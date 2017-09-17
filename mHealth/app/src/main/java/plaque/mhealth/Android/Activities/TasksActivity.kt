@@ -22,8 +22,10 @@ class TasksActivity : AppCompatActivity() {
 
         vpPager.adapter = TasksPagerAdapter(supportFragmentManager)
         tab_pager.setupWithViewPager(vpPager)
-
         setUpIcons(tab_pager, vpPager.adapter as TasksPagerAdapter)
+
+        val position = intent.getIntExtra("position", 0)
+        vpPager.currentItem = position
 
     }
 
@@ -37,25 +39,24 @@ class TasksActivity : AppCompatActivity() {
         val NUM_ITEMS = 4
 
         val imageResId: Array<String> = arrayOf(
-            "Meds",
-            "Patients",
-            "Pupils",
-            "Results")
+                "Meds",
+                "Results",
+                "Patrons",
+                "Pupils"
+            )
 
 
         override fun getItem(position: Int): Fragment {
             when(position){
-                0 -> return MedsFragment.newInstance(0)
-                1 -> return PupilsFragment.newInstance(1)
-                2 -> return ResultsFragment.newInstance(2)
-                3 -> return SittersFragment.newInstance(3)
-                else -> return MedsFragment.newInstance(0)
+                0 -> return MedsFragment.newInstance()
+                1 -> return ResultsFragment.newInstance()
+                2 -> return SittersFragment.newInstance()
+                3 -> return PupilsFragment.newInstance()
+                else -> return MedsFragment.newInstance()
             }
         }
 
-        override fun getCount(): Int {
-            return NUM_ITEMS;
-        }
+        override fun getCount(): Int = NUM_ITEMS
 
     }
 

@@ -11,21 +11,13 @@ import plaque.mhealth.R
  */
 class ResultsFragment: RxBaseFragment(){
 
-    var page: Int = 2
 
     companion object {
-        fun newInstance(page: Int): ResultsFragment {
-            var resultsFragment: ResultsFragment = ResultsFragment()
-            var bundle: Bundle? = Bundle()
-            bundle?.putInt("page", page)
-            resultsFragment.arguments = bundle
-
-            return resultsFragment
-        }
+        fun newInstance(): ResultsFragment = ResultsFragment()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        page = arguments.getInt("page")
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
