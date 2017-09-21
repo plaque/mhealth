@@ -9,7 +9,7 @@ import plaque.mhealth.Model.Note
 /**
  * Created by szymon on 13.09.17.
  */
-class NotesAdapter(listener: MedsDelegateAdapter.onViewSelectedListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<ViewType>
     private var delegateAdapters = SparseArrayCompat<ViewTypeDelegateAdapter>()
@@ -19,7 +19,7 @@ class NotesAdapter(listener: MedsDelegateAdapter.onViewSelectedListener) : Recyc
 
     init {
         delegateAdapters.put(AdapterConstants.LOADING, LoadingDelegateAdapter())
-        delegateAdapters.put(AdapterConstants.MEDS, MedsDelegateAdapter(listener))
+        delegateAdapters.put(AdapterConstants.MEDS, NotesDelegateAdapter(listener))
         items = ArrayList()
         items.add(loadingItem)
     }

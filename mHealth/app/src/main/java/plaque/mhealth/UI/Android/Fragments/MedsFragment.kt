@@ -1,7 +1,6 @@
 package plaque.mhealth.Android.Fragments
 
 import android.app.Dialog
-import android.app.DialogFragment
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
@@ -13,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.cyclic_note.*
 import kotlinx.android.synthetic.main.one_time_note.*
-import plaque.mhealth.Adapters.MedsDelegateAdapter
+import plaque.mhealth.Adapters.NotesDelegateAdapter
 import plaque.mhealth.Adapters.NotesAdapter
 import plaque.mhealth.Commons.getFullDate
 import plaque.mhealth.Managers.MedsManager
@@ -28,7 +27,7 @@ import javax.inject.Inject
 /**
  * Created by szymon on 13.09.17.
  */
-class MedsFragment: RxBaseFragment(), MedsDelegateAdapter.onViewSelectedListener {
+class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListener {
 
     @Inject lateinit var api: UserRestAPI
 

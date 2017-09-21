@@ -5,28 +5,27 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.rv_item_meds.view.*
 import plaque.mhealth.Commons.inflate
 import plaque.mhealth.Model.Note
-import plaque.mhealth.Model.OneTimeNote
 import plaque.mhealth.R
 
 /**
  * Created by szymon on 13.09.17.
  */
-class MedsDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDelegateAdapter {
+class NotesDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDelegateAdapter {
 
     interface onViewSelectedListener {
         fun onItemSelected(item: Note)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return MedsViewHolder(parent)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
+            = NotesViewHolder(parent)
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {
-        holder as MedsViewHolder
+        holder as NotesViewHolder
         holder.bind(item as Note)
     }
 
-    inner class MedsViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+    inner class NotesViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
          parent.inflate(R.layout.rv_item_meds)) {
 
         private val title = itemView.note_name
