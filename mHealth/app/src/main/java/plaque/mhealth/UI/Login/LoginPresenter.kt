@@ -1,7 +1,7 @@
-package plaque.mhealth.UI.Android.Login
+package plaque.mhealth.UI.Login
 
 import plaque.mhealth.Model.Login
-import plaque.mhealth.UI.Android.BasePresenter
+import plaque.mhealth.UI.BasePresenter
 
 /**
  * Created by szymon on 21.09.17.

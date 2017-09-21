@@ -17,9 +17,9 @@
         android:roundIcon="@mipmap/ic_mhealth"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="plaque.mhealth.Android.Activities.MainActivity"></activity>
+        <activity android:name="plaque.mhealth.UI.Android.Activities.MainActivity"></activity>
         <activity
-            android:name="plaque.mhealth.Android.Activities.LoginActivity"
+            android:name="plaque.mhealth.UI.Login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="plaque.mhealth.Android.Activities.TasksActivity"
+        <activity android:name="plaque.mhealth.UI.Android.Activities.TasksActivity"
             android:label="@string/tasks_activity_label"
             android:theme="@style/AppTheme">
         </activity>

@@ -3,6 +3,8 @@ package plaque.mhealth.DI
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import io.realm.Realm
+import plaque.mhealth.Database.RealmService
 import plaque.mhealth.mHealthApp
 import javax.inject.Singleton
 
@@ -20,5 +22,9 @@ class AppModule(val app: mHealthApp){
     @Singleton
     fun provideApplication(): mHealthApp = app
 
+    @Provides
+    fun provideRealm() = Realm.getDefaultInstance()
 
+    @Provides
+    fun provideRealmService(realm: Realm) = RealmService(realm)
 }

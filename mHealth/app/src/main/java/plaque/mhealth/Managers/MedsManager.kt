@@ -1,8 +1,6 @@
 package plaque.mhealth.Managers
 
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.content_meds.*
-import plaque.mhealth.Adapters.NotesAdapter
 import plaque.mhealth.Model.Note
 import plaque.mhealth.Model.OneTimeNote
 import java.util.*
@@ -10,7 +8,7 @@ import java.util.*
 /**
  * Created by szymon on 14.09.17.
  */
-class MedsManager() {
+class MedsManager {
     fun getMeds(): Observable<List<Note>>{
         return Observable.create {
             subscriber ->

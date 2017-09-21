@@ -1,6 +1,8 @@
 package plaque.mhealth
 
 import android.app.Application
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import plaque.mhealth.DI.AppComponent
 import plaque.mhealth.DI.AppModule
 import plaque.mhealth.DI.DaggerAppComponent
@@ -27,6 +29,15 @@ class mHealthApp: Application(){
                 .build()
         medsComponent = appComponent.plus(MedsModule())
         loginComponent = appComponent.plus(LoginModule())
+
+        initRealmConfiguration()
+    }
+
+    fun initRealmConfiguration(){
+        Realm.init(this)
+        val realmConfig = RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded().build()
+        Realm.setDefaultConfiguration(realmConfig)
     }
 
 }

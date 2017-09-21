@@ -1,4 +1,4 @@
-package plaque.mhealth.UI.Android
+package plaque.mhealth.UI
 
 /**
  * Created by szymon on 21.09.17.

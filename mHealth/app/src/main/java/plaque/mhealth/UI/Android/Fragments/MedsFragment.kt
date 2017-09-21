@@ -1,4 +1,4 @@
-package plaque.mhealth.Android.Fragments
+package plaque.mhealth.UI.Android.Fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,8 +12,8 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.cyclic_note.*
 import kotlinx.android.synthetic.main.one_time_note.*
-import plaque.mhealth.Adapters.NotesDelegateAdapter
-import plaque.mhealth.Adapters.NotesAdapter
+import plaque.mhealth.UI.Android.Adapters.NotesDelegateAdapter
+import plaque.mhealth.UI.Android.Adapters.NotesAdapter
 import plaque.mhealth.Commons.getFullDate
 import plaque.mhealth.Managers.MedsManager
 import plaque.mhealth.Model.CyclicNote

@@ -1,4 +1,4 @@
-package plaque.mhealth.Android.Fragments
+package plaque.mhealth.UI.Android.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

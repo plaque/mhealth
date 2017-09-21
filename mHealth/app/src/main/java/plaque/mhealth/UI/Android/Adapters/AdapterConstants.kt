@@ -1,4 +1,4 @@
-package plaque.mhealth.Adapters
+package plaque.mhealth.UI.Android.Adapters
 
 /**
  * Created by szymon on 13.09.17.

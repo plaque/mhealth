@@ -1,4 +1,4 @@
-package plaque.mhealth.UI.Android
+package plaque.mhealth.UI
 
 import android.support.v7.app.AppCompatActivity
 

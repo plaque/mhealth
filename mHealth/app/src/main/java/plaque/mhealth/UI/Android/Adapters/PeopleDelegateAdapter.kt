@@ -1,11 +1,9 @@
-package plaque.mhealth.Adapters
+package plaque.mhealth.UI.Android.Adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.rv_item_meds.view.*
 import kotlinx.android.synthetic.main.rv_item_patients.view.*
 import plaque.mhealth.Commons.inflate
-import plaque.mhealth.Model.Note
 import plaque.mhealth.Model.User
 import plaque.mhealth.R
 

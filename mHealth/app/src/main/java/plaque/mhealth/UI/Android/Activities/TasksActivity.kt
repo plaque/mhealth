@@ -1,4 +1,4 @@
-package plaque.mhealth.Android.Activities
+package plaque.mhealth.UI.Android.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import kotlinx.android.synthetic.main.activity_tasks.*
-import plaque.mhealth.Android.Fragments.MedsFragment
-import plaque.mhealth.Android.Fragments.PupilsFragment
-import plaque.mhealth.Android.Fragments.ResultsFragment
-import plaque.mhealth.Android.Fragments.SittersFragment
+import plaque.mhealth.UI.Android.Fragments.MedsFragment
+import plaque.mhealth.UI.Android.Fragments.PupilsFragment
+import plaque.mhealth.UI.Android.Fragments.ResultsFragment
+import plaque.mhealth.UI.Android.Fragments.SittersFragment
 
 import plaque.mhealth.R
 
