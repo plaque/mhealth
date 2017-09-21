@@ -1,14 +1,17 @@
 package plaque.mhealth.Model
 
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import plaque.mhealth.Adapters.AdapterConstants
 import plaque.mhealth.Adapters.ViewType
+import java.util.*
 
 
 /**
  * Created by szymon on 18.08.17.
  */
-abstract class Note(open var content: String, open var title: String,
-                    open var active: Boolean): ViewType {
+abstract class Note(var content: String, var title: String,
+                    var active: Boolean, @PrimaryKey @Transient val id: String? = UUID.randomUUID().toString()): RealmObject(), ViewType {
 
     override fun getViewType(): Int = AdapterConstants.MEDS
 }

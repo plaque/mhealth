@@ -11,7 +11,11 @@ import plaque.mhealth.R
 /**
  * Created by szymon on 13.09.17.
  */
-class MedsDelegateAdapter: ViewTypeDelegateAdapter {
+class MedsDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDelegateAdapter {
+
+    interface onViewSelectedListener {
+        fun onItemSelected(item: Note)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return MedsViewHolder(parent)
@@ -31,6 +35,8 @@ class MedsDelegateAdapter: ViewTypeDelegateAdapter {
         fun bind(item: Note) = with(itemView) {
             title.text = item.title
             active.isChecked = item.active
+
+            super.itemView.setOnClickListener { viewActions.onItemSelected(item) }
         }
     }
 }

@@ -11,6 +11,8 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
 import plaque.mhealth.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by szymon on 13.09.17.
@@ -30,4 +32,9 @@ inline fun View.snackbar(message: String){
     val activity = context
     if(activity is Activity) Snackbar.make(activity.find(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
     else throw IllegalStateException("View needs to be attached to an Activity.")
+}
+
+fun Calendar.getFullDate(): String {
+    val format1: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm")
+    return format1.format(this.time)
 }

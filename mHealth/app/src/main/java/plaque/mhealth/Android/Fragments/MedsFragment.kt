@@ -1,5 +1,7 @@
 package plaque.mhealth.Android.Fragments
 
+import android.app.Dialog
+import android.app.DialogFragment
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
@@ -9,8 +11,15 @@ import android.view.ViewGroup
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_meds.*
+import kotlinx.android.synthetic.main.cyclic_note.*
+import kotlinx.android.synthetic.main.one_time_note.*
+import plaque.mhealth.Adapters.MedsDelegateAdapter
 import plaque.mhealth.Adapters.NotesAdapter
+import plaque.mhealth.Commons.getFullDate
 import plaque.mhealth.Managers.MedsManager
+import plaque.mhealth.Model.CyclicNote
+import plaque.mhealth.Model.Note
+import plaque.mhealth.Model.OneTimeNote
 import plaque.mhealth.R
 import plaque.mhealth.Retrofit.UserRestAPI
 import plaque.mhealth.mHealthApp
@@ -19,7 +28,7 @@ import javax.inject.Inject
 /**
  * Created by szymon on 13.09.17.
  */
-class MedsFragment: RxBaseFragment(){
+class MedsFragment: RxBaseFragment(), MedsDelegateAdapter.onViewSelectedListener {
 
     @Inject lateinit var api: UserRestAPI
 
@@ -78,7 +87,7 @@ class MedsFragment: RxBaseFragment(){
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-                            retrivedMeds -> (meds_list.adapter as NotesAdapter).addMeds(retrivedMeds)
+                            retrivedMeds -> (meds_list.adapter as NotesAdapter).addNotes(retrivedMeds)
                         },
                         {
                             e -> Snackbar.make(meds_list, e.message ?: "", Snackbar.LENGTH_LONG).show()
@@ -99,9 +108,32 @@ class MedsFragment: RxBaseFragment(){
         return view
     }
 
+    override fun onItemSelected(item: Note) {
+        var noteDialog = Dialog(context)
+        if(item is CyclicNote){
+            noteDialog.setContentView(R.layout.cyclic_note)
+            noteDialog.apply {
+                title?.text = item.title
+                content?.text = item.content
+                days?.text = item.days.toString()
+                hours?.text = item.hours.toString()
+            }
+            noteDialog.show()
+        }
+        if(item is OneTimeNote){
+            noteDialog.setContentView(R.layout.one_time_note)
+            noteDialog.apply {
+                ot_title?.text = item.title
+                ot_content?.text = item.content
+                date?.text = item.date.getFullDate()
+            }
+            noteDialog.show()
+        }
+    }
+
     private fun initAdapter(){
         if(meds_list.adapter == null){
-            meds_list.adapter = NotesAdapter()
+            meds_list.adapter = NotesAdapter(this)
         }
     }
 

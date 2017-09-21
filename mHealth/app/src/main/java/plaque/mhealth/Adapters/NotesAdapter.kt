@@ -9,7 +9,7 @@ import plaque.mhealth.Model.Note
 /**
  * Created by szymon on 13.09.17.
  */
-class NotesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NotesAdapter(listener: MedsDelegateAdapter.onViewSelectedListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<ViewType>
     private var delegateAdapters = SparseArrayCompat<ViewTypeDelegateAdapter>()
@@ -19,7 +19,7 @@ class NotesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     init {
         delegateAdapters.put(AdapterConstants.LOADING, LoadingDelegateAdapter())
-        delegateAdapters.put(AdapterConstants.MEDS, MedsDelegateAdapter())
+        delegateAdapters.put(AdapterConstants.MEDS, MedsDelegateAdapter(listener))
         items = ArrayList()
         items.add(loadingItem)
     }
@@ -36,22 +36,22 @@ class NotesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
 
-    fun addMeds(meds: List<Note>) {
+    fun addNotes(notes: List<Note>) {
         // first remove loading and notify
         val initPosition = items.size - 1
         items.removeAt(initPosition)
         notifyItemRemoved(initPosition)
 
         // insert news and the loading at the end of the list
-        items.addAll(meds)
+        items.addAll(notes)
         notifyItemRangeChanged(initPosition, items.size)
     }
 
-    fun clearAndAddNews(meds: List<Note>) {
+    fun clearAndAddNotes(notes: List<Note>) {
         items.clear()
         notifyItemRangeRemoved(0, getLastPosition())
 
-        items.addAll(meds)
+        items.addAll(notes)
         notifyItemRangeInserted(0, items.size)
     }
 
