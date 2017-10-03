@@ -1,6 +1,7 @@
 package plaque.mhealth.UI.Login
 
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import plaque.mhealth.Database.RealmService
@@ -14,7 +15,6 @@ import javax.inject.Inject
 
 class LoginPresenterImpl @Inject constructor(var api: LoginRestAPI,
                                              var realmService: RealmService) : LoginPresenter {
-
 
     var loginView: LoginView = LoginView.EmptyLoginView()
 
@@ -51,6 +51,7 @@ class LoginPresenterImpl @Inject constructor(var api: LoginRestAPI,
             500, 501, 502, 503, 504 -> loginView.showErrorMessage("Server internal error.")
         }
     }
+
 
 
 }

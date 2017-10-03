@@ -1,5 +1,7 @@
 package plaque.mhealth.UI
 
+import io.reactivex.disposables.CompositeDisposable
+
 /**
  * Created by szymon on 21.09.17.
  */

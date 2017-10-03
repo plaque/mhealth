@@ -7,7 +7,7 @@ import plaque.mhealth.Commons.snackbar
 import plaque.mhealth.Model.Login
 
 import plaque.mhealth.R
-import plaque.mhealth.UI.Android.Activities.MainActivity
+import plaque.mhealth.UI.MainScreen.MainActivity
 import plaque.mhealth.UI.BaseActivity
 import plaque.mhealth.mHealthApp
 import javax.inject.Inject
@@ -21,7 +21,7 @@ class LoginActivity: BaseActivity(), LoginView {
         setContentView(R.layout.activity_login)
 
         mHealthApp.loginComponent.inject(this)
-        login.setOnClickListener{ _ -> login()}
+        login.setOnClickListener{ _ -> showMainActivity()}
     }
 
     fun login(){

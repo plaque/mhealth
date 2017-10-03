@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 
 import plaque.mhealth.R
+import plaque.mhealth.UI.MainScreen.MainActivity
 
 /**
  * Created by szymon on 18.08.17.

@@ -29,7 +29,7 @@ import javax.inject.Inject
 /**
  * Created by szymon on 13.09.17.
  */
-class MedsFragment: Fragment(), NotesDelegateAdapter.onViewSelectedListener, MedsView {
+class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListener, MedsView {
 
     @Inject lateinit var medsPresenter: MedsPresenter
 
@@ -40,15 +40,13 @@ class MedsFragment: Fragment(), NotesDelegateAdapter.onViewSelectedListener, Med
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
-
         initAdapter()
 
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        val news = (meds_list.adapter as NotesAdapter).getNotes()
+        val meds = (meds_list.adapter as NotesAdapter).getNotes()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,6 +54,8 @@ class MedsFragment: Fragment(), NotesDelegateAdapter.onViewSelectedListener, Med
         var view: View? = inflater?.inflate(R.layout.fragment_meds, container, false)
 
         mHealthApp.medsComponent.inject(this)
+
+        medsPresenter.setPresenterSubscriptions(subscriptions)
         medsPresenter.setView(this)
 
         return view
@@ -75,6 +75,9 @@ class MedsFragment: Fragment(), NotesDelegateAdapter.onViewSelectedListener, Med
     }
 
     override fun showNoteDetails(note: Note) {
+        var noteDialog = NoteDetailDialog()
+        noteDialog.note = note
+        noteDialog.show(fragmentManager, "")
     }
 
     override fun showAddNewNote() {

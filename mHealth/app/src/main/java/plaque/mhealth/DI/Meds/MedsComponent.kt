@@ -2,7 +2,7 @@ package plaque.mhealth.DI.Meds
 
 import dagger.Subcomponent
 import plaque.mhealth.DI.Scopes.ActivityScope
-import plaque.mhealth.UI.Android.Fragments.MedsFragment
+import plaque.mhealth.UI.UserSlider.Fragments.Meds.MedsFragment
 
 
 /**

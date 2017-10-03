@@ -2,8 +2,8 @@ package plaque.mhealth.Model
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import plaque.mhealth.UI.Android.Adapters.AdapterConstants
-import plaque.mhealth.UI.Android.Adapters.ViewType
+import plaque.mhealth.UI.Adapters.AdapterConstants
+import plaque.mhealth.UI.Adapters.ViewType
 import java.util.*
 
 
