@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">mHealth</string>
+    <string name="sitters">Opiekunowie</string>
+    <string name="pupils">Podopieczni</string>
+    <string name="health_results">Wyniki</string>
+    <string name="meds_schedule">Lekarstwa</string>
+    <string name="title_activity_meds">MedsActivity</string>
+    <string name="title_activity_sitters">SittersActivity</string>
+    <string name="title_activity_pupils">PupilsActivity</string>
+    <string name="title_activity_results">ResultsActivity</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Hasło (opcjonalne)</string>
+    <string name="action_sign_in">Zaloguj się lub zarejestruj</string>
+    <string name="action_sign_in_short">Zaloguj się</string>
+    <string name="error_invalid_email">Adres email jest nieprawidłowy</string>
+    <string name="error_invalid_password">Hasło jest za krótkie</string>
+    <string name="error_incorrect_password">Hasło niepoprawne</string>
+    <string name="error_field_required">To pole jest wymagane</string>
+    <string name="permission_rationale">"Potrzebney jest dostęp do kontaktów w celu
+        włączenia autouzupełniania"
+    </string>
+    <string name="tasks_activity_label">Tasks</string>
+    <string name="edit">Edytuj</string>
+    <string name="long_text">Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text</string>
+    <string name="mon">Poniedziałek</string>
+    <string name="tuesday">Wtorek</string>
+    <string name="Wednesday">Środa</string>
+    <string name="thursday">Czwartek</string>
+    <string name="friday">Piątek</string>
+    <string name="saturday">Sobota</string>
+    <string name="sun">Niedziela</string>
+    <string name="add">Dodaj</string>
+    <string name="submit">Zatwierdź</string>
+    <string name="cyclic">Cykliczne</string>
+    <string name="hours">Godziny</string>
+    <string name="date">Data</string>
+    <string name="title">Tytuł</string>
+    <string name="days">Dni</string>
+    <string name="choose_language">Wybierz język</string>
+</resources>

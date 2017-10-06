@@ -1,8 +1,11 @@
 package plaque.mhealth.UI.UserSlider
 
+import android.content.res.Resources
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.content.res.TypedArrayUtils.getString
+import plaque.mhealth.R
 import plaque.mhealth.UI.UserSlider.Fragments.Meds.MedsFragment
 import plaque.mhealth.UI.UserSlider.Fragments.Pupils.PupilsFragment
 import plaque.mhealth.UI.UserSlider.Fragments.ResultsFragment
@@ -15,11 +18,11 @@ class TasksPagerAdapter(fragmentManager: FragmentManager): FragmentPagerAdapter(
 
     val NUM_ITEMS = 4
 
-    val imageResId: Array<String> = arrayOf(
-            "Meds",
-            "Results",
-            "Patrons",
-            "Pupils"
+    val imageResId: Array<Int> = arrayOf(
+            R.string.meds_schedule,
+            R.string.health_results,
+            R.string.sitters,
+            R.string.pupils
     )
 
 

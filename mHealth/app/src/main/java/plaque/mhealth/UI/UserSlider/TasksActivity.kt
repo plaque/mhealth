@@ -21,16 +21,16 @@ class TasksActivity : AppCompatActivity() {
     fun initPager(){
         vpPager.adapter = TasksPagerAdapter(supportFragmentManager)
         tab_pager.setupWithViewPager(vpPager)
-        setUpIcons(tab_pager, vpPager.adapter as TasksPagerAdapter)
+        setUpText(tab_pager, vpPager.adapter as TasksPagerAdapter)
     }
 
     fun setPagerPosition(){
         vpPager.currentItem = intent.getIntExtra("position", 0)
     }
 
-    fun setUpIcons(tabLayout: TabLayout, adapter: TasksPagerAdapter){
+    fun setUpText(tabLayout: TabLayout, adapter: TasksPagerAdapter){
         for (index in adapter.imageResId.indices){
-            tabLayout.getTabAt(index)?.text = adapter.imageResId[index]
+            tabLayout.getTabAt(index)?.setText(adapter.imageResId[index])
         }
     }
 

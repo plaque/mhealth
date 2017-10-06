@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">mHealth</string>
-    <string name="sitters">Opiekunowie</string>
-    <string name="pupils">Podopieczni</string>
-    <string name="health_results">Wyniki</string>
-    <string name="meds_schedule">Lekarstwa</string>
+    <string name="sitters">Sitters</string>
+    <string name="pupils">Pupils</string>
+    <string name="health_results">Results</string>
+    <string name="meds_schedule">Meds</string>
     <string name="title_activity_meds">MedsActivity</string>
     <string name="title_activity_sitters">SittersActivity</string>
     <string name="title_activity_pupils">PupilsActivity</string>
     <string name="title_activity_results">ResultsActivity</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Login</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -39,4 +39,10 @@
     <string name="date">date</string>
     <string name="title">Title</string>
     <string name="days">days</string>
+    <string name="choose_language">Choose language</string>
+    <string name="choose_active_services">Choose active services:</string>
+    <string name="push_notifications">Push notifications</string>
+    <string name="email_notifications">Email notifications</string>
+    <string name="sms_notifications">Sms notifications</string>
+    <string name="fall_monitoring">Fall monitoring</string>
 </resources>
