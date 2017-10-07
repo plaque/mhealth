@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="plaque.mhealth">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -17,9 +19,9 @@
         android:roundIcon="@mipmap/ic_mhealth"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="plaque.mhealth.UI.MainScreen.MainActivity"></activity>
+        <activity android:name="plaque.mhealth.ui.main_screen.MainActivity"/>
         <activity
-            android:name="plaque.mhealth.UI.Login.LoginActivity"
+            android:name="plaque.mhealth.ui.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -28,10 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="plaque.mhealth.UI.UserSlider.TasksActivity"
+        <activity android:name="plaque.mhealth.ui.user_slider.TasksActivity"
             android:label="@string/tasks_activity_label"
             android:theme="@style/AppTheme">
         </activity>
+        <service android:name=".services.FallMonitorService"/>
     </application>
 
 </manifest>

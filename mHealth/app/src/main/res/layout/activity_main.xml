@@ -19,7 +19,7 @@
     android:paddingStart="0dp"
     android:paddingTop="0dp"
     android:background="@android:color/holo_blue_dark"
-    tools:context=".UI.MainScreen.MainActivity">
+    tools:context=".ui.main_screen.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"

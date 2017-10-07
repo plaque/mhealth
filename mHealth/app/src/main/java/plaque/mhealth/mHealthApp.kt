@@ -3,13 +3,13 @@ package plaque.mhealth
 import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import plaque.mhealth.DI.AppComponent
-import plaque.mhealth.DI.AppModule
-import plaque.mhealth.DI.DaggerAppComponent
-import plaque.mhealth.DI.Login.LoginComponent
-import plaque.mhealth.DI.Login.LoginModule
-import plaque.mhealth.DI.Meds.MedsComponent
-import plaque.mhealth.DI.Meds.MedsModule
+import plaque.mhealth.di.AppComponent
+import plaque.mhealth.di.AppModule
+import plaque.mhealth.di.DaggerAppComponent
+import plaque.mhealth.di.login.LoginComponent
+import plaque.mhealth.di.login.LoginModule
+import plaque.mhealth.di.meds.MedsComponent
+import plaque.mhealth.di.meds.MedsModule
 
 /**
  * Created by szymon on 15.09.17.
