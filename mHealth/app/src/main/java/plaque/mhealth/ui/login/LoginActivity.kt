@@ -10,6 +10,7 @@ import plaque.mhealth.R
 import plaque.mhealth.ui.main_screen.MainActivity
 import plaque.mhealth.ui.BaseActivity
 import plaque.mhealth.mHealthApp
+import plaque.mhealth.services.FallMonitorService
 import javax.inject.Inject
 
 class LoginActivity: BaseActivity(), LoginView {
@@ -21,6 +22,7 @@ class LoginActivity: BaseActivity(), LoginView {
         setContentView(R.layout.activity_login)
 
         mHealthApp.loginComponent.inject(this)
+        startService(Intent(this, FallMonitorService::class.java))
         login.setOnClickListener{ _ -> showMainActivity()}
     }
 

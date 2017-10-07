@@ -45,4 +45,5 @@
     <string name="email_notifications">Email notifications</string>
     <string name="sms_notifications">Sms notifications</string>
     <string name="fall_monitoring">Fall monitoring</string>
+    <string name="fall_detected">Fall detected!</string>
 </resources>
