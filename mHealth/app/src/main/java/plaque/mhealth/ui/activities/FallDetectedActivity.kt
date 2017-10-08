@@ -1,20 +1,22 @@
 package plaque.mhealth.ui.activities
 
-import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.view.View
 import kotlinx.android.synthetic.main.fall_detected_activity.*
 import plaque.mhealth.R
 
 /**
  * Created by szymon on 07.10.17.
  */
-class FallDetectedActivity: Activity() {
+class FallDetectedActivity: AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fall_detected_activity)
 
+        warning_img.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         dismiss_button.setOnClickListener{ _ -> finish()}
     }
 }

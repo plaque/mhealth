@@ -46,4 +46,6 @@
     <string name="sms_notifications">Sms notifications</string>
     <string name="fall_monitoring">Fall monitoring</string>
     <string name="fall_detected">Fall detected!</string>
+    <string name="i_didn_t_fall">I didn\'t fall</string>
+    <string name="login">Login</string>
 </resources>

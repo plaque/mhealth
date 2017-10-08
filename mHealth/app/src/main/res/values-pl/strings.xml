@@ -40,4 +40,12 @@
     <string name="title">Tytuł</string>
     <string name="days">Dni</string>
     <string name="choose_language">Wybierz język</string>
+    <string name="choose_active_services">Wybierz aktywne funkcje: </string>
+    <string name="push_notifications">Powiadomienia push</string>
+    <string name="email_notifications">Powiadomienia email</string>
+    <string name="sms_notifications">Powiadomienia sms</string>
+    <string name="fall_monitoring">Monitorowanie upadków</string>
+    <string name="fall_detected">Wykryto upadek!</string>
+    <string name="i_didn_t_fall">Nie przewróciłem się.</string>
+    <string name="login">Zaloguj</string>
 </resources>

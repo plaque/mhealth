@@ -1,6 +1,7 @@
 package plaque.mhealth
 
 import android.app.Application
+import android.support.v7.app.AppCompatDelegate
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import plaque.mhealth.di.AppComponent
@@ -24,6 +25,9 @@ class mHealthApp: Application(){
 
     override fun onCreate() {
         super.onCreate()
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .build()
