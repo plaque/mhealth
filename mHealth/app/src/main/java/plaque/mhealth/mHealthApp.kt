@@ -37,7 +37,7 @@ class mHealthApp: Application(){
         initRealmConfiguration()
     }
 
-    fun initRealmConfiguration(){
+    private fun initRealmConfiguration(){
         Realm.init(this)
         val realmConfig = RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded().build()

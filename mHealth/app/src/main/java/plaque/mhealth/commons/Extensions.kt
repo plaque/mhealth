@@ -10,7 +10,9 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
 import plaque.mhealth.R
+import plaque.mhealth.database.entities.RealmString
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
 import java.util.*
 
 /**
@@ -37,3 +39,6 @@ fun Calendar.getFullDate(): String {
     val format1: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm")
     return format1.format(this.time)
 }
+
+fun String.toRealmString(): RealmString = RealmString(this)
+
