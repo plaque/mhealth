@@ -26,6 +26,8 @@ class mHealthApp: Application(){
     override fun onCreate() {
         super.onCreate()
 
+        initRealmConfiguration()
+
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         appComponent = DaggerAppComponent.builder()
@@ -34,7 +36,6 @@ class mHealthApp: Application(){
         medsComponent = appComponent.plus(MedsModule())
         loginComponent = appComponent.plus(LoginModule())
 
-        initRealmConfiguration()
     }
 
     private fun initRealmConfiguration(){

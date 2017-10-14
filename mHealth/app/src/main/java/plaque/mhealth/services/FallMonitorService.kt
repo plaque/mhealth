@@ -41,7 +41,6 @@ class FallMonitorService: Service(), SensorEventListener {
             val acceleration = Math.abs(Math.sqrt(Math.pow(x.toDouble(), 2.0) + Math.pow(y.toDouble(), 2.0)
                         + Math.pow(z.toDouble(), 2.0)) - 9.8)
 
-            System.out.println(acceleration)
 
             currTime = System.currentTimeMillis()
 

@@ -1,22 +1,22 @@
 package plaque.mhealth.managers
 
 import io.reactivex.Observable
-import plaque.mhealth.model.Note
-import plaque.mhealth.model.OneTimeNote
+import plaque.mhealth.model.CyclicNote
+import java.time.DayOfWeek
 import java.util.*
 
 /**
  * Created by szymon on 14.09.17.
  */
 class MedsManager {
-    fun getMeds(): Observable<List<Note>>{
+    fun getMeds(): Observable<List<CyclicNote>>{
         return Observable.create {
             subscriber ->
 
-            val meds = mutableListOf<Note>()
+            val meds = mutableListOf<CyclicNote>()
 
             for(i in 1..10){
-                meds.add(OneTimeNote(Calendar.getInstance(), "author $i", "content $i", i%2 == 0))
+                meds.add(CyclicNote(arrayListOf("Mon"), arrayListOf("15:30"), "author $i", "content $i", i%2 == 0))
             }
             subscriber.onNext(meds)
         }

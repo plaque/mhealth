@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import plaque.mhealth.R
+import plaque.mhealth.ui.SettingsActivity
 import plaque.mhealth.ui.user_slider.TasksActivity
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setListeners(){
+        settings_button.setOnClickListener { _ -> startActivity(Intent(this, SettingsActivity::class.java)) }
+
         meds_button.setOnClickListener { _ ->  startActivityWithExtra(0) }
 
         results_button.setOnClickListener { _ -> startActivityWithExtra(1) }

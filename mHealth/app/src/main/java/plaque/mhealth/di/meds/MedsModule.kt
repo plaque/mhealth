@@ -4,6 +4,9 @@ import dagger.Module
 import dagger.Provides
 import plaque.mhealth.di.scopes.ActivityScope
 import plaque.mhealth.database.RealmService
+import plaque.mhealth.retrofit.LoginRestAPI
+import plaque.mhealth.retrofit.UserAPI
+import plaque.mhealth.retrofit.UserRestAPI
 import plaque.mhealth.ui.user_slider.fragments.meds.MedsFragment
 import plaque.mhealth.ui.user_slider.fragments.meds.MedsPresenter
 import plaque.mhealth.ui.user_slider.fragments.meds.MedsPresenterImpl
@@ -19,6 +22,6 @@ class MedsModule {
     fun provideMedsFragment() = MedsFragment
 
     @Provides
-    fun provideMedsPresenter(realmService: RealmService): MedsPresenter = MedsPresenterImpl(realmService)
+    fun provideMedsPresenter(realmService: RealmService, userRestAPI: UserRestAPI): MedsPresenter = MedsPresenterImpl(realmService, userRestAPI)
 
 }

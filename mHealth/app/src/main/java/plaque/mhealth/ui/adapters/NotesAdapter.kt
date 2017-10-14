@@ -3,7 +3,7 @@ package plaque.mhealth.ui.adapters
 import android.support.v4.util.SparseArrayCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import plaque.mhealth.model.Note
+import plaque.mhealth.model.CyclicNote
 
 
 /**
@@ -36,7 +36,7 @@ class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) : Recy
 
     override fun getItemCount(): Int = items.size
 
-    fun addNotes(notes: List<Note>) {
+    fun addNotes(notes: List<CyclicNote>) {
         // first remove loading and notify
         val initPosition = items.size - 1
         items.removeAt(initPosition)
@@ -47,7 +47,7 @@ class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) : Recy
         notifyItemRangeChanged(initPosition, items.size)
     }
 
-    fun clearAndAddNotes(notes: List<Note>) {
+    fun clearAndAddNotes(notes: List<CyclicNote>) {
         items.clear()
         notifyItemRangeRemoved(0, getLastPosition())
 
@@ -55,10 +55,10 @@ class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) : Recy
         notifyItemRangeInserted(0, items.size)
     }
 
-    fun getNotes(): List<Note> =
+    fun getNotes(): List<CyclicNote> =
             items
                     .filter { it.getViewType() == AdapterConstants.MEDS }
-                    .map { it as Note }
+                    .map { it as CyclicNote }
 
 
 

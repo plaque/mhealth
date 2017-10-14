@@ -5,10 +5,13 @@ import io.realm.RealmList
 import plaque.mhealth.commons.toRealmString
 import plaque.mhealth.database.entities.CyclicNoteEntity
 import plaque.mhealth.database.entities.RealmString
-import java.time.DayOfWeek
+import plaque.mhealth.ui.adapters.AdapterConstants
+import plaque.mhealth.ui.adapters.ViewType
 
-class CyclicNote(var days: List<DayOfWeek>, var hours: List<String>, content: String, title: String,
-                      active: Boolean): Note(content, title, active){
+class CyclicNote(var days: List<String>, var hours: List<String>, var content: String, var title: String,
+                      var active: Boolean): ViewType{
+
+    override fun getViewType() = AdapterConstants.MEDS
 
     fun toCyclicNoteEntity() = CyclicNoteEntity(this.toRealmDays(), this.toRealmHours(), this.content, this.title, this.active)
 
@@ -24,7 +27,7 @@ class CyclicNote(var days: List<DayOfWeek>, var hours: List<String>, content: St
     fun toRealmDays(): RealmList<RealmString>{
         var realmDays = RealmList<RealmString>()
         days.forEach {
-            realmDays.add(it.toString().toRealmString())
+            realmDays.add(it.toRealmString())
         }
         return realmDays
     }

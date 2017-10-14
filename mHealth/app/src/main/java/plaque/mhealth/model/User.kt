@@ -9,31 +9,20 @@ import plaque.mhealth.database.entities.*
  * Created by szymon on 18.08.17.
  */
 data class User(@PrimaryKey val email: String, val name: String?, val surname: String?,
-                var notes: ArrayList<Note>?, var sitters: ArrayList<User>?,
+                var notes: ArrayList<CyclicNote>?, var sitters: ArrayList<User>?,
                 var pupils: ArrayList<User>?, var sittersId: ArrayList<Int>?,
                 var pupilsId: ArrayList<Int>?){
 
-    fun oneTimeNotesToRealm(): RealmList<OneTimeNoteEntity>{
-        val ont = RealmList<OneTimeNoteEntity>()
-        this.notes?.forEach {
-            if(it is OneTimeNote){
-                ont.add(it.toOneTimeNoteEntity())
-            }
-        }
-        return ont
-    }
 
-    fun cyclicNotesToRealm(): RealmList<CyclicNoteEntity>{
+    private fun cyclicNotesToRealm(): RealmList<CyclicNoteEntity>{
         val cn = RealmList<CyclicNoteEntity>()
         this.notes?.forEach {
-            if(it is CyclicNote){
-                cn.add(it.toCyclicNoteEntity())
-            }
+            cn.add(it.toCyclicNoteEntity())
         }
         return cn
     }
 
-    fun sittersToRealm(): RealmList<SitterUserEntity>{
+    private fun sittersToRealm(): RealmList<SitterUserEntity>{
         val realmSitters = RealmList<SitterUserEntity>()
         this.sitters?.forEach {
 
@@ -43,7 +32,7 @@ data class User(@PrimaryKey val email: String, val name: String?, val surname: S
         return realmSitters
     }
 
-    fun pupilsToRealm(): RealmList<PupilUserEntity>{
+    private fun pupilsToRealm(): RealmList<PupilUserEntity>{
         val realmPupils = RealmList<PupilUserEntity>()
         this.pupils?.forEach {
 
@@ -53,32 +42,32 @@ data class User(@PrimaryKey val email: String, val name: String?, val surname: S
         return realmPupils
     }
 
-    fun sittersIdToRealm(): RealmList<RealmInt>{
+    private fun sittersIdToRealm(): RealmList<RealmInt>{
         val realmSittersId = RealmList<RealmInt>()
         this.sittersId?.forEach{
 
-            realmSittersId.add(RealmInt(it.toString()))
+            realmSittersId.add(RealmInt(it))
 
         }
         return realmSittersId
     }
 
-    fun pupilsIdToRealm(): RealmList<RealmInt>{
+    private fun pupilsIdToRealm(): RealmList<RealmInt>{
         val realmPupilsId = RealmList<RealmInt>()
         this.pupilsId?.forEach {
 
-            realmPupilsId.add(RealmInt(it.toString()))
+            realmPupilsId.add(RealmInt(it))
 
         }
         return realmPupilsId
     }
 
-    fun toUserEntity() = UserEntity(this.email, this.name, this.surname, this.oneTimeNotesToRealm(),
+    fun toUserEntity() = UserEntity(this.email, this.name, this.surname,
             this.cyclicNotesToRealm(), this.sittersToRealm(), this.pupilsToRealm(),
             this.sittersIdToRealm(), this.pupilsIdToRealm())
 
-    fun toPupilUserEntity() = PupilUserEntity(this.email, this.name, this.surname,
-            this.oneTimeNotesToRealm(), this.cyclicNotesToRealm())
+    private fun toPupilUserEntity() = PupilUserEntity(this.email, this.name, this.surname,
+            this.cyclicNotesToRealm())
 
-    fun toSitterUserEntity() = SitterUserEntity(this.email, this.name, this.surname)
+    private fun toSitterUserEntity() = SitterUserEntity(this.email, this.name, this.surname)
 }
