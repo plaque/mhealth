@@ -3,53 +3,27 @@ package plaque.mhealth.ui.user_slider.fragments.meds
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import io.realm.Realm
-import plaque.mhealth.database.RealmService
-import plaque.mhealth.managers.MedsManager
+import plaque.mhealth.database.DataStore
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.User
-import plaque.mhealth.retrofit.UserRestAPI
 import javax.inject.Inject
 
 /**
  * Created by szymon on 22.09.17.
  */
-class MedsPresenterImpl @Inject constructor(var realmService: RealmService,
-                                            var api: UserRestAPI): MedsPresenter{
+class MedsPresenterImpl @Inject constructor(var dataStore: DataStore): MedsPresenter{
 
-
-    private val medsManager by lazy { MedsManager() }
     lateinit var subscriptions: CompositeDisposable
     lateinit var medsView: MedsView
 
-
-    private fun realmTest() {
-
-        api.getUser().subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    user -> onLoad( user)
-                },
-                        {
-                            e -> println(e.message.toString())
-                        })
-
-
-    }
-
-
     override fun setView(view: MedsView) {
         medsView = view
+        getUser()
         showNotes()
-        realmTest()
     }
 
     override fun onLoad(user: User) {
-        realmService.addUser(user)
-    }
-
-    private fun showNotes() {
-        requestMeds()
+        dataStore.saveUser(user)
     }
 
     override fun clearView() {
@@ -57,7 +31,7 @@ class MedsPresenterImpl @Inject constructor(var realmService: RealmService,
     }
 
     override fun closeRealm() {
-        realmService.closeRealm()
+        dataStore.closeRealm()
     }
 
     override fun onNoteClicked(note: CyclicNote) {
@@ -65,26 +39,35 @@ class MedsPresenterImpl @Inject constructor(var realmService: RealmService,
     }
 
     override fun onFabClicked() {
-        realmService.getUser()
-    }
-
-    private fun requestMeds(){
-        val subscription = medsManager.getMeds()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            retrievedMeds -> medsView.showMeds(retrievedMeds)
-                        },
-                        {
-                            e ->
-                        }
-                )
-        subscriptions.add(subscription)
     }
 
     override fun setPresenterSubscriptions(subscriptions: CompositeDisposable){
         this.subscriptions = subscriptions
     }
 
+    private fun getUser() {
+        dataStore.getUser().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    user -> onLoad(user)
+                },
+                        {
+                            e -> println(e.message.toString())
+                        })
+    }
+
+    private fun showNotes() {
+        val subscription = dataStore.getNotes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            notes -> medsView.showNotes(notes)
+                        },
+                        {
+                            e -> print(e.message)
+                        }
+                )
+        subscriptions.add(subscription)
+    }
 }

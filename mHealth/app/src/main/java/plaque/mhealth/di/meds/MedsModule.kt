@@ -2,6 +2,7 @@ package plaque.mhealth.di.meds
 
 import dagger.Module
 import dagger.Provides
+import plaque.mhealth.database.DataStore
 import plaque.mhealth.di.scopes.ActivityScope
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.retrofit.LoginRestAPI
@@ -22,6 +23,6 @@ class MedsModule {
     fun provideMedsFragment() = MedsFragment
 
     @Provides
-    fun provideMedsPresenter(realmService: RealmService, userRestAPI: UserRestAPI): MedsPresenter = MedsPresenterImpl(realmService, userRestAPI)
+    fun provideMedsPresenter(dataStore: DataStore): MedsPresenter = MedsPresenterImpl(dataStore)
 
 }

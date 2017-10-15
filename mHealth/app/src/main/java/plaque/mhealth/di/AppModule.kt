@@ -4,8 +4,10 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import io.realm.Realm
+import plaque.mhealth.database.DataStore
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.mHealthApp
+import plaque.mhealth.retrofit.UserRestAPI
 import javax.inject.Singleton
 
 /**
@@ -27,4 +29,7 @@ class AppModule(val app: mHealthApp){
 
     @Provides
     fun provideRealmService(realm: Realm) = RealmService(realm)
+
+    @Provides
+    fun provideDataStore(realm: RealmService, api: UserRestAPI) = DataStore(realm, api)
 }

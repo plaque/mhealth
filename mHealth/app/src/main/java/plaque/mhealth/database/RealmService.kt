@@ -1,7 +1,9 @@
 package plaque.mhealth.database
 
+import io.reactivex.Observable
 import io.realm.Realm
 import plaque.mhealth.database.entities.UserEntity
+import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.User
 
 /**
@@ -10,7 +12,7 @@ import plaque.mhealth.model.User
 class RealmService(val realm: Realm) {
 
 
-    fun addUser(user: User) {
+    fun saveUser(user: User) {
 
         val user1 = realm.where(UserEntity::class.java).equalTo("email", user.email).findFirst()
         if(user1 == null){
@@ -22,10 +24,50 @@ class RealmService(val realm: Realm) {
         }
     }
 
-    fun getUser(){
+    fun getUser(): User? {
+        val user1: UserEntity? = realm.where(UserEntity::class.java).findFirst()
+        return user1?.toUser()
+    }
+
+    fun updateUser(user: User){
+        var userEntity = realm.where(UserEntity::class.java).findFirst()
+        realm.executeTransaction {
+            userEntity = user.toUserEntity()
+        }
+    }
+
+    fun deleteAll(){
+        realm.executeTransaction {
+            realm.deleteAll()
+        }
+    }
+
+    fun getNotes(): Observable<ArrayList<CyclicNote>>{
+        val notesObservable: Observable<ArrayList<CyclicNote>>
         val user1: UserEntity = realm.where(UserEntity::class.java).findFirst()
-        val user = user1.toUser()
+        val notes: ArrayList<CyclicNote> = user1.toUser().notes!!
+
+        notesObservable = Observable.create {
+            subscriber -> subscriber.onNext(notes)
+        }
+
+        return notesObservable
+    }
+
+    fun getPupils(): ArrayList<User>{
+
+        val user1: UserEntity? = realm.where(UserEntity::class.java).findFirst()
+
+        return user1!!.toUserPupils()
+    }
+
+    fun getSitters(): ArrayList<User>{
+
+        val user1: UserEntity? = realm.where(UserEntity::class.java).findFirst()
+
+        return user1!!.toUserSitters()
     }
 
     fun closeRealm(): Unit = realm.close()
+
 }

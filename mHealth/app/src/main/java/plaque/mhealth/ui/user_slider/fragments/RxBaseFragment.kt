@@ -1,5 +1,6 @@
 package plaque.mhealth.ui.user_slider.fragments
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 
@@ -9,13 +10,13 @@ import io.reactivex.disposables.CompositeDisposable
 open class RxBaseFragment: Fragment(){
     var subscriptions = CompositeDisposable()
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         subscriptions = CompositeDisposable()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         if(!subscriptions.isDisposed){
             subscriptions.dispose()
         }

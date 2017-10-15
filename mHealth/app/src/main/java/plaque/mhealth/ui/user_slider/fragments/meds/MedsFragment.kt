@@ -24,20 +24,11 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
 
     @Inject lateinit var medsPresenter: MedsPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         initAdapter()
 
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        val meds = (meds_list.adapter as NotesAdapter).getNotes()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,8 +37,6 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
 
         mHealthApp.medsComponent.inject(this)
 
-
-        val realm = Realm.getDefaultInstance()
         medsPresenter.setPresenterSubscriptions(subscriptions)
         medsPresenter.setView(this)
 
@@ -64,14 +53,15 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
     override fun onDestroy() {
         super.onDestroy()
         medsPresenter.clearView()
+        medsPresenter.closeRealm()
     }
 
     override fun onItemSelected(item: CyclicNote) {
         medsPresenter.onNoteClicked(item)
     }
 
-    override fun showMeds(meds: List<CyclicNote>) {
-        (meds_list.adapter as NotesAdapter).addNotes(meds)
+    override fun showNotes(notes: List<CyclicNote>) {
+        (meds_list.adapter as NotesAdapter).addNotes(notes)
     }
 
     override fun showNoteDetails(note: CyclicNote) {
@@ -83,39 +73,6 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
 
     override fun showAddNewNote() {
     }
-
-  /*  fun apiCalls(){
-        api.getUser().subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    user -> println(user)
-                },
-                        {
-                            e -> println(e.message.toString())
-                        })
-
-        api.getPatients().subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    patients -> println(patients)
-                },
-                        {
-                            e -> println(e.message.toString())
-                        })
-
-        api.getPatrons().subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    patrons -> println(patrons)
-                },
-                        {
-                            e -> println(e.message.toString())
-                        })
-    }
-    */
-
-
-
 
     private fun initAdapter(){
 

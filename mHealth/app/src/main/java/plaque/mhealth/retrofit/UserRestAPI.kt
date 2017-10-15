@@ -11,9 +11,11 @@ import javax.inject.Inject
 @ActivityScope
 class UserRestAPI @Inject constructor(private var userAPI: UserAPI) {
 
+    fun saveUser(user: User) = userAPI.saveUser(user)
+
     fun getUser(): Observable<User> = userAPI.user()
 
-    fun getPatients(): Observable<List<User>> = userAPI.patients()
+    fun getPupils(): Observable<ArrayList<User>> = userAPI.pupils()
 
-    fun getPatrons(): Observable<List<User>> = userAPI.patrons()
+    fun getSitters(): Observable<ArrayList<User>> = userAPI.sitters()
 }

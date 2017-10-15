@@ -48,4 +48,6 @@
     <string name="fall_detected">Fall detected!</string>
     <string name="i_didn_t_fall">I didn\'t fall</string>
     <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
 </resources>

@@ -4,6 +4,8 @@ import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import plaque.mhealth.database.entities.*
+import plaque.mhealth.ui.adapters.AdapterConstants
+import plaque.mhealth.ui.adapters.ViewType
 
 /**
  * Created by szymon on 18.08.17.
@@ -11,8 +13,9 @@ import plaque.mhealth.database.entities.*
 data class User(@PrimaryKey val email: String, val name: String?, val surname: String?,
                 var notes: ArrayList<CyclicNote>?, var sitters: ArrayList<User>?,
                 var pupils: ArrayList<User>?, var sittersId: ArrayList<Int>?,
-                var pupilsId: ArrayList<Int>?){
+                var pupilsId: ArrayList<Int>?): ViewType {
 
+    override fun getViewType(): Int = AdapterConstants.PEOPLE
 
     private fun cyclicNotesToRealm(): RealmList<CyclicNoteEntity>{
         val cn = RealmList<CyclicNoteEntity>()

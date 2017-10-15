@@ -3,13 +3,12 @@ package plaque.mhealth.ui.adapters
 import android.support.v4.util.SparseArrayCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import plaque.mhealth.model.CyclicNote
-
+import plaque.mhealth.model.User
 
 /**
- * Created by szymon on 13.09.17.
+ * Created by szymon on 15.10.17.
  */
-class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) :
+class PupilsAdapter(listener: PeopleDelegateAdapter.onViewSelectedListener) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<ViewType>
@@ -20,7 +19,7 @@ class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) :
 
     init {
         delegateAdapters.put(AdapterConstants.LOADING, LoadingDelegateAdapter())
-        delegateAdapters.put(AdapterConstants.MEDS, NotesDelegateAdapter(listener))
+        delegateAdapters.put(AdapterConstants.PEOPLE, PeopleDelegateAdapter(listener))
         items = ArrayList()
         items.add(loadingItem)
     }
@@ -30,38 +29,20 @@ class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int)
             = delegateAdapters.get(getItemViewType(position)).onBindViewHolder(holder, items[position])
 
+    override fun getItemCount(): Int = items.size
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
             = delegateAdapters.get(viewType).onCreateViewHolder(parent)
 
-    override fun getItemCount(): Int = items.size
-
-    fun addNotes(notes: List<CyclicNote>) {
+    fun addPupils(users: List<User>) {
         // first remove loading and notify
         val initPosition = items.size - 1
         items.removeAt(initPosition)
         notifyItemRemoved(initPosition)
 
         // insert news and the loading at the end of the list
-        items.addAll(notes)
+        items.addAll(users)
         notifyItemRangeChanged(initPosition, items.size)
     }
-
-    fun clearAndAddNotes(notes: List<CyclicNote>) {
-        items.clear()
-        notifyItemRangeRemoved(0, getLastPosition())
-
-        items.addAll(notes)
-        notifyItemRangeInserted(0, items.size)
-    }
-
-    fun getNotes(): List<CyclicNote> =
-            items
-                    .filter { it.getViewType() == AdapterConstants.MEDS }
-                    .map { it as CyclicNote }
-
-
-
-    private fun getLastPosition() = if (items.lastIndex == -1) 0 else items.lastIndex
-
 
 }
