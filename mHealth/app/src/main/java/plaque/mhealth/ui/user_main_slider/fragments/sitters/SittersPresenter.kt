@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.user_slider.fragments.pupils
+package plaque.mhealth.ui.user_main_slider.fragments.sitters
 
 import plaque.mhealth.model.User
 import plaque.mhealth.ui.BasePresenter
@@ -7,8 +7,8 @@ import plaque.mhealth.ui.RxBase
 /**
  * Created by szymon on 15.10.17.
  */
-interface PupilsPresenter: BasePresenter<PupilsView>, RxBase {
+interface SittersPresenter:BasePresenter<SittersView>, RxBase{
     fun onLoad(user: User)
-    fun onPupilClicked(user: User)
+    fun onSitterClicked(user: User)
     fun onFabClicked()
 }

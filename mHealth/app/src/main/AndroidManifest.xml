@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.user_slider.TasksActivity"
+            android:name=".ui.user_main_slider.TasksActivity"
             android:label="@string/tasks_activity_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>

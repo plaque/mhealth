@@ -80,5 +80,17 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
 
     fun closeRealm() = realm.closeRealm()
 
+    fun saveSitters(sitters: ArrayList<User>) {
+        val user = realm.getUser()
+        user?.sitters = sitters
+        realm.updateUser(user!!)
+    }
+
+    fun savePupils(pupils: ArrayList<User>) {
+        val user = realm.getUser()
+        user?.pupils = pupils
+        realm.updateUser(user!!)
+    }
+
 
 }

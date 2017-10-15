@@ -1,27 +1,24 @@
-package plaque.mhealth.ui.user_slider.fragments.pupils
+package plaque.mhealth.ui.user_main_slider.fragments.pupils
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.content_pupils.*
-import kotlinx.android.synthetic.main.fragment_meds.*
 import kotlinx.android.synthetic.main.fragment_pupils.*
 import plaque.mhealth.R
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.User
-import plaque.mhealth.ui.adapters.NotesAdapter
-import plaque.mhealth.ui.adapters.PeopleDelegateAdapter
-import plaque.mhealth.ui.adapters.PupilsAdapter
-import plaque.mhealth.ui.user_slider.fragments.RxBaseFragment
+import plaque.mhealth.ui.adapters.UserDelegateAdapter
+import plaque.mhealth.ui.adapters.UserAdapter
+import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
 import javax.inject.Inject
 
 /**
  * Created by szymon on 13.09.17.
  */
-class PupilsFragment: RxBaseFragment(), PeopleDelegateAdapter.onViewSelectedListener, PupilsView{
+class PupilsFragment: RxBaseFragment(), UserDelegateAdapter.onViewSelectedListener, PupilsView{
 
     @Inject lateinit var pupilsPresenter: PupilsPresenter
 
@@ -56,7 +53,7 @@ class PupilsFragment: RxBaseFragment(), PeopleDelegateAdapter.onViewSelectedList
     }
 
     override fun showPupils(pupils: ArrayList<User>) {
-        (pupils_list.adapter as PupilsAdapter).addPupils(pupils)
+        (pupils_list.adapter as UserAdapter).addUsers(pupils)
     }
 
     override fun showPupilDetails(user: User) {
@@ -76,7 +73,7 @@ class PupilsFragment: RxBaseFragment(), PeopleDelegateAdapter.onViewSelectedList
         pupils_list.layoutManager = LinearLayoutManager(context)
 
         if(pupils_list.adapter == null){
-            pupils_list.adapter = PupilsAdapter(this)
+            pupils_list.adapter = UserAdapter(this)
         }
     }
 

@@ -10,7 +10,7 @@ import plaque.mhealth.R
 /**
  * Created by szymon on 14.09.17.
  */
-class PeopleDelegateAdapter(val viewActions: onViewSelectedListener):ViewTypeDelegateAdapter {
+class UserDelegateAdapter(val viewActions: onViewSelectedListener):ViewTypeDelegateAdapter {
 
     interface onViewSelectedListener{
         fun onItemSelected(pupil: User)

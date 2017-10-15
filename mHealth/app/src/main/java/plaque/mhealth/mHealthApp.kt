@@ -13,6 +13,8 @@ import plaque.mhealth.di.meds.MedsComponent
 import plaque.mhealth.di.meds.MedsModule
 import plaque.mhealth.di.pupils.PupilsComponent
 import plaque.mhealth.di.pupils.PupilsModule
+import plaque.mhealth.di.sitters.SittersComponent
+import plaque.mhealth.di.sitters.SittersModule
 
 /**
  * Created by szymon on 15.09.17.
@@ -24,6 +26,7 @@ class mHealthApp: Application(){
         lateinit var medsComponent: MedsComponent
         lateinit var loginComponent: LoginComponent
         lateinit var pupilsComponent: PupilsComponent
+        lateinit var sittersComponent: SittersComponent
     }
 
     override fun onCreate() {
@@ -39,6 +42,7 @@ class mHealthApp: Application(){
         medsComponent = appComponent.plus(MedsModule())
         loginComponent = appComponent.plus(LoginModule())
         pupilsComponent = appComponent.plus(PupilsModule())
+        sittersComponent = appComponent.plus(SittersModule())
 
     }
 

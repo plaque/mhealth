@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.user_slider.fragments
+package plaque.mhealth.ui.user_main_slider.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

@@ -7,6 +7,8 @@ import plaque.mhealth.di.meds.MedsComponent
 import plaque.mhealth.di.meds.MedsModule
 import plaque.mhealth.di.pupils.PupilsComponent
 import plaque.mhealth.di.pupils.PupilsModule
+import plaque.mhealth.di.sitters.SittersComponent
+import plaque.mhealth.di.sitters.SittersModule
 import javax.inject.Singleton
 
 /**
@@ -24,5 +26,7 @@ interface AppComponent {
     fun plus(loginModule: LoginModule): LoginComponent
 
     fun plus(pupilsModule: PupilsModule): PupilsComponent
+
+    fun plus(sittersModule: SittersModule): SittersComponent
 
 }

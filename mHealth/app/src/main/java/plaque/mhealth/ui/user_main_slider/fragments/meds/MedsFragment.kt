@@ -1,18 +1,16 @@
-package plaque.mhealth.ui.user_slider.fragments.meds
+package plaque.mhealth.ui.user_main_slider.fragments.meds
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.realm.Realm
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.fragment_meds.*
 import plaque.mhealth.ui.adapters.NotesDelegateAdapter
 import plaque.mhealth.ui.adapters.NotesAdapter
 import plaque.mhealth.R
-import plaque.mhealth.database.entities.UserEntity
-import plaque.mhealth.ui.user_slider.fragments.RxBaseFragment
+import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.CyclicNote
 import javax.inject.Inject

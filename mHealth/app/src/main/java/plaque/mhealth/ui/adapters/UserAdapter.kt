@@ -8,7 +8,7 @@ import plaque.mhealth.model.User
 /**
  * Created by szymon on 15.10.17.
  */
-class PupilsAdapter(listener: PeopleDelegateAdapter.onViewSelectedListener) :
+class UserAdapter(listener: UserDelegateAdapter.onViewSelectedListener) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<ViewType>
@@ -19,7 +19,7 @@ class PupilsAdapter(listener: PeopleDelegateAdapter.onViewSelectedListener) :
 
     init {
         delegateAdapters.put(AdapterConstants.LOADING, LoadingDelegateAdapter())
-        delegateAdapters.put(AdapterConstants.PEOPLE, PeopleDelegateAdapter(listener))
+        delegateAdapters.put(AdapterConstants.PEOPLE, UserDelegateAdapter(listener))
         items = ArrayList()
         items.add(loadingItem)
     }
@@ -34,7 +34,7 @@ class PupilsAdapter(listener: PeopleDelegateAdapter.onViewSelectedListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
             = delegateAdapters.get(viewType).onCreateViewHolder(parent)
 
-    fun addPupils(users: List<User>) {
+    fun addUsers(users: List<User>) {
         // first remove loading and notify
         val initPosition = items.size - 1
         items.removeAt(initPosition)

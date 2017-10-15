@@ -1,6 +1,5 @@
-package plaque.mhealth.ui.user_slider.fragments.pupils
+package plaque.mhealth.ui.user_main_slider.fragments.pupils
 
-import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.User
 
 

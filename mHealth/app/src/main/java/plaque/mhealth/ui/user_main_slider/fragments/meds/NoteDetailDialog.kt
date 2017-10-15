@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.user_slider.fragments.meds
+package plaque.mhealth.ui.user_main_slider.fragments.meds
 
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText

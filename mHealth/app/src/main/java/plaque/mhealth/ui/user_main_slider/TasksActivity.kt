@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.user_slider
+package plaque.mhealth.ui.user_main_slider
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

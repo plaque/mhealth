@@ -9,7 +9,7 @@
     tools:context=".ui.user_main_slider.TasksActivity">
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tab_pager"
+        android:id="@+id/pd_tab_pager"
         android:layout_width="0dp"
         android:layout_height="70dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,7 +20,7 @@
         app:tabMode="fixed" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/vpPager"
+        android:id="@+id/pupil_detail_vp"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_margin="0dp"
@@ -30,7 +30,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintTop_toBottomOf="@+id/tab_pager">
+        app:layout_constraintTop_toBottomOf="@+id/pd_tab_pager">
 
     </android.support.v4.view.ViewPager>
 

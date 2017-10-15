@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.user_slider.fragments.pupils
+package plaque.mhealth.ui.user_main_slider.fragments.pupils
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -63,6 +63,7 @@ class PupilsPresenterImpl @Inject constructor(var dataStore: DataStore): PupilsP
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     pupils -> pupilsView.showPupils(pupils)
+                    dataStore.savePupils(pupils)
                 },{
                     e -> println(e.message)
                 })

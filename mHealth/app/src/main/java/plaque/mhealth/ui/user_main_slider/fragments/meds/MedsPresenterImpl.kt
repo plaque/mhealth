@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.user_slider.fragments.meds
+package plaque.mhealth.ui.user_main_slider.fragments.meds
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

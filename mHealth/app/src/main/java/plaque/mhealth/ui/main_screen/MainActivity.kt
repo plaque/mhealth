@@ -6,7 +6,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import plaque.mhealth.R
 import plaque.mhealth.ui.SettingsActivity
-import plaque.mhealth.ui.user_slider.TasksActivity
+import plaque.mhealth.ui.user_main_slider.TasksActivity
 
 class MainActivity : AppCompatActivity() {
 

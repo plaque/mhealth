@@ -1,6 +1,5 @@
-package plaque.mhealth.ui.user_slider.fragments.meds
+package plaque.mhealth.ui.user_main_slider.fragments.meds
 
-import io.realm.Realm
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.User
 import plaque.mhealth.ui.BasePresenter

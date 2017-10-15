@@ -1,19 +1,20 @@
-package plaque.mhealth.ui.user_slider.fragments.sitters
+package plaque.mhealth.ui.user_main_slider.fragments.results
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import plaque.mhealth.R
-import plaque.mhealth.ui.user_slider.fragments.RxBaseFragment
+import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
 
 /**
  * Created by szymon on 13.09.17.
  */
-class SittersFragment: RxBaseFragment(){
+class ResultsFragment: RxBaseFragment(){
+
 
     companion object {
-        fun newInstance(): SittersFragment = SittersFragment()
+        fun newInstance(): ResultsFragment = ResultsFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,7 @@ class SittersFragment: RxBaseFragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view: View? = inflater?.inflate(R.layout.fragment_sitters, container, false)
+        var view: View? = inflater?.inflate(R.layout.fragment_results, container, false)
         return view
     }
 }

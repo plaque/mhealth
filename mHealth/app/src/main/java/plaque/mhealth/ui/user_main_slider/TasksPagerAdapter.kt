@@ -1,13 +1,13 @@
-package plaque.mhealth.ui.user_slider
+package plaque.mhealth.ui.user_main_slider
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import plaque.mhealth.R
-import plaque.mhealth.ui.user_slider.fragments.meds.MedsFragment
-import plaque.mhealth.ui.user_slider.fragments.pupils.PupilsFragment
-import plaque.mhealth.ui.user_slider.fragments.ResultsFragment
-import plaque.mhealth.ui.user_slider.fragments.sitters.SittersFragment
+import plaque.mhealth.ui.user_main_slider.fragments.meds.MedsFragment
+import plaque.mhealth.ui.user_main_slider.fragments.pupils.PupilsFragment
+import plaque.mhealth.ui.user_main_slider.fragments.results.ResultsFragment
+import plaque.mhealth.ui.user_main_slider.fragments.sitters.SittersFragment
 
 /**
  * Created by szymon on 22.09.17.
