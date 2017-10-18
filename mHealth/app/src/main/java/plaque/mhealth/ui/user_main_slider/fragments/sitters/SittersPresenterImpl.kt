@@ -62,7 +62,9 @@ class SittersPresenterImpl @Inject constructor(var dataStore: DataStore): Sitter
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     sitters -> sittersView.showSitters(sitters)
-                    dataStore.saveSitters(sitters)
+                    if(sitters.size != 0){
+                        dataStore.saveSitters(sitters)
+                    }
                 },{
                     e -> println(e.message)
                 })

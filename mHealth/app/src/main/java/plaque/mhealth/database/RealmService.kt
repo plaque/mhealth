@@ -30,10 +30,10 @@ class RealmService(val realm: Realm) {
     }
 
     fun updateUser(user: User){
-        var userEntity = realm.where(UserEntity::class.java).findFirst()
-        realm.executeTransaction {
-            userEntity = user.toUserEntity()
-        }
+
+        this.deleteAll()
+        this.saveUser(user)
+
     }
 
     fun deleteAll(){

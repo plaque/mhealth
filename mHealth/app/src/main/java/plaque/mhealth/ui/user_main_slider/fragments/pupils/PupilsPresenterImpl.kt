@@ -63,7 +63,9 @@ class PupilsPresenterImpl @Inject constructor(var dataStore: DataStore): PupilsP
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     pupils -> pupilsView.showPupils(pupils)
-                    dataStore.savePupils(pupils)
+                    if(pupils.size != 0) {
+                        dataStore.savePupils(pupils)
+                    }
                 },{
                     e -> println(e.message)
                 })
