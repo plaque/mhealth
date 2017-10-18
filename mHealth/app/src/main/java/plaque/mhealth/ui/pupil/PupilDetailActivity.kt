@@ -5,15 +5,22 @@ import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_pupil_details.*
 import plaque.mhealth.R
+import plaque.mhealth.database.RealmService
+import plaque.mhealth.model.User
 
 /**
  * Created by szymon on 15.10.17.
  */
 class PupilDetailActivity : AppCompatActivity() {
 
+    lateinit var user: User
+    lateinit var realm: RealmService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pupil_details)
+        val email = savedInstanceState?.getString("email")
+        user = realm.getPupil(email)
 
         initPager()
 

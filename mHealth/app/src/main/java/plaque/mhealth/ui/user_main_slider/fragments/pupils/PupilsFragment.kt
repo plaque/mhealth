@@ -1,5 +1,6 @@
 package plaque.mhealth.ui.user_main_slider.fragments.pupils
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.User
 import plaque.mhealth.ui.adapters.UserDelegateAdapter
 import plaque.mhealth.ui.adapters.UserAdapter
+import plaque.mhealth.ui.pupil.PupilDetailActivity
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
 import javax.inject.Inject
 
@@ -57,6 +59,9 @@ class PupilsFragment: RxBaseFragment(), UserDelegateAdapter.onViewSelectedListen
     }
 
     override fun showPupilDetails(user: User) {
+        val intent = Intent(context, PupilDetailActivity::class.java)
+        intent.putExtra("email", user.email)
+        startActivity(intent)
     }
 
     override fun showAddNewPupil() {
