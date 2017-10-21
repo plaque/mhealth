@@ -7,6 +7,8 @@ import io.realm.RealmConfiguration
 import plaque.mhealth.di.AppComponent
 import plaque.mhealth.di.AppModule
 import plaque.mhealth.di.DaggerAppComponent
+import plaque.mhealth.di.details.PupilDetailComponent
+import plaque.mhealth.di.details.PupilDetailModule
 import plaque.mhealth.di.login.LoginComponent
 import plaque.mhealth.di.login.LoginModule
 import plaque.mhealth.di.meds.MedsComponent
@@ -27,6 +29,7 @@ class mHealthApp: Application(){
         lateinit var loginComponent: LoginComponent
         lateinit var pupilsComponent: PupilsComponent
         lateinit var sittersComponent: SittersComponent
+        lateinit var pupilDetailComponent: PupilDetailComponent
     }
 
     override fun onCreate() {
@@ -39,6 +42,7 @@ class mHealthApp: Application(){
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .build()
+        pupilDetailComponent = appComponent.plus(PupilDetailModule())
         medsComponent = appComponent.plus(MedsModule())
         loginComponent = appComponent.plus(LoginModule())
         pupilsComponent = appComponent.plus(PupilsModule())

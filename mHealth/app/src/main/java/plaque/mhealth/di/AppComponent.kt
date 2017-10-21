@@ -1,6 +1,8 @@
 package plaque.mhealth.di
 
 import dagger.Component
+import plaque.mhealth.di.details.PupilDetailComponent
+import plaque.mhealth.di.details.PupilDetailModule
 import plaque.mhealth.di.login.LoginComponent
 import plaque.mhealth.di.login.LoginModule
 import plaque.mhealth.di.meds.MedsComponent
@@ -28,5 +30,7 @@ interface AppComponent {
     fun plus(pupilsModule: PupilsModule): PupilsComponent
 
     fun plus(sittersModule: SittersModule): SittersComponent
+
+    fun plus(pupilDetailModule: PupilDetailModule): PupilDetailComponent
 
 }

@@ -32,6 +32,8 @@ class UserDelegateAdapter(val viewActions: onViewSelectedListener):ViewTypeDeleg
 
         fun bind(item: User) = with(itemView) {
             name.text = "${item.name} ${item.surname}"
+
+            super.itemView.setOnClickListener { viewActions.onItemSelected(item) }
         }
     }
 }
