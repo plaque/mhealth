@@ -54,6 +54,11 @@ class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) :
         notifyItemRangeInserted(0, items.size)
     }
 
+    fun updateItem(note: CyclicNote, position: Int){
+        items.set(position, note)
+        notifyItemChanged(position)
+    }
+
     fun getNotes(): List<CyclicNote> =
             items
                     .filter { it.getViewType() == AdapterConstants.MEDS }

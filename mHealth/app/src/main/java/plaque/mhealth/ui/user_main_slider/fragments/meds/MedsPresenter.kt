@@ -11,7 +11,7 @@ import plaque.mhealth.ui.RxBase
 interface MedsPresenter: BasePresenter<MedsView>, RxBase {
 
     fun onLoad(user: User)
-    fun onNoteClicked(note: CyclicNote)
+    fun onNoteClicked(note: CyclicNote, position: Int)
     fun onFabClicked()
 
 }

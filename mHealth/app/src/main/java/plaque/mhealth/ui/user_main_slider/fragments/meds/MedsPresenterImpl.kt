@@ -34,8 +34,8 @@ class MedsPresenterImpl @Inject constructor(var dataStore: DataStore): MedsPrese
         dataStore.closeRealm()
     }
 
-    override fun onNoteClicked(note: CyclicNote) {
-        medsView.showNoteDetails(note)
+    override fun onNoteClicked(note: CyclicNote, position: Int) {
+        medsView.showNoteDetails(note, position)
     }
 
     override fun onFabClicked() {

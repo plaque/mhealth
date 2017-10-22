@@ -26,7 +26,7 @@ class PupilDetailActivity : AppCompatActivity() {
 
         val email = intent.getStringExtra("email")
         user = realm.getPupil(email)
-
+        pupil_user_name.text = "${user.name} ${user.surname}"
         initPager()
 
     }
@@ -43,4 +43,8 @@ class PupilDetailActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.closeRealm()
+    }
 }

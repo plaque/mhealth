@@ -8,11 +8,11 @@ import plaque.mhealth.model.CyclicNote
 interface MedsView {
 
     fun showNotes(notes: List<CyclicNote>)
-    fun showNoteDetails(note: CyclicNote)
+    fun showNoteDetails(note: CyclicNote, position: Int)
     fun showAddNewNote()
 
     class EmptyMedsView: MedsView{
-        override fun showNoteDetails(note: CyclicNote) {
+        override fun showNoteDetails(note: CyclicNote, position: Int) {
 
         }
 

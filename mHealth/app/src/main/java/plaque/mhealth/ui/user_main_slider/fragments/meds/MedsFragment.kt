@@ -54,22 +54,24 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
         medsPresenter.closeRealm()
     }
 
-    override fun onItemSelected(item: CyclicNote) {
-        medsPresenter.onNoteClicked(item)
+    override fun onItemSelected(item: CyclicNote, position: Int) {
+        medsPresenter.onNoteClicked(item, position)
     }
 
     override fun showNotes(notes: List<CyclicNote>) {
         (meds_list.adapter as NotesAdapter).addNotes(notes)
     }
 
-    override fun showNoteDetails(note: CyclicNote) {
+    override fun showNoteDetails(note: CyclicNote, position: Int) {
         var noteDialog = NoteDetailDialog()
         noteDialog.note = note
+        noteDialog.position = position
         noteDialog.show(fragmentManager, "")
     }
 
 
     override fun showAddNewNote() {
+
     }
 
     private fun initAdapter(){

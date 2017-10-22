@@ -14,7 +14,7 @@ import javax.inject.Inject
 class PupilsResultsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListener{
 
 
-    override fun onItemSelected(note: CyclicNote) {
+    override fun onItemSelected(note: CyclicNote, position: Int) {
 
     }
 

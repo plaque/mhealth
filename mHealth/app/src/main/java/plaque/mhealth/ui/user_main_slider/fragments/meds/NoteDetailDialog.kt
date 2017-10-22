@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.cyclic_note.*
+import kotlinx.android.synthetic.main.edit_cyclic_note.*
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.R
+import plaque.mhealth.ui.adapters.NotesAdapter
 
 /**
  * Created by szymon on 23.09.17.
@@ -18,6 +21,7 @@ import plaque.mhealth.R
 class NoteDetailDialog(): DialogFragment() {
 
     lateinit var note: CyclicNote
+    var position = 0
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -52,10 +56,24 @@ class NoteDetailDialog(): DialogFragment() {
             findViewById<TextInputEditText>(R.id.edit_content)?.setText(note.content)
             findViewById<TextView>(R.id.edit_days)?.text = note.days.toString()
             findViewById<TextView>(R.id.edit_hours)?.text = note.hours.toString()
+            findViewById<TextView>(R.id.submit_button)?.setOnClickListener{_ -> saveChanges()}
         }
 
-        this.dialog.setContentView(R.layout.edit_cyclic_note)
+        this.dialog.setContentView(newView)
+
 
     }
 
+    private fun saveChanges(){
+
+        note.title = this.dialog.findViewById<EditText>(R.id.edit_title).text.toString()
+        note.content = this.dialog.findViewById<EditText>(R.id.edit_content).text.toString()
+        note.days = arrayListOf(this.dialog.findViewById<TextView>(R.id.edit_days).text.toString())
+        note.hours = arrayListOf(this.dialog.findViewById<TextView>(R.id.edit_hours).text.toString())
+
+        val adapter = (fragmentManager.fragments[0] as MedsFragment).meds_list.adapter
+        (adapter as NotesAdapter).updateItem(note, position)
+
+        this.dismiss()
+    }
 }

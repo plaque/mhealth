@@ -13,7 +13,7 @@ import plaque.mhealth.model.CyclicNote
 class NotesDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDelegateAdapter {
 
     interface onViewSelectedListener {
-        fun onItemSelected(item: CyclicNote)
+        fun onItemSelected(item: CyclicNote, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
@@ -35,7 +35,7 @@ class NotesDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDel
             title.text = item.title
             active.isChecked = item.active
 
-            super.itemView.setOnClickListener { viewActions.onItemSelected(item) }
+            super.itemView.setOnClickListener { viewActions.onItemSelected(item, super.getPosition()) }
         }
     }
 }
