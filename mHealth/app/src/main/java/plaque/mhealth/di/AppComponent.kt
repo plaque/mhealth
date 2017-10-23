@@ -5,6 +5,8 @@ import plaque.mhealth.di.details.PupilDetailComponent
 import plaque.mhealth.di.details.PupilDetailModule
 import plaque.mhealth.di.login.LoginComponent
 import plaque.mhealth.di.login.LoginModule
+import plaque.mhealth.di.main.MainComponent
+import plaque.mhealth.di.main.MainModule
 import plaque.mhealth.di.meds.MedsComponent
 import plaque.mhealth.di.meds.MedsModule
 import plaque.mhealth.di.pupils.PupilsComponent
@@ -32,5 +34,7 @@ interface AppComponent {
     fun plus(sittersModule: SittersModule): SittersComponent
 
     fun plus(pupilDetailModule: PupilDetailModule): PupilDetailComponent
+
+    fun plus(mainModule: MainModule): MainComponent
 
 }

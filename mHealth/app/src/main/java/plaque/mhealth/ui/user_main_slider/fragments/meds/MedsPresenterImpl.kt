@@ -39,6 +39,7 @@ class MedsPresenterImpl @Inject constructor(var dataStore: DataStore): MedsPrese
     }
 
     override fun onFabClicked() {
+        medsView.showAddNewNote()
     }
 
     override fun setPresenterSubscriptions(subscriptions: CompositeDisposable){

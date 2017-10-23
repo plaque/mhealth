@@ -11,6 +11,8 @@ import plaque.mhealth.di.details.PupilDetailComponent
 import plaque.mhealth.di.details.PupilDetailModule
 import plaque.mhealth.di.login.LoginComponent
 import plaque.mhealth.di.login.LoginModule
+import plaque.mhealth.di.main.MainComponent
+import plaque.mhealth.di.main.MainModule
 import plaque.mhealth.di.meds.MedsComponent
 import plaque.mhealth.di.meds.MedsModule
 import plaque.mhealth.di.pupils.PupilsComponent
@@ -25,6 +27,7 @@ class mHealthApp: Application(){
 
     companion object {
         lateinit var appComponent: AppComponent
+        lateinit var mainComponent: MainComponent
         lateinit var medsComponent: MedsComponent
         lateinit var loginComponent: LoginComponent
         lateinit var pupilsComponent: PupilsComponent
@@ -43,6 +46,7 @@ class mHealthApp: Application(){
                 .appModule(AppModule(this))
                 .build()
         pupilDetailComponent = appComponent.plus(PupilDetailModule())
+        mainComponent = appComponent.plus(MainModule())
         medsComponent = appComponent.plus(MedsModule())
         loginComponent = appComponent.plus(LoginModule())
         pupilsComponent = appComponent.plus(PupilsModule())
