@@ -25,15 +25,16 @@
     <string name="tasks_activity_label">Tasks</string>
     <string name="edit">Edit</string>
     <string name="long_text">Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text</string>
-    <string name="mon">Mon</string>
-    <string name="tuesday">Tue</string>
-    <string name="Wednesday">Wed</string>
-    <string name="thursday">Thu</string>
-    <string name="friday">Fri</string>
-    <string name="saturday">Sat</string>
-    <string name="sun">sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
     <string name="add">Add</string>
     <string name="submit">Submit</string>
+    <string name="save">Save</string>
     <string name="cyclic">Cyclic</string>
     <string name="hours">hours</string>
     <string name="date">date</string>
@@ -50,4 +51,6 @@
     <string name="login">Login</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
+    <string name="add_user_message">Provide email of user you want to add to your network:</string>
+    <string name="user_email">User email</string>
 </resources>

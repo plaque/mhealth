@@ -46,6 +46,11 @@ class NotesAdapter(listener: NotesDelegateAdapter.onViewSelectedListener) :
         notifyItemRangeChanged(initPosition, items.size)
     }
 
+    fun addNote(note: CyclicNote){
+        items.add(note)
+        notifyItemInserted(items.size)
+    }
+
     fun clearAndAddNotes(notes: List<CyclicNote>) {
         items.clear()
         notifyItemRangeRemoved(0, getLastPosition())

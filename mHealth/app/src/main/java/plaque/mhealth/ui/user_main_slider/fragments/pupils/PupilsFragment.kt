@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_pupils.*
 import plaque.mhealth.R
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.User
+import plaque.mhealth.ui.AddUserDialog
 import plaque.mhealth.ui.adapters.UserDelegateAdapter
 import plaque.mhealth.ui.adapters.UserAdapter
 import plaque.mhealth.ui.pupil.PupilDetailActivity
@@ -65,7 +66,8 @@ class PupilsFragment: RxBaseFragment(), UserDelegateAdapter.onViewSelectedListen
     }
 
     override fun showAddNewPupil() {
-
+        val addUserDialog = AddUserDialog()
+        addUserDialog.show(fragmentManager, "")
     }
 
     override fun onItemSelected(pupil: User) {

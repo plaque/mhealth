@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.user_main_slider.fragments.meds
+package plaque.mhealth.ui.notes
 
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
@@ -10,15 +10,15 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.cyclic_note.*
-import kotlinx.android.synthetic.main.edit_cyclic_note.*
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.R
 import plaque.mhealth.ui.adapters.NotesAdapter
+import plaque.mhealth.ui.user_main_slider.fragments.meds.MedsFragment
 
 /**
  * Created by szymon on 23.09.17.
  */
-class NoteDetailDialog(): DialogFragment() {
+class NoteDetailDialog: DialogFragment() {
 
     lateinit var note: CyclicNote
     var position = 0
@@ -45,6 +45,10 @@ class NoteDetailDialog(): DialogFragment() {
             edit.setOnClickListener { _ -> changeToEditLayout() }
         }
 
+    }
+
+    fun hideEditButton(){
+        edit.visibility = View.INVISIBLE
     }
 
     private fun changeToEditLayout(){

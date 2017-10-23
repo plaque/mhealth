@@ -8,15 +8,12 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.fragment_meds.*
 import plaque.mhealth.R
-import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.CyclicNote
-import plaque.mhealth.model.User
 import plaque.mhealth.ui.adapters.NotesAdapter
 import plaque.mhealth.ui.adapters.NotesDelegateAdapter
-import plaque.mhealth.ui.adapters.UserDelegateAdapter
 import plaque.mhealth.ui.pupil.PupilDetailActivity
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
-import plaque.mhealth.ui.user_main_slider.fragments.meds.NoteDetailDialog
+import plaque.mhealth.ui.notes.NoteDetailDialog
 
 /**
  * Created by szymon on 15.10.17.
@@ -40,6 +37,7 @@ class PupilsMedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedL
         var noteDialog = NoteDetailDialog()
         noteDialog.note = note
         noteDialog.position = position
+        noteDialog.hideEditButton()
         noteDialog.show(fragmentManager, "")
     }
 

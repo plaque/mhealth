@@ -13,6 +13,7 @@ import plaque.mhealth.R
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.CyclicNote
+import plaque.mhealth.ui.notes.NoteDetailDialog
 import javax.inject.Inject
 
 /**
