@@ -98,9 +98,20 @@ class NoteDetailDialog: DialogFragment() {
         note.days = days
         note.hours = arrayListOf(this.dialog.findViewById<TextView>(R.id.edit_hours).text.toString())
 
-        val adapter = (fragmentManager.fragments[0] as MedsFragment).meds_list.adapter
-        (adapter as NotesAdapter).updateItem(note, position)
+        val adapter: NotesAdapter
+        var medsFragment: MedsFragment? = null
 
+        fragmentManager.fragments.forEach {
+            if(it is MedsFragment) {
+                medsFragment = it
+            }
+        }
+
+        adapter = (medsFragment?.meds_list?.adapter as NotesAdapter)
+
+        adapter.updateItem(note, position)
+
+        medsFragment?.onNotesChange()
         this.dismiss()
     }
 }

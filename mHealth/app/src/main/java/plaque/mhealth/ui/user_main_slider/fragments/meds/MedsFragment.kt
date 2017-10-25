@@ -77,6 +77,12 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
         addNoteDialog.show(fragmentManager, "")
     }
 
+    fun onNotesChange(){
+        medsPresenter.onNotesChange(((meds_list.adapter as NotesAdapter).getNotes() as ArrayList<CyclicNote>))
+    }
+
+
+
     private fun initAdapter(){
 
         meds_list.setHasFixedSize(true)

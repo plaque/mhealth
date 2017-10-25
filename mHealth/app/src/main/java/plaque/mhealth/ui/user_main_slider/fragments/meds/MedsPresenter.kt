@@ -13,5 +13,6 @@ interface MedsPresenter: BasePresenter<MedsView>, RxBase {
     fun onLoad(user: User)
     fun onNoteClicked(note: CyclicNote, position: Int)
     fun onFabClicked()
+    fun onNotesChange(notes: ArrayList<CyclicNote>)
 
 }

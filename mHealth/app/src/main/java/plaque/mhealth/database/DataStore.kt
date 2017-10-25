@@ -45,6 +45,10 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
         }
     }
 
+    fun updateUser(user: User){
+        realm.updateUser(user)
+    }
+
     fun getNotes(): Observable<ArrayList<CyclicNote>> = realm.getNotes()
 
     fun getPupils(): Observable<ArrayList<User>>{

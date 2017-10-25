@@ -49,8 +49,21 @@ class NewNoteDialog : DialogFragment() {
         }
         val hours = arrayListOf(note_title.text.toString())
 
-        val adapter = (fragmentManager.fragments[0] as MedsFragment).meds_list.adapter
-        (adapter as NotesAdapter).addNote(CyclicNote(days, hours, content, title, true))
+        val adapter: NotesAdapter
+        var medsFragment: MedsFragment? = null
+
+        fragmentManager.fragments.forEach {
+            if(it is MedsFragment) {
+                medsFragment = it
+            }
+        }
+
+        adapter = (medsFragment?.meds_list?.adapter as NotesAdapter)
+
+        adapter.addNote(CyclicNote(days, hours, content, title, true))
+
+        medsFragment?.onNotesChange()
+
 
         this.dismiss()
     }

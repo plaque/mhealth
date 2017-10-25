@@ -71,4 +71,15 @@ class MedsPresenterImpl @Inject constructor(var dataStore: DataStore): MedsPrese
                 )
         subscriptions.add(subscription)
     }
+
+    override fun onNotesChange(notes: ArrayList<CyclicNote>) {
+        dataStore.getUser().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    user -> user.notes = notes
+                    dataStore.updateUser(user)
+                },{
+                    e -> println(e.message.toString())
+                })
+    }
 }
