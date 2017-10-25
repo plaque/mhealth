@@ -6,10 +6,15 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
+import kotlinx.android.synthetic.main.add_note.*
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.cyclic_note.*
+import kotlinx.android.synthetic.main.edit_cyclic_note.*
+import org.jetbrains.anko.forEachChild
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.R
 import plaque.mhealth.ui.adapters.NotesAdapter
@@ -22,6 +27,7 @@ class NoteDetailDialog: DialogFragment() {
 
     lateinit var note: CyclicNote
     var position = 0
+    var hideEdit = false
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -40,15 +46,22 @@ class NoteDetailDialog: DialogFragment() {
         apply {
             title.text = note.title
             content.text = note.content
-            days.text = note.days.toString()
+            val daysStrings = arrayListOf(getString(R.string.monday), getString(R.string.tuesday),
+                    getString(R.string.wednesday), getString(R.string.thursday),
+                    getString(R.string.friday), getString(R.string.saturday),
+                    getString(R.string.sunday))
+            days.text = note.daysToString(daysStrings)
             hours.text = note.hours.toString()
             edit.setOnClickListener { _ -> changeToEditLayout() }
+            if(hideEdit){
+                edit.visibility = View.GONE
+            }
         }
 
     }
 
     fun hideEditButton(){
-        edit.visibility = View.INVISIBLE
+        hideEdit = true
     }
 
     private fun changeToEditLayout(){
@@ -58,7 +71,11 @@ class NoteDetailDialog: DialogFragment() {
         newView?.apply {
             findViewById<EditText>(R.id.edit_title)?.setText(note.title)
             findViewById<TextInputEditText>(R.id.edit_content)?.setText(note.content)
-            findViewById<TextView>(R.id.edit_days)?.text = note.days.toString()
+            findViewById<LinearLayout>(R.id.edit_days)?.forEachChild {
+                if(it.tag.toString().toInt() in note.days){
+                    (it as CheckBox).isChecked = true
+                }
+            }
             findViewById<TextView>(R.id.edit_hours)?.text = note.hours.toString()
             findViewById<TextView>(R.id.submit_button)?.setOnClickListener{_ -> saveChanges()}
         }
@@ -72,7 +89,13 @@ class NoteDetailDialog: DialogFragment() {
 
         note.title = this.dialog.findViewById<EditText>(R.id.edit_title).text.toString()
         note.content = this.dialog.findViewById<EditText>(R.id.edit_content).text.toString()
-        note.days = arrayListOf(this.dialog.findViewById<TextView>(R.id.edit_days).text.toString())
+        val days = arrayListOf<Int>()
+        this.dialog.findViewById<LinearLayout>(R.id.edit_days)?.forEachChild {
+            if((it as CheckBox).isChecked){
+                days.add(it.tag.toString().toInt())
+            }
+        }
+        note.days = days
         note.hours = arrayListOf(this.dialog.findViewById<TextView>(R.id.edit_hours).text.toString())
 
         val adapter = (fragmentManager.fragments[0] as MedsFragment).meds_list.adapter

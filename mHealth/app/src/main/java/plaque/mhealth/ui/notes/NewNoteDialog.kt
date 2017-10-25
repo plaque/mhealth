@@ -5,8 +5,10 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import kotlinx.android.synthetic.main.add_note.*
 import kotlinx.android.synthetic.main.content_meds.*
+import org.jetbrains.anko.forEachChild
 import plaque.mhealth.R
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.ui.adapters.NotesAdapter
@@ -39,7 +41,12 @@ class NewNoteDialog : DialogFragment() {
 
         val title = note_title.text.toString()
         val content = note_content.text.toString()
-        val days = arrayListOf(note_hours.text.toString())
+        val days = arrayListOf<Int>()
+        add_days.forEachChild {
+            if((it as CheckBox).isChecked){
+                days.add(it.tag.toString().toInt())
+            }
+        }
         val hours = arrayListOf(note_title.text.toString())
 
         val adapter = (fragmentManager.fragments[0] as MedsFragment).meds_list.adapter

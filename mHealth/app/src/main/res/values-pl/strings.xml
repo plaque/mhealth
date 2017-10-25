@@ -25,13 +25,13 @@
     <string name="tasks_activity_label">Tasks</string>
     <string name="edit">Edytuj</string>
     <string name="long_text">Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text Very long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long textVery long long text</string>
-    <string name="mon">Poniedziałek</string>
+    <string name="monday">Poniedziałek</string>
     <string name="tuesday">Wtorek</string>
-    <string name="Wednesday">Środa</string>
+    <string name="wednesday">Środa</string>
     <string name="thursday">Czwartek</string>
     <string name="friday">Piątek</string>
     <string name="saturday">Sobota</string>
-    <string name="sun">Niedziela</string>
+    <string name="sunday">Niedziela</string>
     <string name="add">Dodaj</string>
     <string name="submit">Zatwierdź</string>
     <string name="cyclic">Cykliczne</string>

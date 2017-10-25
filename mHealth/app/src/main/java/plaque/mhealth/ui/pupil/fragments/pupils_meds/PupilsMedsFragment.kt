@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.fragment_meds.*
 import plaque.mhealth.R
+import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.ui.adapters.NotesAdapter
 import plaque.mhealth.ui.adapters.NotesDelegateAdapter
