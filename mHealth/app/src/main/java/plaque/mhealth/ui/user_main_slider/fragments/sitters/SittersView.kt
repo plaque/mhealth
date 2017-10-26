@@ -10,6 +10,7 @@ interface SittersView {
     fun showSitters(sitters: ArrayList<User>)
     fun showSitterDetails(sitters: User)
     fun showAddNewSitter()
+    fun updateSitters(user: User)
 
     class EmptySittersView: SittersView {
         override fun showSitterDetails(sitters: User) {
@@ -21,6 +22,10 @@ interface SittersView {
         }
 
         override fun showAddNewSitter() {
+
+        }
+
+        override fun updateSitters(user: User){
 
         }
 

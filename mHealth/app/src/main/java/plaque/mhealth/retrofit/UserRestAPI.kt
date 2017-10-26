@@ -2,6 +2,8 @@ package plaque.mhealth.retrofit
 
 import io.reactivex.Observable
 import plaque.mhealth.di.scopes.ActivityScope
+import plaque.mhealth.model.CyclicNote
+import plaque.mhealth.model.Email
 import plaque.mhealth.model.User
 import javax.inject.Inject
 
@@ -14,6 +16,12 @@ class UserRestAPI @Inject constructor(private var userAPI: UserAPI) {
     fun saveUser(user: User) = userAPI.saveUser(user)
 
     fun getUser(): Observable<User> = userAPI.user()
+
+    fun addPupil(email: String): Observable<User> = userAPI.addPupil(Email(email))
+
+    fun addSitter(email: String): Observable<User> = userAPI.addSitter(Email(email))
+
+    fun updateNotes(notes: ArrayList<CyclicNote>?) = userAPI.updateNotes(notes)
 
     fun getPupils(): Observable<ArrayList<User>> = userAPI.pupils()
 

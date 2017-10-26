@@ -11,8 +11,12 @@ interface PupilsView {
     fun showPupils(pupils: ArrayList<User>)
     fun showPupilDetails(user: User)
     fun showAddNewPupil()
+    fun updatePupils(user: User)
 
     class EmptyPupilsView: PupilsView{
+        override fun updatePupils(user: User) {
+
+        }
 
         override fun showPupilDetails(user: User) {
         }

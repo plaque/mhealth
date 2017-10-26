@@ -77,7 +77,7 @@ class MedsPresenterImpl @Inject constructor(var dataStore: DataStore): MedsPrese
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     user -> user.notes = notes
-                    dataStore.updateUser(user)
+                    dataStore.updateNotes(user)
                 },{
                     e -> println(e.message.toString())
                 })

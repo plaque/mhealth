@@ -46,6 +46,21 @@ class PupilsPresenterImpl @Inject constructor(var dataStore: DataStore): PupilsP
         pupilsView.showAddNewPupil()
     }
 
+    override fun onPupilsChanged(pupils: ArrayList<User>) {
+        dataStore.savePupils(pupils)
+    }
+
+    override fun onPupilAdded(email: String) {
+        dataStore.addPupil(email).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    user -> pupilsView.updatePupils(user)
+                },
+                        {
+                            e -> println(e.message.toString())
+                        })
+    }
+
     private fun getUser() {
         dataStore.getUser().subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

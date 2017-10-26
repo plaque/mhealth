@@ -1,5 +1,6 @@
 package plaque.mhealth.ui.user_main_slider.fragments.sitters
 
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -43,6 +44,20 @@ class SittersPresenterImpl @Inject constructor(var dataStore: DataStore): Sitter
 
     override fun onFabClicked() {
         sittersView.showAddNewSitter()
+    }
+
+    override fun onSitterAdded(email: String){
+        dataStore.addSitter(email).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    user -> sittersView.updateSitters(user)
+                },{
+                    e -> println(e.message.toString())
+                })
+    }
+
+    override fun onSittersChanged(sitters: ArrayList<User>) {
+        dataStore.saveSitters(sitters)
     }
 
     private fun getUser() {

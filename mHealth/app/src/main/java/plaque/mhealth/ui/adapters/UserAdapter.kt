@@ -45,4 +45,11 @@ class UserAdapter(listener: UserDelegateAdapter.onViewSelectedListener) :
         notifyItemRangeChanged(initPosition, items.size)
     }
 
+    fun addUser(user: User){
+        items.add(user)
+        notifyItemInserted(items.size)
+    }
+
+    fun getUsers() = items
+
 }

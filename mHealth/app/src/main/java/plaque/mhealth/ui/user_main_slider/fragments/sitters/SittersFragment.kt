@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.fragment_sitters.*
 import plaque.mhealth.R
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.User
+import plaque.mhealth.ui.AddSitterDialog
 import plaque.mhealth.ui.AddUserDialog
 import plaque.mhealth.ui.adapters.UserAdapter
 import plaque.mhealth.ui.adapters.UserDelegateAdapter
@@ -58,12 +59,21 @@ class SittersFragment: RxBaseFragment(), UserDelegateAdapter.onViewSelectedListe
     }
 
     override fun showAddNewSitter() {
-        val addUserDialog = AddUserDialog()
+        val addUserDialog = AddSitterDialog()
         addUserDialog.show(fragmentManager, "")
     }
 
-    override fun onItemSelected(sitter: User) {
-        sittersPresenter.onSitterClicked(sitter)
+    override fun onItemSelected(user: User) {
+        sittersPresenter.onSitterClicked(user)
+    }
+
+    fun addSitter(email: String){
+        sittersPresenter.onSitterAdded(email)
+    }
+
+    override fun updateSitters(user: User){
+        (sitters_list.adapter as UserAdapter).addUser(user)
+        sittersPresenter.onSittersChanged(((sitters_list.adapter as UserAdapter).getUsers()) as ArrayList<User>)
     }
 
     override fun onDestroy() {

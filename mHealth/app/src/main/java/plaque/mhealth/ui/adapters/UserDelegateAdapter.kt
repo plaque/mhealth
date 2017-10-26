@@ -13,7 +13,7 @@ import plaque.mhealth.R
 class UserDelegateAdapter(val viewActions: onViewSelectedListener):ViewTypeDelegateAdapter {
 
     interface onViewSelectedListener{
-        fun onItemSelected(pupil: User)
+        fun onItemSelected(user: User)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
