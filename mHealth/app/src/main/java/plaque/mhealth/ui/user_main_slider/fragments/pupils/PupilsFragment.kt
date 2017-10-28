@@ -6,15 +6,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_pupils.*
 import kotlinx.android.synthetic.main.fragment_pupils.*
 import plaque.mhealth.R
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.User
-import plaque.mhealth.ui.AddPupilDialog
-import plaque.mhealth.ui.AddUserDialog
+import plaque.mhealth.ui.dialogs.AddPupilDialog
 import plaque.mhealth.ui.adapters.UserDelegateAdapter
 import plaque.mhealth.ui.adapters.UserAdapter
 import plaque.mhealth.ui.pupil.PupilDetailActivity

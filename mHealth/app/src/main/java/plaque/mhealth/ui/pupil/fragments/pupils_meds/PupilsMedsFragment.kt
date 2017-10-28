@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.fragment_meds.*
 import plaque.mhealth.R
-import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.ui.adapters.NotesAdapter
 import plaque.mhealth.ui.adapters.NotesDelegateAdapter
 import plaque.mhealth.ui.pupil.PupilDetailActivity
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
-import plaque.mhealth.ui.notes.NoteDetailDialog
+import plaque.mhealth.ui.dialogs.NoteDetailDialog
 
 /**
  * Created by szymon on 15.10.17.

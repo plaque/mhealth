@@ -1,6 +1,9 @@
 package plaque.mhealth.retrofit
 
 import io.reactivex.Observable
+import io.reactivex.Single
+import okhttp3.Response
+import okhttp3.ResponseBody
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.Email
 import plaque.mhealth.model.User
@@ -18,7 +21,7 @@ interface UserAPI {
     fun saveUser(@Body user: User): Observable<User>
 
     @POST("api/user/updateNotes/")
-    fun updateNotes(@Body notes: ArrayList<CyclicNote>?)
+    fun updateNotes(@Body notes: ArrayList<CyclicNote>?): Observable<ResponseBody>
 
     @POST("api/user/addPupil/")
     fun addPupil(@Body email: Email): Observable<User>

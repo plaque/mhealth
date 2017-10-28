@@ -1,4 +1,4 @@
-package plaque.mhealth.ui
+package plaque.mhealth.ui.dialogs
 
 import plaque.mhealth.ui.user_main_slider.fragments.pupils.PupilsFragment
 

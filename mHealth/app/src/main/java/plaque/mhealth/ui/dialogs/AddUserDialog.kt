@@ -1,4 +1,4 @@
-package plaque.mhealth.ui
+package plaque.mhealth.ui.dialogs
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment

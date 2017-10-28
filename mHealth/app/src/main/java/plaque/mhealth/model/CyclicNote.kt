@@ -4,23 +4,24 @@ import io.realm.RealmList
 import plaque.mhealth.R
 import plaque.mhealth.commons.toRealmString
 import plaque.mhealth.database.entities.CyclicNoteEntity
+import plaque.mhealth.database.entities.HourMinutePairEntity
 import plaque.mhealth.database.entities.RealmInt
 import plaque.mhealth.database.entities.RealmString
 import plaque.mhealth.ui.adapters.AdapterConstants
 import plaque.mhealth.ui.adapters.ViewType
 
-class CyclicNote(var days: ArrayList<Int>, var hours: List<String>, var content: String, var title: String,
+class CyclicNote(var days: ArrayList<Int>, var hours: ArrayList<HourMinutePair>, var content: String, var title: String,
                       var active: Boolean): ViewType{
 
     override fun getViewType() = AdapterConstants.MEDS
 
     fun toCyclicNoteEntity() = CyclicNoteEntity(this.toRealmDays(), this.toRealmHours(), this.content, this.title, this.active)
 
-    fun toRealmHours(): RealmList<RealmString>{
+    fun toRealmHours(): RealmList<HourMinutePairEntity>{
 
-        val realmHours = RealmList<RealmString>()
+        val realmHours = RealmList<HourMinutePairEntity>()
         hours.forEach {
-            realmHours.add(it.toRealmString())
+            realmHours.add(it.toHourMinutePairEntity())
         }
         return realmHours
     }

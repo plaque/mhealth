@@ -10,8 +10,7 @@ import kotlinx.android.synthetic.main.fragment_sitters.*
 import plaque.mhealth.R
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.User
-import plaque.mhealth.ui.AddSitterDialog
-import plaque.mhealth.ui.AddUserDialog
+import plaque.mhealth.ui.dialogs.AddSitterDialog
 import plaque.mhealth.ui.adapters.UserAdapter
 import plaque.mhealth.ui.adapters.UserDelegateAdapter
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment

@@ -3,6 +3,7 @@ package plaque.mhealth.database
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.User
 import plaque.mhealth.retrofit.UserRestAPI
@@ -51,7 +52,13 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
 
     fun updateNotes(user: User){
         realm.updateUser(user)
-        api.updateNotes(user.notes)
+        api.updateNotes(user.notes).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    response -> println(response)
+                },{
+                    e -> println(e.message.toString())
+                })
     }
 
     fun getNotes(): Observable<ArrayList<CyclicNote>> = realm.getNotes()
