@@ -53,4 +53,7 @@
     <string name="surname">Surname</string>
     <string name="add_user_message">Provide email of user you want to add to your network:</string>
     <string name="user_email">User email</string>
+    <string name="user_notification">Meds alert for user</string>
+    <string name="channel_name">Meds alerts</string>
+    <string name="channel_description">Get info about meds alerts</string>
 </resources>

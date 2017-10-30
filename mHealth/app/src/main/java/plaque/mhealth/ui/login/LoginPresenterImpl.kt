@@ -29,18 +29,22 @@ class LoginPresenterImpl @Inject constructor(var api: LoginRestAPI,
         realmService.closeRealm()
     }
 
-    override fun onLoginClick(login: Login) {
-        api.login(login)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            response -> manageResponse(response)
-                        },
-                        {
-                            loginView.showErrorMessage("Check your internet connection. Server is not responding.")
-                        }
-                )
+    override fun onLoginClick(login: Login?) {
+        if(login == null){
+            loginView.showMainActivity()
+        }else {
+            api.login(login!!)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            { response ->
+                                manageResponse(response)
+                            },
+                            {
+                                loginView.showErrorMessage("Check your internet connection. Server is not responding.")
+                            }
+                    )
+        }
     }
 
     private fun manageResponse(response: retrofit2.Response<ResponseBody>): Unit{

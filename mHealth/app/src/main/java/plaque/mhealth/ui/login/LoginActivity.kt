@@ -28,8 +28,15 @@ class LoginActivity: AppCompatActivity(), LoginView {
     }
 
     fun login(){
-        val login = Login("sin1111",  "password")
-        loginPresenter.onLoginClick(login)
+        //val login = Login("sin1111",  "password")
+        var login1: Login?
+        if(email.text.toString() == ""){
+            login1 = null
+        }
+        else{
+            login1 = Login("sin1111",  "password")
+        }
+        loginPresenter.onLoginClick(login1)
     }
 
     override fun onStart() {

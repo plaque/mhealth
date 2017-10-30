@@ -38,13 +38,13 @@ class CyclicNote(var days: ArrayList<Int>, var hours: ArrayList<HourMinutePair>,
         var daysString = StringBuilder()
         days.forEach {
             when(it){
-                1 -> daysString.append(daysStrings[0]).append(" ")
-                2 -> daysString.append(daysStrings[1]).append(" ")
-                3 -> daysString.append(daysStrings[2]).append(" ")
-                4 -> daysString.append(daysStrings[3]).append(" ")
-                5 -> daysString.append(daysStrings[4]).append(" ")
-                6 -> daysString.append(daysStrings[5]).append(" ")
-                7 -> daysString.append(daysStrings[6]).append(" ")
+                2 -> daysString.append(daysStrings[0]).append(" ")
+                3 -> daysString.append(daysStrings[1]).append(" ")
+                4 -> daysString.append(daysStrings[2]).append(" ")
+                5 -> daysString.append(daysStrings[3]).append(" ")
+                6 -> daysString.append(daysStrings[4]).append(" ")
+                7 -> daysString.append(daysStrings[5]).append(" ")
+                1 -> daysString.append(daysStrings[6]).append(" ")
             }
         }
 
