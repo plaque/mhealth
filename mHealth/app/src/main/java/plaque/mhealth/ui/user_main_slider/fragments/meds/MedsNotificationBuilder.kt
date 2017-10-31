@@ -1,6 +1,8 @@
 package plaque.mhealth.ui.user_main_slider.fragments.meds
 
 import android.content.Context
+import android.graphics.Color
+import android.media.RingtoneManager
 import android.support.v4.app.NotificationCompat
 import plaque.mhealth.R
 import plaque.mhealth.model.CyclicNote
@@ -18,6 +20,9 @@ class MedsNotificationBuilder(title: String?, content:String?, email: String?,
                 .setSmallIcon(R.drawable.drugs)
                 .setContentTitle("Meds alert for user $email")
                 .setContentText("Alert for note $title: $content")
+                .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+                .setColor(Color.GREEN)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
     }
 
 }
