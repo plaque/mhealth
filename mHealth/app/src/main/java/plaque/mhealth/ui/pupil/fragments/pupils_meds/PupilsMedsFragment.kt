@@ -33,9 +33,9 @@ class PupilsMedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedL
         fab.hide()
     }
 
-    override fun onItemSelected(note: CyclicNote, position: Int) {
+    override fun onItemSelected(item: CyclicNote, position: Int) {
         var noteDialog = NoteDetailDialog()
-        noteDialog.note = note
+        noteDialog.note = item
         noteDialog.position = position
         noteDialog.hideEditButton()
         noteDialog.show(fragmentManager, "")

@@ -11,8 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import plaque.mhealth.R
 import plaque.mhealth.database.DataStore
 import plaque.mhealth.mHealthApp
-import plaque.mhealth.model.User
-import plaque.mhealth.ui.user_main_slider.fragments.meds.MedsNotificationBuilder
 import plaque.mhealth.ui.SettingsActivity
 import plaque.mhealth.ui.user_main_slider.TasksActivity
 import plaque.mhealth.ui.user_main_slider.fragments.meds.MedsAlertStarter

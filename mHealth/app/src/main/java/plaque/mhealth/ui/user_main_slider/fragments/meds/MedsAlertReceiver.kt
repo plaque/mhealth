@@ -13,9 +13,10 @@ class MedsAlertReceiver: BroadcastReceiver(){
 
         val notificationManager: NotificationManager
                 = p0?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(1,
+        val id = p1?.getIntExtra("id", 1) ?: 1
+        notificationManager.notify(id,
         MedsNotificationBuilder(p1?.getStringExtra("title"), p1?.getStringExtra("content"),
-                p1?.getStringExtra("email"), p0!!).build()
+                p1?.getStringExtra("email"), p0).build()
         )
     }
 }

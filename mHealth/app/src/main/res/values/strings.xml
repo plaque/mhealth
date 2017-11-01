@@ -56,4 +56,9 @@
     <string name="user_notification">Meds alert for user</string>
     <string name="channel_name">Meds alerts</string>
     <string name="channel_description">Get info about meds alerts</string>
+    <string name="result_name">Cukier</string>
+    <string name="results">120, 130, 140</string>
+    <string name="add_measurement">Add measurement</string>
+    <string name="result_label">ResultDetail</string>
+    <string name="login_label">LoginActivity</string>
 </resources>

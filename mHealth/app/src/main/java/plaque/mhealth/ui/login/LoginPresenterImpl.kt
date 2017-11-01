@@ -33,7 +33,7 @@ class LoginPresenterImpl @Inject constructor(var api: LoginRestAPI,
         if(login == null){
             loginView.showMainActivity()
         }else {
-            api.login(login!!)
+            api.login(login)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(

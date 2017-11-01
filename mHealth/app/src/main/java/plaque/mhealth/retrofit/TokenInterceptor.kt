@@ -31,7 +31,7 @@ class TokenInterceptor @Inject constructor() : Interceptor {
             if (sessionToken == null) {
                 throw RuntimeException("Session token should be defined for auth apis")
             } else {
-                requestBuilder.addHeader("Authorization", sessionToken)
+                requestBuilder.addHeader("Authorization", sessionToken!!)
             }
 
             response = chain.proceed(requestBuilder.build())

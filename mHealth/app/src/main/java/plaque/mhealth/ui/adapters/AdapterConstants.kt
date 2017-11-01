@@ -7,4 +7,5 @@ object AdapterConstants {
     val MEDS = 0
     val LOADING = 1
     val PEOPLE = 2
+    val RESULTS = 3
 }

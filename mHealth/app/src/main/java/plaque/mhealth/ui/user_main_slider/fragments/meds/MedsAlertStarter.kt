@@ -48,11 +48,18 @@ class MedsAlertStarter(val context: Context?) {
             val cal = Calendar.getInstance()
             cal.timeInMillis = System.currentTimeMillis()
             cal.set(Calendar.DAY_OF_WEEK, it)
+            val toBeId = "$email$it${note.title}${note.content}"
             note.hours.forEach{
-                var pendingIntent = PendingIntent.getBroadcast(context, Random().nextInt(10000), intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT)
+                val id = "$toBeId${it.hour}${it.minute}".hashCode()
+                intent.putExtra("id", id)
+                val pendingIntent = PendingIntent.getBroadcast(context,
+                        id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
                 cal.set(Calendar.HOUR_OF_DAY, it.hour)
                 cal.set(Calendar.MINUTE, it.minute)
+
+                if(cal.timeInMillis < System.currentTimeMillis()){
+                    cal.add(Calendar.DATE, 7)
+                }
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis,
                         24 * 7 * 60 * 60 * 1000, pendingIntent)
             }

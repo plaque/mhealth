@@ -29,7 +29,8 @@ fun ImageView.loadImg(imageUrl: String) {
         Picasso.with(context).load(imageUrl).into(this)
     }
 }
-inline fun View.snackbar(message: String){
+
+fun View.snackbar(message: String){
     val activity = context
     if(activity is Activity) Snackbar.make(activity.find(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
     else throw IllegalStateException("View needs to be attached to an Activity.")
