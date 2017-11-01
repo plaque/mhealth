@@ -7,6 +7,7 @@ import okhttp3.ResponseBody
 import plaque.mhealth.di.scopes.ActivityScope
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.Email
+import plaque.mhealth.model.Result
 import plaque.mhealth.model.User
 import javax.inject.Inject
 
@@ -25,6 +26,8 @@ class UserRestAPI @Inject constructor(private var userAPI: UserAPI) {
     fun addSitter(email: String): Observable<User> = userAPI.addSitter(Email(email))
 
     fun updateNotes(notes: ArrayList<CyclicNote>?): Observable<ResponseBody> = userAPI.updateNotes(notes)
+
+    fun updateResults(results: ArrayList<Result>?): Observable<ResponseBody> = userAPI.updateResults(results)
 
     fun getPupils(): Observable<ArrayList<User>> = userAPI.pupils()
 

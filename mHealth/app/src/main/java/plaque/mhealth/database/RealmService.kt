@@ -6,6 +6,7 @@ import plaque.mhealth.database.entities.PupilUserEntity
 import plaque.mhealth.database.entities.SitterUserEntity
 import plaque.mhealth.database.entities.UserEntity
 import plaque.mhealth.model.CyclicNote
+import plaque.mhealth.model.Result
 import plaque.mhealth.model.User
 
 /**
@@ -54,6 +55,18 @@ class RealmService(val realm: Realm) {
         }
 
         return notesObservable
+    }
+
+    fun getResults(): Observable<ArrayList<Result>>{
+        val resultsObservable: Observable<ArrayList<Result>>
+        val user1: UserEntity = realm.where(UserEntity::class.java).findFirst()
+        val results: ArrayList<Result> = user1.toUser().results!!
+
+        resultsObservable = Observable.create {
+            subscriber -> subscriber.onNext(results)
+        }
+
+        return resultsObservable
     }
 
     fun getPupils(): ArrayList<User>{

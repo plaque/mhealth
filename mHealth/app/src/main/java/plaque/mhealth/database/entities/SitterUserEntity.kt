@@ -10,5 +10,5 @@ import plaque.mhealth.model.User
 open class SitterUserEntity(var email: String = "", var name: String? = "",
                             var surname: String? = ""): RealmObject(){
 
-    fun toUser() = User(this.email, this.name, this.surname, null, null, null, null, null)
+    fun toUser() = User(this.email, this.name, this.surname, null, null, null, null, null, null)
 }

@@ -13,7 +13,7 @@ import plaque.mhealth.R
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.CyclicNote
-import plaque.mhealth.ui.dialogs.NewNoteDialog
+import plaque.mhealth.ui.dialogs.AddNoteDialog
 import plaque.mhealth.ui.dialogs.NoteDetailDialog
 import javax.inject.Inject
 
@@ -73,7 +73,7 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
 
 
     override fun showAddNewNote() {
-        val addNoteDialog = NewNoteDialog()
+        val addNoteDialog = AddNoteDialog()
         addNoteDialog.show(fragmentManager, "")
     }
 

@@ -4,6 +4,7 @@ import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import plaque.mhealth.model.CyclicNote
+import plaque.mhealth.model.Result
 import plaque.mhealth.model.User
 
 /**
@@ -11,13 +12,14 @@ import plaque.mhealth.model.User
  */
 open class UserEntity(var email: String = "", var name: String? = "", var surname: String? = "",
                       var cnNotes: RealmList<CyclicNoteEntity>? = RealmList(),
+                      var realmResults: RealmList<ResultEntity>? = RealmList(),
                       var sitters: RealmList<SitterUserEntity>? = RealmList(),
                       var pupils: RealmList<PupilUserEntity>? = RealmList(),
                       var sittersId: RealmList<RealmInt>? = RealmList(),
                       var pupilsId: RealmList<RealmInt>? = RealmList()): RealmObject(){
 
-    fun toUser() = User(this.email, this.name, this.surname, this.toUserNotes(), this.toUserSitters(),
-            this.toUserPupils(), this.toUserSittersId(), this.toUserPupilsId())
+    fun toUser() = User(this.email, this.name, this.surname, this.toUserNotes(), this.toUserResults(),
+            this.toUserSitters(), this.toUserPupils(), this.toUserSittersId(), this.toUserPupilsId())
 
     fun toUserNotes(): ArrayList<CyclicNote>{
         val notes = arrayListOf<CyclicNote>()
@@ -25,6 +27,14 @@ open class UserEntity(var email: String = "", var name: String? = "", var surnam
             notes.add(it.toCyclicNote())
         }
         return notes
+    }
+
+    fun toUserResults(): ArrayList<Result>{
+        val results = arrayListOf<Result>()
+        realmResults?.forEach {
+            results.add(it.toResult())
+        }
+        return results
     }
 
     fun toUserSitters(): ArrayList<User>{

@@ -21,7 +21,7 @@ import plaque.mhealth.ui.user_main_slider.fragments.meds.MedsFragment
 /**
  * Created by szymon on 23.10.17.
  */
-class NewNoteDialog : DialogFragment(), TimePickerDialog.OnTimeSetListener {
+class AddNoteDialog : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     val time = arrayListOf<HourMinutePair>()
 

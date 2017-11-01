@@ -6,6 +6,7 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.Email
+import plaque.mhealth.model.Result
 import plaque.mhealth.model.User
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,6 +23,9 @@ interface UserAPI {
 
     @POST("api/user/updateNotes/")
     fun updateNotes(@Body notes: ArrayList<CyclicNote>?): Observable<ResponseBody>
+
+    @POST("api/user/updateResults/")
+    fun updateResults(@Body results: ArrayList<Result>?): Observable<ResponseBody>
 
     @POST("api/user/addPupil/")
     fun addPupil(@Body email: Email): Observable<User>

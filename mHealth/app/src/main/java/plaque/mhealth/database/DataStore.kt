@@ -5,6 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import plaque.mhealth.model.CyclicNote
+import plaque.mhealth.model.Result
 import plaque.mhealth.model.User
 import plaque.mhealth.retrofit.UserRestAPI
 import javax.inject.Inject
@@ -63,6 +64,20 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
 
     fun getNotes(): Observable<ArrayList<CyclicNote>> = realm.getNotes()
 
+    fun updateResults(user: User){
+        realm.updateUser(user)
+        api.updateResults(user.results).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    response -> println(response)
+                },{
+                    e -> println(e.message.toString())
+                })
+
+    }
+
+    fun getResults(): Observable<ArrayList<Result>> = realm.getResults()
+
     fun getPupils(): Observable<ArrayList<User>>{
 
         val pupilsObservable: Observable<ArrayList<User>>
@@ -84,7 +99,7 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
         val sittersObservable: Observable<ArrayList<User>>
         val sitters = realm.getSitters()
         if(sitters.size == 0){
-            sittersObservable = api.getPupils()
+            sittersObservable = api.getSitters()
         }else{
             sittersObservable = Observable.create {
                 subscriber -> subscriber.onNext(sitters)
@@ -93,6 +108,7 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
 
         return sittersObservable
     }
+
 
     fun closeRealm() = realm.closeRealm()
 

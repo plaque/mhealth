@@ -67,7 +67,7 @@ class PupilsFragment: RxBaseFragment(), UserDelegateAdapter.onViewSelectedListen
 
     override fun showAddNewPupil() {
         val addUserDialog = AddPupilDialog()
-        addUserDialog.show(fragmentManager, "")
+        addUserDialog.show(fragmentManager, "NewPupilDialog")
     }
 
     fun addPupil(email: String){
