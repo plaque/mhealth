@@ -9,7 +9,6 @@ import plaque.mhealth.ui.user_main_slider.fragments.pupils.PupilsFragment
  */
 @ActivityScope
 @Subcomponent(modules = arrayOf(PupilsModule::class))
-
 interface PupilsComponent{
     fun inject(pupilsFragment: PupilsFragment)
 }

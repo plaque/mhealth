@@ -1,7 +1,5 @@
 package plaque.mhealth.ui.main_screen
 
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -56,49 +54,8 @@ class MainActivity : AppCompatActivity() {
                   user -> dataStore.saveUser(user)
                     val alertStarter = MedsAlertStarter(this)
                     alertStarter.startAlarms(user)
-                    //setAlarms(user)
                 },{
                     e -> println(e.message)
                 })
     }
-
-  /*  fun notifTest(user: User){
-        val notificationManager: NotificationManager
-                = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        val id = "meds_channel"
-
-        val name: CharSequence = getString(R.string.channel_name)
-        val descr: String = getString(R.string.channel_description)
-
-        val importance: Int = NotificationManager.IMPORTANCE_HIGH
-
-        //val channel: NotificationChannel = NotificationChannel()
-
-        notificationManager.notify(1, MedsNotificationBuilder(user.notes!![0].title,
-                user.notes!![0].content, user.name, this).build())
-    }
- */
- /*   fun setAlarms(user: User){
-
-        user.notes?.forEach {
-            if(it.active){
-                startAlarm(it)
-            }
-        }
-
-        user.pupils?.forEach {
-            var user = it
-            it.notes?.forEach {
-                if(it.active){
-                    startAlarm(user, it)
-                }
-            }
-        }
-
-
-
-    }
-*/
-
 }
