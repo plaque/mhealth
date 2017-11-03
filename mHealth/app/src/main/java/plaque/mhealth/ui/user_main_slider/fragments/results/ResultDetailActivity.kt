@@ -1,7 +1,6 @@
 package plaque.mhealth.ui.user_main_slider.fragments.results
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
