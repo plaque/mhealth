@@ -62,4 +62,6 @@
     <string name="result_label">ResultDetail</string>
     <string name="login_label">LoginActivity</string>
     <string name="settings">Settings</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
 </resources>
