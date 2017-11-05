@@ -29,9 +29,9 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:layout_margin="8dp"
         android:layout_weight="5"
-
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/card_like"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -55,11 +55,11 @@
         android:id="@+id/results_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:clickable="true"
         android:focusable="true"
         android:layout_weight="5"
-
-        android:background="@color/colorPrimary"
+        android:background="@drawable/card_like_1"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -86,7 +86,8 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_weight="5"
-        android:background="@color/colorPrimaryLight"
+        android:layout_margin="8dp"
+        android:background="@drawable/card_like_2"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -112,7 +113,8 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_weight="5"
-        android:background="#E0F7FA"
+        android:layout_margin="8dp"
+        android:background="@drawable/card_like_3"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -133,17 +135,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/settings_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@color/text"
         android:layout_weight="5"
+        android:layout_margin="8dp"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageButton
+            android:id="@+id/settings_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical|center_horizontal"
