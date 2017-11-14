@@ -56,10 +56,7 @@ class ResultDetailActivity: AppCompatActivity() {
 
         setXAxis()
 
-
-
-
-        val dataSet: LineDataSet = LineDataSet(setEntries(), result?.title)
+        val dataSet = LineDataSet(setEntries(), result?.title)
         val lineData = LineData(dataSet)
 
         chart.data = lineData
@@ -78,13 +75,13 @@ class ResultDetailActivity: AppCompatActivity() {
     private fun patientResult(){
         val email = intent?.getStringExtra("email")
         val resultTitle = intent?.getStringExtra("result_title")
-        val pupil = realm.getUser()?.pupils?.filter { it.email == email }?.first()
+        val pupil = realm.getPupil(email)
         result = pupil?.results?.filter { it.title == resultTitle }?.first()
     }
 
     private fun userResult(){
         val resultTitle = intent?.getStringExtra("result_title")
-        result = realm.getUser()?.results?.filter { it.title == resultTitle }?.first()
+        result = realm.getUser()?.results?.filter { it.title == resultTitle }?.firstOrNull()
     }
 
     private fun setXAxis(){

@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import plaque.mhealth.R
-import plaque.mhealth.ui.pupil.fragments.pupil_results.PupilsResultsFragment
-import plaque.mhealth.ui.pupil.fragments.pupils_meds.PupilsMedsFragment
+import plaque.mhealth.ui.pupil.fragments.pupil_results.PupilResultsFragment
+import plaque.mhealth.ui.pupil.fragments.pupil_meds.PupilMedsFragment
 
 /**
  * Created by szymon on 15.10.17.
@@ -22,9 +22,9 @@ class PupilDetailPagerAdapter (fragmentManager: FragmentManager): FragmentPagerA
 
     override fun getItem(position: Int): Fragment {
         when(position){
-            0 -> return PupilsMedsFragment.newInstance()
-            1 -> return PupilsResultsFragment.newInstance()
-            else -> return PupilsMedsFragment.newInstance()
+            0 -> return PupilMedsFragment.newInstance()
+            1 -> return PupilResultsFragment.newInstance()
+            else -> return PupilMedsFragment.newInstance()
         }
     }
 

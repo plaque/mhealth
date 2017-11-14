@@ -9,23 +9,17 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.content_results.*
 import kotlinx.android.synthetic.main.fragment_results.*
 import plaque.mhealth.R
-import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.Result
-import plaque.mhealth.model.User
-import plaque.mhealth.ui.adapters.NotesDelegateAdapter
 import plaque.mhealth.ui.adapters.ResultsAdapter
 import plaque.mhealth.ui.adapters.ResultsDelegateAdapter
-import plaque.mhealth.ui.adapters.UserDelegateAdapter
 import plaque.mhealth.ui.pupil.PupilDetailActivity
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
-import plaque.mhealth.ui.user_main_slider.fragments.pupils.PupilsFragment
 import plaque.mhealth.ui.user_main_slider.fragments.results.ResultDetailActivity
-import javax.inject.Inject
 
 /**
  * Created by szymon on 15.10.17.
  */
-class PupilsResultsFragment: RxBaseFragment(), ResultsDelegateAdapter.onViewSelectedListener{
+class PupilResultsFragment : RxBaseFragment(), ResultsDelegateAdapter.onViewSelectedListener{
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -43,6 +37,8 @@ class PupilsResultsFragment: RxBaseFragment(), ResultsDelegateAdapter.onViewSele
 
     override fun onItemSelected(result: Result) {
         val intent = Intent(context, ResultDetailActivity::class.java)
+        val email = (activity as PupilDetailActivity).user.email
+        intent.putExtra("email", email)
         intent.putExtra("result_title", result.title)
         startActivity(intent)
     }
@@ -58,6 +54,6 @@ class PupilsResultsFragment: RxBaseFragment(), ResultsDelegateAdapter.onViewSele
     }
 
     companion object {
-        fun newInstance(): PupilsResultsFragment = PupilsResultsFragment()
+        fun newInstance(): PupilResultsFragment = PupilResultsFragment()
     }
 }

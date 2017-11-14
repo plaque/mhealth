@@ -51,7 +51,7 @@
     <string name="name">Imię</string>
     <string name="surname">Nazwisko</string>
     <string name="add_user_message">Wprowadź email użytkownika, którego chcesz dodać do swojej sieci:</string>
-    <string name="user_email">Email użytkownika:</string>
+    <string name="user_email">Email użytkownika</string>
     <string name="user_notification">Alarm lekarstw dla użytkownika</string>
     <string name="channel_name">Alarm lekarstw</string>
     <string name="channel_description">Informacje o kanale alarm lekarstw</string>
@@ -61,4 +61,7 @@
     <string name="result_label">ResultDetail</string>
     <string name="login_label">LoginActivity</string>
     <string name="settings">Ustawienia</string>
+    <string name="password">Hasło</string>
+    <string name="email">Email</string>
+    <string name="measurements">Pomiary</string>
 </resources>
