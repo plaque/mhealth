@@ -50,7 +50,7 @@ class MedsAlertStarter(val context: Context?) {
             cal.set(Calendar.DAY_OF_WEEK, it)
             val toBeId = "$email$it${note.title}${note.content}"
             note.hours.forEach{
-                val id = "$toBeId${it.hour}${it.minute}".hashCode()
+                val id = Math.abs(toBeId.hashCode() - it.hour + it.minute)
                 intent.putExtra("id", id)
                 val pendingIntent = PendingIntent.getBroadcast(context,
                         id, intent, PendingIntent.FLAG_UPDATE_CURRENT)

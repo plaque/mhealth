@@ -8,4 +8,7 @@ import plaque.mhealth.database.entities.DateResultPairEntity
 class DateResultPair(val date:String, val result:Float) {
 
     fun toDateResultPairEntity() = DateResultPairEntity(date, result)
+
+    override fun toString(): String = "$date: $result"
+    
 }

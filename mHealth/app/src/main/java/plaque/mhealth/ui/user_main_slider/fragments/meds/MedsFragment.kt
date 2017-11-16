@@ -68,13 +68,13 @@ class MedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListene
         var noteDialog = NoteDetailDialog()
         noteDialog.note = note
         noteDialog.position = position
-        noteDialog.show(fragmentManager, "")
+        noteDialog.show(fragmentManager, "NoteDetailDialog")
     }
 
 
     override fun showAddNewNote() {
         val addNoteDialog = AddNoteDialog()
-        addNoteDialog.show(fragmentManager, "")
+        addNoteDialog.show(fragmentManager, "AddNewNote")
     }
 
     fun onNotesChange(){

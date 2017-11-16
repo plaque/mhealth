@@ -1,4 +1,4 @@
-package plaque.mhealth.ui.pupil.fragments.pupils_meds
+package plaque.mhealth.ui.pupil.fragments.pupil_meds
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -18,7 +18,7 @@ import plaque.mhealth.ui.dialogs.NoteDetailDialog
 /**
  * Created by szymon on 15.10.17.
  */
-class PupilsMedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListener {
+class PupilMedsFragment : RxBaseFragment(), NotesDelegateAdapter.onViewSelectedListener {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View?
@@ -52,7 +52,7 @@ class PupilsMedsFragment: RxBaseFragment(), NotesDelegateAdapter.onViewSelectedL
     }
 
     companion object {
-        fun newInstance(): PupilsMedsFragment = PupilsMedsFragment()
+        fun newInstance(): PupilMedsFragment = PupilMedsFragment()
     }
 
 }

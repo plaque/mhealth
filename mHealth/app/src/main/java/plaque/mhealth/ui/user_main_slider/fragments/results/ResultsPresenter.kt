@@ -13,5 +13,6 @@ interface ResultsPresenter: BasePresenter<ResultsView>, RxBase {
     fun onLoad(user: User)
     fun onFabClicked()
     fun onResultClicked(result: Result)
+    fun onResultsChange(results: ArrayList<Result>)
 
 }
