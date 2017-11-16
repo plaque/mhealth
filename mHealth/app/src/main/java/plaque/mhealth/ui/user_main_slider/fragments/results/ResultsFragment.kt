@@ -74,6 +74,10 @@ class ResultsFragment: RxBaseFragment(), ResultsDelegateAdapter.onViewSelectedLi
         resultsPresenter.onResultClicked(result)
     }
 
+    fun onResultsChange(){
+        resultsPresenter.onResultsChange(((results_list.adapter as ResultsAdapter).getResults() as ArrayList<Result>))
+    }
+
     private fun initAdapter(){
 
         results_list.setHasFixedSize(true)

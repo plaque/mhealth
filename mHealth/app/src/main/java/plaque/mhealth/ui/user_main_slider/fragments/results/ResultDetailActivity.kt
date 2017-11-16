@@ -12,6 +12,7 @@ import plaque.mhealth.R
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.Result
+import plaque.mhealth.ui.dialogs.AddMeasurementDialog
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -22,7 +23,7 @@ import kotlin.collections.ArrayList
  */
 class ResultDetailActivity: AppCompatActivity() {
 
-    private var result: Result? = null
+    var result: Result? = null
     @Inject lateinit var realm: RealmService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +50,12 @@ class ResultDetailActivity: AppCompatActivity() {
 
         setGraph()
 
+        add_measurement_button.setOnClickListener{_ -> showAddMeasurementDialog()}
+    }
+
+    private fun showAddMeasurementDialog() {
+        val measurementDialog = AddMeasurementDialog()
+        measurementDialog.show(supportFragmentManager, "AddMeasurementDialog")
     }
 
     private fun setGraph() {
@@ -76,7 +83,7 @@ class ResultDetailActivity: AppCompatActivity() {
         val email = intent?.getStringExtra("email")
         val resultTitle = intent?.getStringExtra("result_title")
         val pupil = realm.getPupil(email)
-        result = pupil?.results?.filter { it.title == resultTitle }?.first()
+        result = pupil.results?.filter { it.title == resultTitle }?.first()
     }
 
     private fun userResult(){

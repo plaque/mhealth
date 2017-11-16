@@ -46,6 +46,17 @@ class ResultsPresenterImpl @Inject constructor(var dataStore: DataStore): Result
         this.subscriptions = subscriptions
     }
 
+    override fun onResultsChange(results: ArrayList<Result>) {
+        dataStore.getUser().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    user -> user.results = results
+                    dataStore.updateNotes(user)
+                },{
+                    e -> println(e.message.toString())
+                })
+    }
+
     private fun getUser() {
         dataStore.getUser().subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
