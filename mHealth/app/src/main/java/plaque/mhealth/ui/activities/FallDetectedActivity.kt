@@ -16,7 +16,7 @@ class FallDetectedActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fall_detected_activity)
         
-            
+        sendMailWithDelay()
 
         warning_img.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         dismiss_button.setOnClickListener{ _ -> finish()}
