@@ -15,8 +15,19 @@ class FallDetectedActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fall_detected_activity)
+        
+            
 
         warning_img.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         dismiss_button.setOnClickListener{ _ -> finish()}
+    }
+    
+    private fun sendMailWithDelay(){
+        val timer = Timer()
+        timer.schedule(timerTask { sendMail() }, 5 * 1000)
+    }
+    
+    private fun sendMail(){
+        
     }
 }
