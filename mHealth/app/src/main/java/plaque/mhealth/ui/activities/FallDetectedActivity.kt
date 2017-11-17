@@ -11,6 +11,7 @@ import plaque.mhealth.R
  */
 class FallDetectedActivity: AppCompatActivity() {
 
+    @Inject lateinit var api: UserRestAPI 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,16 @@ class FallDetectedActivity: AppCompatActivity() {
     }
     
     private fun sendMail(){
+        api.sendMail().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            _ -> finish()
+                        },
+                        {
+                            e -> print(e.message)
+                        }
+                )
         
     }
 }
