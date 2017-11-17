@@ -4,10 +4,12 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import plaque.mhealth.database.DataStore
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.retrofit.UserRestAPI
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -25,10 +27,16 @@ class AppModule(val app: mHealthApp){
     fun provideApplication(): mHealthApp = app
 
     @Provides
+    @Named("default")
     fun provideRealm() = Realm.getDefaultInstance()
 
     @Provides
-    fun provideRealmService(realm: Realm) = RealmService(realm)
+    @Named("token")
+    fun provideTokenRealm() = Realm.getInstance(RealmConfiguration.Builder().name("tokenRealm").build())
+
+    @Provides
+    fun provideRealmService(@Named("default") realm: Realm, @Named("token") tokenRealm: Realm)
+            = RealmService(realm, tokenRealm)
 
     @Provides
     fun provideDataStore(realm: RealmService, api: UserRestAPI) = DataStore(realm, api)

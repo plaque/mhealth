@@ -33,7 +33,7 @@ interface UserAPI {
     @POST("api/user/addSitter/")
     fun addSitter(@Body email: Email): Observable<User>
 
-    @GET("api/user/sendMail/")
+    @GET("api/user/fallDetected/")
     fun sendMail(): Observable<ResponseBody>
     
     @GET("api/user/")

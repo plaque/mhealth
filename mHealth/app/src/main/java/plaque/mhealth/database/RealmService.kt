@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import io.realm.Realm
 import plaque.mhealth.database.entities.PupilUserEntity
 import plaque.mhealth.database.entities.SitterUserEntity
+import plaque.mhealth.database.entities.TokenEntity
 import plaque.mhealth.database.entities.UserEntity
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.Result
@@ -12,7 +13,7 @@ import plaque.mhealth.model.User
 /**
  * Created by szymon on 21.09.17.
  */
-class RealmService(val realm: Realm) {
+class RealmService(val realm: Realm, val tokenRealm: Realm) {
 
 
     fun saveUser(user: User) {
@@ -91,5 +92,23 @@ class RealmService(val realm: Realm) {
             .equalTo("email", email).findFirst().toUser()
 
     fun closeRealm(): Unit = realm.close()
+
+    fun saveToken(token: String): Unit {
+        tokenRealm.executeTransaction {
+            val oldToken = tokenRealm.where(TokenEntity::class.java)?.findFirst()?.token
+            if(oldToken != token){
+                tokenRealm.delete(TokenEntity::class.java)
+                tokenRealm.copyToRealm(TokenEntity(token))
+            }
+        }
+    }
+
+    fun getToken(): String? {
+        var token: String? = ""
+        tokenRealm.executeTransaction {
+            token = tokenRealm.where(TokenEntity::class.java)?.findFirst()?.token
+        }
+        return token
+    }
 
 }

@@ -6,6 +6,7 @@ import okhttp3.ResponseBody
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.model.Login
 import plaque.mhealth.retrofit.LoginRestAPI
+import plaque.mhealth.retrofit.TokenInterceptor
 import javax.inject.Inject
 
 /**
@@ -13,7 +14,8 @@ import javax.inject.Inject
  */
 
 class LoginPresenterImpl @Inject constructor(var api: LoginRestAPI,
-                                             var realmService: RealmService) : LoginPresenter {
+                                             var realmService: RealmService,
+                                             var loginInterceptor: TokenInterceptor) : LoginPresenter {
 
     var loginView: LoginView = LoginView.EmptyLoginView()
 
@@ -39,6 +41,7 @@ class LoginPresenterImpl @Inject constructor(var api: LoginRestAPI,
                     .subscribe(
                             { response ->
                                 manageResponse(response)
+                                realmService.saveToken(loginInterceptor.sessionToken ?: "")
                             },
                             {
                                 loginView.showErrorMessage("Check your internet connection. Server is not responding.")
@@ -54,6 +57,7 @@ class LoginPresenterImpl @Inject constructor(var api: LoginRestAPI,
             500, 501, 502, 503, 504 -> loginView.showErrorMessage("Server internal error.")
         }
     }
+
 
 
 

@@ -11,6 +11,8 @@ import plaque.mhealth.di.details.PupilDetailComponent
 import plaque.mhealth.di.details.PupilDetailModule
 import plaque.mhealth.di.details.ResultDetailComponent
 import plaque.mhealth.di.details.ResultDetailModule
+import plaque.mhealth.di.fall.FallComponent
+import plaque.mhealth.di.fall.FallModule
 import plaque.mhealth.di.login.LoginComponent
 import plaque.mhealth.di.login.LoginModule
 import plaque.mhealth.di.main.MainComponent
@@ -39,6 +41,7 @@ class mHealthApp: Application(){
         lateinit var pupilDetailComponent: PupilDetailComponent
         lateinit var resultsComponent: ResultsComponent
         lateinit var resultDetailComponent: ResultDetailComponent
+        lateinit var fallComponent: FallComponent
     }
 
     override fun onCreate() {
@@ -59,6 +62,7 @@ class mHealthApp: Application(){
         sittersComponent = appComponent.plus(SittersModule())
         resultsComponent = appComponent.plus(ResultsModule())
         resultDetailComponent = appComponent.plus(ResultDetailModule())
+        fallComponent = appComponent.plus(FallModule())
 
     }
 

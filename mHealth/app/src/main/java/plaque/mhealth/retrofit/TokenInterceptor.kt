@@ -12,7 +12,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class TokenInterceptor @Inject constructor() : Interceptor {
-    private var sessionToken: String? = null
+    var sessionToken: String? = null
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
