@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main1.*
 import plaque.mhealth.R
 import plaque.mhealth.database.DataStore
 import plaque.mhealth.mHealthApp
-import plaque.mhealth.ui.SettingsActivity
+import plaque.mhealth.ui.settings.SettingsActivity
 import plaque.mhealth.ui.user_main_slider.TasksActivity
 import plaque.mhealth.ui.user_main_slider.fragments.meds.MedsAlertStarter
 import javax.inject.Inject

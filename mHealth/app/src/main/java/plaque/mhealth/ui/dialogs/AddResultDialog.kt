@@ -39,7 +39,9 @@ class AddResultDialog: DialogFragment(){
     private fun addMeasurement() {
 
         val format1: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
-        val date = format1.format(Date(datePicker.year, datePicker.month, datePicker.dayOfMonth))
+        val cal = Calendar.getInstance()
+        cal.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
+        val date = format1.format(cal.time)
         var value: Float
         try {
             value = measurement.text.toString().toFloat()

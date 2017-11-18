@@ -51,7 +51,7 @@
         <service android:name=".services.FallMonitorService" />
         <receiver android:name=".ui.user_main_slider.fragments.meds.MedsAlertReceiver"/>
 
-        <activity android:name=".ui.SettingsActivity"
+        <activity android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait"/>
     </application>
 

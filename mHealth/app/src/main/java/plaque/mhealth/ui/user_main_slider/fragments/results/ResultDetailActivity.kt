@@ -2,6 +2,7 @@ package plaque.mhealth.ui.user_main_slider.fragments.results
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -9,6 +10,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.activity_result.*
 import plaque.graphlibtest.MyXAxisValueFormatter
 import plaque.mhealth.R
+import plaque.mhealth.database.DataStore
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.Result
@@ -25,6 +27,7 @@ class ResultDetailActivity: AppCompatActivity() {
 
     var result: Result? = null
     @Inject lateinit var realm: RealmService
+    @Inject lateinit var dataStore: DataStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,17 +39,7 @@ class ResultDetailActivity: AppCompatActivity() {
 
         result_name.text = result?.title
 
-        val last = result?.results?.last()
-
-        results.text = ""
-
-        result?.results?.forEach {
-            if(last == it){
-                results.append("${it.result}")
-            }else{
-                results.append("${it.result}, ")
-            }
-        }
+        setResultsText()
 
         setGraph()
 
@@ -58,16 +51,33 @@ class ResultDetailActivity: AppCompatActivity() {
         measurementDialog.show(supportFragmentManager, "AddMeasurementDialog")
     }
 
+    private fun setResultsText(){
+        val last = result?.results?.last()
+
+        results.text = ""
+
+        result?.results?.forEach {
+            if(last == it){
+                results.append("${it.result}")
+            }else{
+                results.append("${it.result}, ")
+            }
+        }
+    }
+
     private fun setGraph() {
+        val values = setXAxis()
 
-
-        setXAxis()
-
-        val dataSet = LineDataSet(setEntries(), result?.title)
+        val dataSet = LineDataSet(setEntries(values), result?.title)
         val lineData = LineData(dataSet)
 
         chart.data = lineData
         chart.invalidate()
+    }
+
+    fun refreshView(){
+        setResultsText()
+        setGraph()
     }
 
 
@@ -83,6 +93,7 @@ class ResultDetailActivity: AppCompatActivity() {
         val email = intent?.getStringExtra("email")
         val resultTitle = intent?.getStringExtra("result_title")
         val pupil = realm.getPupil(email)
+        add_measurement_button.visibility = View.GONE
         result = pupil.results?.filter { it.title == resultTitle }?.first()
     }
 
@@ -91,36 +102,63 @@ class ResultDetailActivity: AppCompatActivity() {
         result = realm.getUser()?.results?.filter { it.title == resultTitle }?.firstOrNull()
     }
 
-    private fun setXAxis(){
+    private fun setXAxis(): ArrayList<String>{
 
         val cal: Calendar = Calendar.getInstance()
-        val format1: SimpleDateFormat = SimpleDateFormat("dd-MM")
+        val format1 = SimpleDateFormat("dd-MM")
+        val format2 = SimpleDateFormat("dd-MM-yyyy")
         cal.timeInMillis = System.currentTimeMillis()
+        val valuesOnAxis = arrayListOf<String>()
         val values = arrayListOf<String>()
-        cal.add(Calendar.DATE, -3)
+        cal.add(Calendar.DATE, -5)
 
         for(i in 1..5){
             cal.add(Calendar.DATE, 1)
-            values.add(format1.format(cal.time))
+            valuesOnAxis.add(format1.format(cal.time))
+            values.add(format2.format(cal.time))
         }
 
         val xAxis: XAxis = chart.xAxis
-        xAxis.valueFormatter = MyXAxisValueFormatter(values.toArray(arrayOf<String>()))
+        xAxis.valueFormatter = MyXAxisValueFormatter(valuesOnAxis.toArray(arrayOf<String>()))
         xAxis.granularity = 1f
+
+        return values
 
     }
 
-    private fun setEntries(): ArrayList<Entry>{
+    private fun setEntries(xValues: ArrayList<String>): ArrayList<Entry>{
         val entries = arrayListOf<Entry>()
 
-        var i = 1f
+        var i = 0f
 
-        result?.results?.forEach {
-            entries.add(Entry(i, it.result))
+        xValues.forEach{
+            val date = it
+            val value = result?.results?.find { it.date == date }?.result ?: 0f
+            entries.add(Entry(i, value))
             i++
         }
 
 
+
         return entries
     }
+
+    private fun updateResult(){
+        val email = intent?.getStringExtra("email")
+
+        if(email == null){
+            val user = realm.getUser()
+            val results = user?.results
+            val index = results?.indexOf(results.find { it.title == this.result?.title })
+            results!![index!!] = this.result!!
+            user.results = results
+            dataStore.updateResults(user)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        updateResult()
+    }
+
 }

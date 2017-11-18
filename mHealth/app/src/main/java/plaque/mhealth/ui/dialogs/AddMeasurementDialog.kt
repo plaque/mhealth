@@ -33,7 +33,9 @@ class AddMeasurementDialog: DialogFragment() {
 
     private fun addMeasurement() {
         val format1: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
-        val date = format1.format(Date(datePicker2.year, datePicker2.month, datePicker2.dayOfMonth))
+        val cal = Calendar.getInstance()
+        cal.set(datePicker2.year, datePicker2.month, datePicker2.dayOfMonth)
+        val date = format1.format(cal.time)
         var value: Float
         try {
             value = measurement_text.text.toString().toFloat()
@@ -41,7 +43,7 @@ class AddMeasurementDialog: DialogFragment() {
             value = 0f
         }
         (activity as ResultDetailActivity).result?.results?.add(DateResultPair(date, value))
-
+        (activity as ResultDetailActivity).refreshView()
         this.dismiss()
     }
 

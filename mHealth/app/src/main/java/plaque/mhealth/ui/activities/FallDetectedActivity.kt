@@ -44,7 +44,7 @@ class FallDetectedActivity: AppCompatActivity() {
 
     
     private fun sendNotification(){
-        sendMail()
+        //sendMail()
         sendSms()
     }
 
@@ -62,7 +62,7 @@ class FallDetectedActivity: AppCompatActivity() {
     }
 
     private fun sendSms(){
+        //sendSMS("531535908", "User falled.")
         fall_detected.append("\nSms sent!")
-
     }
 }

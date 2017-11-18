@@ -5,7 +5,8 @@ import plaque.mhealth.database.entities.SettingsEntity
 /**
  * Created by szymon on 17.11.17.
  */
-data class Settings(var notifications: Boolean, var emails: Boolean, var sms: Boolean) {
+data class Settings(var push: Boolean, var emails: Boolean, var sms: Boolean,
+                    var fallMonitoring: Boolean ) {
 
-    fun toSettingsEntity() = SettingsEntity(notifications, emails, sms)
+    fun toSettingsEntity() = SettingsEntity(push, emails, sms, fallMonitoring)
 }

@@ -2,12 +2,10 @@ package plaque.mhealth.database
 
 import io.reactivex.Observable
 import io.realm.Realm
-import plaque.mhealth.database.entities.PupilUserEntity
-import plaque.mhealth.database.entities.SitterUserEntity
-import plaque.mhealth.database.entities.TokenEntity
-import plaque.mhealth.database.entities.UserEntity
+import plaque.mhealth.database.entities.*
 import plaque.mhealth.model.CyclicNote
 import plaque.mhealth.model.Result
+import plaque.mhealth.model.Settings
 import plaque.mhealth.model.User
 
 /**
@@ -109,6 +107,21 @@ class RealmService(val realm: Realm, val tokenRealm: Realm) {
             token = tokenRealm.where(TokenEntity::class.java)?.findFirst()?.token
         }
         return token
+    }
+
+    fun saveSettings(settings: Settings){
+        tokenRealm.executeTransaction{
+            tokenRealm.delete(SettingsEntity::class.java)
+            tokenRealm.copyToRealm(settings.toSettingsEntity())
+        }
+    }
+
+    fun getSettings(): Settings?{
+        var settings: SettingsEntity? = SettingsEntity()
+        tokenRealm.executeTransaction {
+            settings = tokenRealm.where(SettingsEntity::class.java)?.findFirst()
+        }
+        return settings?.toSettings()
     }
 
 }

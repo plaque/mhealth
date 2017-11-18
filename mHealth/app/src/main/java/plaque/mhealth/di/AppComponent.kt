@@ -17,6 +17,8 @@ import plaque.mhealth.di.pupils.PupilsComponent
 import plaque.mhealth.di.pupils.PupilsModule
 import plaque.mhealth.di.results.ResultsComponent
 import plaque.mhealth.di.results.ResultsModule
+import plaque.mhealth.di.settings.SettingsComponent
+import plaque.mhealth.di.settings.SettingsModule
 import plaque.mhealth.di.sitters.SittersComponent
 import plaque.mhealth.di.sitters.SittersModule
 import javax.inject.Singleton
@@ -48,5 +50,7 @@ interface AppComponent {
     fun plus(resultsModule: ResultsModule): ResultsComponent
 
     fun plus(fallModule: FallModule): FallComponent
+
+    fun plus(settingsModule: SettingsModule): SettingsComponent
 
 }
