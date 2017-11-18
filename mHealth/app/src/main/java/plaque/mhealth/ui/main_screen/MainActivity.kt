@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main1.*
 import plaque.mhealth.R
 import plaque.mhealth.database.DataStore
 import plaque.mhealth.mHealthApp
+import plaque.mhealth.model.Settings
 import plaque.mhealth.ui.settings.SettingsActivity
 import plaque.mhealth.ui.user_main_slider.TasksActivity
 import plaque.mhealth.ui.user_main_slider.fragments.meds.MedsAlertStarter
@@ -17,12 +18,15 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var dataStore: DataStore
+    var settings: Settings? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main1)
 
         mHealthApp.mainComponent.inject(this)
+
+        settings = dataStore.getSettings()
 
         getAndSaveUser()
 
@@ -53,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 .subscribe({
                   user -> dataStore.saveUser(user)
                     val alertStarter = MedsAlertStarter(this)
-                    alertStarter.startAlarms(user)
+                    if(settings?.push ?: false) alertStarter.startAlarms(user)
                 },{
                     e -> println(e.message)
                 })

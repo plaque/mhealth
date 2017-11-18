@@ -12,6 +12,7 @@ import org.jetbrains.anko.sendSMS
 import plaque.mhealth.R
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.mHealthApp
+import plaque.mhealth.model.Settings
 import plaque.mhealth.retrofit.TokenInterceptor
 import plaque.mhealth.retrofit.UserRestAPI
 import java.util.*
@@ -26,14 +27,19 @@ class FallDetectedActivity: AppCompatActivity() {
     @Inject lateinit var api: UserRestAPI
     @Inject lateinit var realmService: RealmService
     @Inject lateinit var loginInterceptor: TokenInterceptor
+    var settings: Settings? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fall_detected_activity)
 
         mHealthApp.fallComponent.inject(this)
-        sendNotificationWithDelay()
+
+        settings = realmService.getSettings()
+
         loginInterceptor.sessionToken = realmService.getToken()
+
+        sendNotificationWithDelay()
 
         warning_img.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         dismiss_button.setOnClickListener{ _ -> finish()}
@@ -44,8 +50,8 @@ class FallDetectedActivity: AppCompatActivity() {
 
     
     private fun sendNotification(){
-        //sendMail()
-        sendSms()
+        //if(settings?.emails ?: false) sendMail()
+        if(settings?.sms ?: false) sendSms()
     }
 
     private fun sendMail(){

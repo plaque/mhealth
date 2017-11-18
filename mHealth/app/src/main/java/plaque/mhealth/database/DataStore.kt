@@ -128,5 +128,7 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
 
     fun addSitter(email: String): Observable<User> = api.addSitter(email)
 
+    fun getSettings() = realm.getSettings()
+
 
 }

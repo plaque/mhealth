@@ -8,21 +8,27 @@ import plaque.mhealth.commons.snackbar
 import plaque.mhealth.model.Login
 
 import plaque.mhealth.R
+import plaque.mhealth.database.RealmService
 import plaque.mhealth.ui.main_screen.MainActivity
 import plaque.mhealth.mHealthApp
+import plaque.mhealth.model.Settings
 import plaque.mhealth.services.FallMonitorService
 import javax.inject.Inject
 
 class LoginActivity: AppCompatActivity(), LoginView {
 
     @Inject lateinit var loginPresenter: LoginPresenter
+    @Inject lateinit var realm: RealmService
+    var settings: Settings? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         mHealthApp.loginComponent.inject(this)
-        startService(Intent(this, FallMonitorService::class.java))
+
+        settings = realm.getSettings()
+
         login.setOnClickListener{ _ -> login()}
 
     }
@@ -50,6 +56,9 @@ class LoginActivity: AppCompatActivity(), LoginView {
     }
 
     override fun showMainActivity() {
+        if(settings?.fallMonitoring ?: false)
+            startService(Intent(this, FallMonitorService::class.java))
+
         startActivity(Intent(this, MainActivity::class.java))
     }
 
