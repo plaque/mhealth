@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.TextView
 import android.widget.TimePicker
+import com.cunoraz.tagview.TagView
 import kotlinx.android.synthetic.main.add_note.*
 import kotlinx.android.synthetic.main.content_meds.*
 import org.jetbrains.anko.forEachChild
@@ -26,8 +26,20 @@ class AddNoteDialog : DialogFragment(), TimePickerDialog.OnTimeSetListener {
     val time = arrayListOf<HourMinutePair>()
 
     override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
-        time.add(HourMinutePair(p1, p2))
-        dialog.findViewById<TextView>(R.id.note_hours).text = time.toString()
+        val hourMinute = HourMinutePair(p1, p2)
+        if(hourMinute !in time){
+            time.add(hourMinute)
+
+            val tags = arrayListOf<com.cunoraz.tagview.Tag>()
+            time.forEach{
+                val tag = com.cunoraz.tagview.Tag(it.toString())
+                tag.isDeletable = true
+                tag.layoutColor = resources.getColor(R.color.colorPrimary)
+                tag.layoutColorPress = resources.getColor(R.color.colorPrimaryDark)
+                tags.add(tag)
+            }
+            dialog.findViewById<TagView>(R.id.tag_group).addTags(tags)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -46,6 +58,8 @@ class AddNoteDialog : DialogFragment(), TimePickerDialog.OnTimeSetListener {
         apply {
             new_add_hour.setOnClickListener { _ -> showTimePicker() }
             save_note.setOnClickListener { _ -> saveNote() }
+            tag_group.setOnTagDeleteListener { tagView, tag, i -> time.removeAt(i)
+                                                                tagView.remove(i)}
         }
     }
 

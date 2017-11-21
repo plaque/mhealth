@@ -6,7 +6,11 @@ import plaque.mhealth.database.entities.RealmInt
 /**
  * Created by szymon on 28.10.17.
  */
-class HourMinutePair(val hour:Int, val minute:Int) {
+class HourMinutePair(val hour:Int, val minute:Int): Comparable<HourMinutePair> {
+
+    override fun compareTo(other: HourMinutePair) = this.toString().compareTo(other.toString())
+    override fun equals(other: Any?) = this.toString().equals(other.toString())
+
 
     override fun toString(): String {
 

@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">mHealth</string>
-    <string name="sitters">Opiekunowie</string>
-    <string name="pupils">Podopieczni</string>
+    <string name="sitters">Patroni</string>
+    <string name="pupils">Pacjenci</string>
     <string name="health_results">Wyniki</string>
-    <string name="meds_schedule">Lekarstwa</string>
+    <string name="meds_schedule">Leki</string>
     <string name="title_activity_meds">MedsActivity</string>
     <string name="title_activity_sitters">SittersActivity</string>
     <string name="title_activity_pupils">PupilsActivity</string>
@@ -64,4 +64,12 @@
     <string name="password">Hasło</string>
     <string name="email">Email</string>
     <string name="measurements">Pomiary</string>
+    <string name="measurement">Pomiar</string>
+    <string name="sms_sent">\nSms wysłany!</string>
+    <string name="email_sent">\nEmail wysłany!</string>
+    <string name="sms_first_part">Wykryliśmy prawdopodbny upadek użytkownika</string>
+    <string name="sms_second_part">Proszę skontaktuj się z nim najszybciej jak to tylko możliwe!</string>
+    <string name="results_name">Nazwa wyników</string>
+    <string name="medicine_name">Nazwa leku</string>
+    <string name="medicine_details">Szczegóły dotyczące przyjmowania leku</string>
 </resources>

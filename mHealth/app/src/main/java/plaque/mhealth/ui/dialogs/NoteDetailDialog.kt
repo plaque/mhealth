@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.cunoraz.tagview.TagView
 import kotlinx.android.synthetic.main.content_meds.*
 import kotlinx.android.synthetic.main.cyclic_note.*
 import kotlinx.android.synthetic.main.edit_cyclic_note.*
@@ -28,9 +29,20 @@ class NoteDetailDialog: DialogFragment(), TimePickerDialog.OnTimeSetListener {
     var hideEdit = false
 
     override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
-        note.hours.add(HourMinutePair(p1, p2))
+        val hourMinute = HourMinutePair(p1, p2)
+        if(hourMinute !in note.hours){
+            note.hours.add(hourMinute)
 
-        dialog.findViewById<TextView>(R.id.edit_hours)?.text = note.hours.toString()
+            val tags = arrayListOf<com.cunoraz.tagview.Tag>()
+            note.hours.forEach{
+                val tag = com.cunoraz.tagview.Tag(it.toString())
+                tag.isDeletable = true
+                tag.layoutColor = resources.getColor(R.color.colorPrimary)
+                tag.layoutColorPress = resources.getColor(R.color.colorPrimaryDark)
+                tags.add(tag)
+            }
+            dialog.findViewById<TagView>(R.id.tag_group).addTags(tags)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -82,6 +94,8 @@ class NoteDetailDialog: DialogFragment(), TimePickerDialog.OnTimeSetListener {
             }
             findViewById<TextView>(R.id.edit_hours)?.setText(note.hours.toString())
             findViewById<TextView>(R.id.add_hour)?.setOnClickListener{_ -> showTimePicker()}
+            edit_tag_group.setOnTagDeleteListener { tagView, tag, i -> note.hours.removeAt(i)
+                tagView.remove(i)}
             findViewById<TextView>(R.id.submit_button)?.setOnClickListener{_ -> saveChanges()}
         }
 

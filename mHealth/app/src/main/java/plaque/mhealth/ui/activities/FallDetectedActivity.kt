@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.telephony.SmsManager
 import android.view.View
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -39,18 +40,27 @@ class FallDetectedActivity: AppCompatActivity() {
 
         loginInterceptor.sessionToken = realmService.getToken()
 
-        sendNotificationWithDelay()
+        val handler = sendNotificationWithDelay()
 
         warning_img.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-        dismiss_button.setOnClickListener{ _ -> finish()}
+        dismiss_button.setOnClickListener{ _ -> callOff(handler)}
+    }
+
+    private fun callOff(handler: Handler){
+        handler.removeCallbacks({ sendNotification() })
+        finish()
     }
     
-    private fun sendNotificationWithDelay()
-            = Handler().postDelayed({ sendNotification() }, 5 * 1000)
+    private fun sendNotificationWithDelay(): Handler{
+        val handler = Handler()
+        handler.postDelayed({ sendNotification() }, 5 * 1000)
+
+        return handler
+    }
 
     
     private fun sendNotification(){
-        //if(settings?.emails ?: false) sendMail()
+        if(settings?.emails ?: false) sendMail()
         if(settings?.sms ?: false) sendSms()
     }
 
@@ -59,7 +69,7 @@ class FallDetectedActivity: AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-                            _ -> fall_detected.append("\nMail sent!")
+                            _ -> fall_detected.append(resources.getString(R.string.email_sent))
                         },
                         {
                             e -> print(e.message)
@@ -68,7 +78,18 @@ class FallDetectedActivity: AppCompatActivity() {
     }
 
     private fun sendSms(){
-        //sendSMS("531535908", "User falled.")
-        fall_detected.append("\nSms sent!")
+        val user = realmService.getUser()
+        val sms = SmsManager.getDefault()
+        val smsContent = "${resources.getString(R.string.sms_first_part)} ${user?.name} ${user?.surname} " +
+                "${user?.email}. ${resources.getString(R.string.sms_second_part)}"
+        sms.sendTextMessage("531535908", null, smsContent, null, null )
+
+
+        fall_detected.append(resources.getString(R.string.sms_sent))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
     }
 }
