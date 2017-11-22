@@ -41,7 +41,7 @@ class NoteDetailDialog: DialogFragment(), TimePickerDialog.OnTimeSetListener {
                 tag.layoutColorPress = resources.getColor(R.color.colorPrimaryDark)
                 tags.add(tag)
             }
-            dialog.findViewById<TagView>(R.id.tag_group).addTags(tags)
+            dialog.findViewById<TagView>(R.id.edit_tag_group).addTags(tags)
         }
     }
 
@@ -84,6 +84,16 @@ class NoteDetailDialog: DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
         val newView = layoutInflater?.inflate(R.layout.edit_cyclic_note, null)
 
+        val tags = arrayListOf<com.cunoraz.tagview.Tag>()
+        note.hours.forEach{
+            val tag = com.cunoraz.tagview.Tag(it.toString())
+            tag.isDeletable = true
+            tag.layoutColor = resources.getColor(R.color.colorPrimary)
+            tag.layoutColorPress = resources.getColor(R.color.colorPrimaryDark)
+            tags.add(tag)
+        }
+
+
         newView?.apply {
             findViewById<EditText>(R.id.edit_title)?.setText(note.title)
             findViewById<TextInputEditText>(R.id.edit_content)?.setText(note.content)
@@ -92,10 +102,11 @@ class NoteDetailDialog: DialogFragment(), TimePickerDialog.OnTimeSetListener {
                     (it as CheckBox).isChecked = true
                 }
             }
-            findViewById<TextView>(R.id.edit_hours)?.setText(note.hours.toString())
             findViewById<TextView>(R.id.add_hour)?.setOnClickListener{_ -> showTimePicker()}
-            edit_tag_group.setOnTagDeleteListener { tagView, tag, i -> note.hours.removeAt(i)
-                tagView.remove(i)}
+            findViewById<TagView>(R.id.edit_tag_group).addTags(tags)
+            findViewById<TagView>(R.id.edit_tag_group).setOnTagDeleteListener{ tagView, tag, i
+                                                                                -> note.hours.removeAt(i)
+                                                                                    tagView.remove(i)}
             findViewById<TextView>(R.id.submit_button)?.setOnClickListener{_ -> saveChanges()}
         }
 

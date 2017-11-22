@@ -52,7 +52,7 @@ class ResultDetailActivity: AppCompatActivity() {
     }
 
     private fun setResultsText(){
-        val last = result?.results?.last()
+        val last = result?.results?.lastOrNull()
 
         results.text = ""
 
@@ -68,10 +68,20 @@ class ResultDetailActivity: AppCompatActivity() {
     private fun setGraph() {
         val values = setXAxis()
 
-        val dataSet = LineDataSet(setEntries(values), result?.title)
-        val lineData = LineData(dataSet)
+        val entries = setEntries(values)
 
-        chart.data = lineData
+
+
+        if(!entries.isEmpty()){
+            val dataSet = LineDataSet(entries, result?.title)
+            val lineData = LineData(dataSet)
+            chart.data = lineData
+        }
+
+
+        chart.description.isEnabled = false
+        chart.axisRight.isEnabled = false
+        chart.legend.isEnabled = false
         chart.invalidate()
     }
 
@@ -114,13 +124,20 @@ class ResultDetailActivity: AppCompatActivity() {
 
         for(i in 1..5){
             cal.add(Calendar.DATE, 1)
-            valuesOnAxis.add(format1.format(cal.time))
             values.add(format2.format(cal.time))
+        }
+
+        cal.timeInMillis = System.currentTimeMillis()
+        cal.add(Calendar.DATE, -6)
+        for(i in 1..7){
+            cal.add(Calendar.DATE, 1)
+            valuesOnAxis.add(format1.format(cal.time))
         }
 
         val xAxis: XAxis = chart.xAxis
         xAxis.valueFormatter = MyXAxisValueFormatter(valuesOnAxis.toArray(arrayOf<String>()))
         xAxis.granularity = 1f
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         return values
 
@@ -133,8 +150,10 @@ class ResultDetailActivity: AppCompatActivity() {
 
         xValues.forEach{
             val date = it
-            val value = result?.results?.find { it.date == date }?.result ?: 0f
-            entries.add(Entry(i, value))
+            val value = result?.results?.find { it.date == date }?.result
+            if(value != null){
+                entries.add(Entry(i, value))
+            }
             i++
         }
 
