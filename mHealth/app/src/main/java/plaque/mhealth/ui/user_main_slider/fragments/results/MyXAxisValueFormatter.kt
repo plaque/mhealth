@@ -16,6 +16,9 @@ class MyXAxisValueFormatter(private val mValues: Array<String>) : IAxisValueForm
 
     override fun getFormattedValue(value: Float, axis: AxisBase): String {
         // "value" represents the position of the label on the axis (x or y)
+        if(value < 0f || value > mValues.size.toFloat() ){
+            return ""
+        }
         return mValues[value.toInt()]
     }
 }

@@ -11,12 +11,22 @@ import plaque.mhealth.model.User
  * Created by szymon on 10.10.17.
  */
 open class PupilUserEntity(var email: String = "", var name: String? = "",
-                           var surname: String? = "",
+                           var surname: String? = "", var phoneNumber: String? = "",
                            var cnNotes: RealmList<CyclicNoteEntity>? = RealmList(),
+                           var realmSitterIds: RealmList<RealmInt>? = RealmList(),
+                           var realmSitters: RealmList<SitterUserEntity>? = RealmList(),
                            var realmResults: RealmList<ResultEntity>? = RealmList()): RealmObject(){
 
-    fun toUser() = User(this.email, this.name, this.surname, this.toUserNotes(), this.toUserResults(),
-            null, null, null, null)
+    fun toUser() = User(this.email, this.name, this.surname, this.phoneNumber, this.toUserNotes(), this.toUserResults(),
+            this.toSitters(), null, this.toSitterIds(), null)
+
+    fun toSitters(): ArrayList<User> {
+        val sitters = arrayListOf<User>()
+        realmSitters?.forEach {
+            sitters.add(it.toUser())
+        }
+        return sitters
+    }
 
     fun toUserNotes(): ArrayList<CyclicNote>{
         val notes = arrayListOf<CyclicNote>()
@@ -32,6 +42,14 @@ open class PupilUserEntity(var email: String = "", var name: String? = "",
             results.add(it.toResult())
         }
         return results
+    }
+
+    fun toSitterIds(): ArrayList<Int>{
+        val sitterIds = arrayListOf<Int>()
+        realmSitterIds?.forEach {
+            sitterIds.add(it.id)
+        }
+        return  sitterIds
     }
 }
 

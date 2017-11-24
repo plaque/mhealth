@@ -13,6 +13,7 @@ import plaque.mhealth.model.User
 import plaque.mhealth.ui.dialogs.AddSitterDialog
 import plaque.mhealth.ui.adapters.UserAdapter
 import plaque.mhealth.ui.adapters.UserDelegateAdapter
+import plaque.mhealth.ui.dialogs.SitterDialog
 import plaque.mhealth.ui.user_main_slider.fragments.RxBaseFragment
 import javax.inject.Inject
 
@@ -53,8 +54,10 @@ class SittersFragment: RxBaseFragment(), UserDelegateAdapter.onViewSelectedListe
         (sitters_list.adapter as UserAdapter).addUsers(sitters)
     }
 
-    override fun showSitterDetails(sitters: User) {
-
+    override fun showSitterDetails(sitter: User) {
+        val dialog = SitterDialog()
+        dialog.user = sitter
+        dialog.show(fragmentManager, "SitterDialog")
     }
 
     override fun showAddNewSitter() {

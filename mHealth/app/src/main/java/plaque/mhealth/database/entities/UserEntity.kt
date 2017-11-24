@@ -11,14 +11,14 @@ import plaque.mhealth.model.User
  * Created by szymon on 08.10.17.
  */
 open class UserEntity(var email: String = "", var name: String? = "", var surname: String? = "",
-                      var cnNotes: RealmList<CyclicNoteEntity>? = RealmList(),
+                      var phoneNumber: String? = "", var cnNotes: RealmList<CyclicNoteEntity>? = RealmList(),
                       var realmResults: RealmList<ResultEntity>? = RealmList(),
                       var sitters: RealmList<SitterUserEntity>? = RealmList(),
                       var pupils: RealmList<PupilUserEntity>? = RealmList(),
                       var sittersId: RealmList<RealmInt>? = RealmList(),
                       var pupilsId: RealmList<RealmInt>? = RealmList()): RealmObject(){
 
-    fun toUser() = User(this.email, this.name, this.surname, this.toUserNotes(), this.toUserResults(),
+    fun toUser() = User(this.email, this.name, this.surname, this.phoneNumber, this.toUserNotes(), this.toUserResults(),
             this.toUserSitters(), this.toUserPupils(), this.toUserSittersId(), this.toUserPupilsId())
 
     fun toUserNotes(): ArrayList<CyclicNote>{

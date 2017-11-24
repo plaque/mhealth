@@ -25,6 +25,8 @@ class UserRestAPI @Inject constructor(private var userAPI: UserAPI) {
 
     fun addSitter(email: String): Observable<User> = userAPI.addSitter(Email(email))
 
+    fun getSitters(email: Email): Observable<ArrayList<User>> = userAPI.sitters(email)
+
     fun updateNotes(notes: ArrayList<CyclicNote>?): Observable<ResponseBody> = userAPI.updateNotes(notes)
 
     fun updateResults(results: ArrayList<Result>?): Observable<ResponseBody> = userAPI.updateResults(results)

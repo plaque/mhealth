@@ -5,6 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import plaque.mhealth.model.CyclicNote
+import plaque.mhealth.model.Email
 import plaque.mhealth.model.Result
 import plaque.mhealth.model.User
 import plaque.mhealth.retrofit.UserRestAPI
@@ -129,6 +130,27 @@ class DataStore @Inject constructor(val realm: RealmService, val api: UserRestAP
     fun addSitter(email: String): Observable<User> = api.addSitter(email)
 
     fun getSettings() = realm.getSettings()
+
+    fun saveSitters(email: String, sitters: ArrayList<User>){
+        val user = realm.getUser()
+        user?.pupils?.find { it.email == email }?.sitters = sitters
+        realm.updateUser(user!!)
+    }
+
+    fun getSitters(email: String): Observable<ArrayList<User>> {
+
+        val sittersObservable: Observable<ArrayList<User>>
+        val sitters = realm.getSitters(email)
+        if(sitters.size == 0){
+            sittersObservable = api.getSitters(Email(email))
+        }else{
+            sittersObservable = Observable.create {
+                subscriber -> subscriber.onNext(sitters)
+            }
+        }
+
+        return sittersObservable
+    }
 
 
 }

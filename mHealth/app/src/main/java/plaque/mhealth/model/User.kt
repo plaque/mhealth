@@ -11,9 +11,10 @@ import plaque.mhealth.ui.adapters.ViewType
  * Created by szymon on 18.08.17.
  */
 data class User(@PrimaryKey val email: String, val name: String?, val surname: String?,
-                var notes: ArrayList<CyclicNote>?, var results: ArrayList<Result>?,
-                var sitters: ArrayList<User>?, var pupils: ArrayList<User>?,
-                var sittersId: ArrayList<Int>?, var pupilsId: ArrayList<Int>?): ViewType {
+                var phoneNumber: String?, var notes: ArrayList<CyclicNote>?,
+                var results: ArrayList<Result>?, var sitters: ArrayList<User>?,
+                var pupils: ArrayList<User>?, var sittersId: ArrayList<Int>?,
+                var pupilsId: ArrayList<Int>?): ViewType {
 
     override fun getViewType(): Int = AdapterConstants.PEOPLE
 
@@ -73,12 +74,12 @@ data class User(@PrimaryKey val email: String, val name: String?, val surname: S
         return realmPupilsId
     }
 
-    fun toUserEntity() = UserEntity(this.email, this.name, this.surname,
+    fun toUserEntity() = UserEntity(this.email, this.name, this.surname, this.phoneNumber,
             this.cyclicNotesToRealm(), this.resultsToRealm(), this.sittersToRealm(), this.pupilsToRealm(),
             this.sittersIdToRealm(), this.pupilsIdToRealm())
 
     private fun toPupilUserEntity() = PupilUserEntity(this.email, this.name, this.surname,
-            this.cyclicNotesToRealm(), this.resultsToRealm())
+            this.phoneNumber, this.cyclicNotesToRealm(), this.sittersIdToRealm(), this.sittersToRealm(), this.resultsToRealm())
 
-    private fun toSitterUserEntity() = SitterUserEntity(this.email, this.name, this.surname)
+    private fun toSitterUserEntity() = SitterUserEntity(this.email, this.name, this.phoneNumber, this.surname)
 }

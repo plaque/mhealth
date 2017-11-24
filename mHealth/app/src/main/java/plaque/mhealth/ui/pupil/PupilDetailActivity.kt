@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_pupil_details.*
 import plaque.mhealth.R
+import plaque.mhealth.database.DataStore
 import plaque.mhealth.database.RealmService
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.User
@@ -17,6 +18,7 @@ class PupilDetailActivity : AppCompatActivity() {
 
     lateinit var user: User
     @Inject lateinit var realm: RealmService
+    @Inject lateinit var dataStore: DataStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -42,6 +42,9 @@ interface UserAPI {
     @GET("api/user/pupils/")
     fun pupils(): Observable<ArrayList<User>>
 
+    @POST("api/user/sitters/")
+    fun sitters(@Body email: Email): Observable<ArrayList<User>>
+
     @GET("api/user/sitters/")
     fun sitters(): Observable<ArrayList<User>>
 

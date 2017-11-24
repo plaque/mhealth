@@ -87,5 +87,4 @@ class PupilsPresenterImpl @Inject constructor(var dataStore: DataStore): PupilsP
         subscriptions.add(subscription)
     }
 
-
 }

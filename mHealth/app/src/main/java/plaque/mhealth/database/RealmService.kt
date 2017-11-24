@@ -124,4 +124,11 @@ class RealmService(val realm: Realm, val tokenRealm: Realm) {
         return settings?.toSettings()
     }
 
+    fun getSitters(email: String): ArrayList<User> {
+        val user1: UserEntity? = realm.where(UserEntity::class.java).findFirst()
+        val sitters = user1?.pupils?.find { it.email == email }?.toSitters()
+
+        return sitters!!
+    }
+
 }
