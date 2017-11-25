@@ -1,5 +1,6 @@
 package plaque.mhealth.ui.user_main_slider.fragments.results
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -15,6 +16,7 @@ import plaque.mhealth.database.RealmService
 import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.Result
 import plaque.mhealth.ui.dialogs.AddMeasurementDialog
+import plaque.mhealth.ui.dialogs.ManageMeasurementsDialog
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -39,31 +41,17 @@ class ResultDetailActivity: AppCompatActivity() {
 
         result_name.text = result?.title
 
-        setResultsText()
-
         setGraph()
 
-        add_measurement_button.setOnClickListener{_ -> showAddMeasurementDialog()}
+        manage_measurement_button.setOnClickListener{_ -> showManageMeasurementsDialog()}
     }
 
-    private fun showAddMeasurementDialog() {
-        val measurementDialog = AddMeasurementDialog()
-        measurementDialog.show(supportFragmentManager, "AddMeasurementDialog")
+    private fun showManageMeasurementsDialog() {
+        val dialog = ManageMeasurementsDialog()
+        dialog.show(supportFragmentManager, "CalendarDialog")
     }
 
-    private fun setResultsText(){
-        val last = result?.results?.lastOrNull()
 
-        results.text = ""
-
-        result?.results?.forEach {
-            if(last == it){
-                results.append("${it.result}")
-            }else{
-                results.append("${it.result}, ")
-            }
-        }
-    }
 
     private fun setGraph() {
         val values = setXAxis()
@@ -86,7 +74,6 @@ class ResultDetailActivity: AppCompatActivity() {
     }
 
     fun refreshView(){
-        setResultsText()
         setGraph()
     }
 
@@ -103,7 +90,7 @@ class ResultDetailActivity: AppCompatActivity() {
         val email = intent?.getStringExtra("email")
         val resultTitle = intent?.getStringExtra("result_title")
         val pupil = realm.getPupil(email)
-        add_measurement_button.visibility = View.GONE
+        manage_measurement_button.visibility = View.GONE
         result = pupil.results?.filter { it.title == resultTitle }?.first()
     }
 
@@ -146,7 +133,7 @@ class ResultDetailActivity: AppCompatActivity() {
     private fun setEntries(xValues: ArrayList<String>): ArrayList<Entry>{
         val entries = arrayListOf<Entry>()
 
-        var i = 0f
+        var i = 1f
 
         xValues.forEach{
             val date = it

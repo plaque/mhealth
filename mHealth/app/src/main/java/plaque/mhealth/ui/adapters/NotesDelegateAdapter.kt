@@ -12,6 +12,8 @@ import plaque.mhealth.model.CyclicNote
  */
 class NotesDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDelegateAdapter {
 
+    var isClickable = true
+
     interface onViewSelectedListener {
         fun onItemSelected(item: CyclicNote, position: Int)
     }
@@ -22,7 +24,15 @@ class NotesDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDel
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {
         holder as NotesViewHolder
-        holder.bind(item as CyclicNote)
+        if(isClickable) {
+            holder.bind(item as CyclicNote)
+        }else{
+            holder.bindNotClickable(item as CyclicNote)
+        }
+    }
+
+    fun updateClickability(state: Boolean){
+        this.isClickable = state
     }
 
     inner class NotesViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
@@ -34,6 +44,14 @@ class NotesDelegateAdapter(val viewActions: onViewSelectedListener): ViewTypeDel
         fun bind(item: CyclicNote) = with(itemView) {
             title.text = item.title
             active.isChecked = item.active
+
+            super.itemView.setOnClickListener { viewActions.onItemSelected(item, super.getPosition()) }
+        }
+
+        fun bindNotClickable(item: CyclicNote) = with(itemView){
+            title.text = item.title
+            active.isChecked = item.active
+            active.isClickable = false
 
             super.itemView.setOnClickListener { viewActions.onItemSelected(item, super.getPosition()) }
         }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
 import plaque.mhealth.R
@@ -42,4 +43,6 @@ fun Calendar.getFullDate(): String {
 }
 
 fun String.toRealmString(): RealmString = RealmString(this)
+
+
 

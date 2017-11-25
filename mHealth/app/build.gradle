@@ -36,6 +36,9 @@ dependencies {
     compile 'com.android.support:design:26.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+
+    compile 'com.prolificinteractive:material-calendarview:1.4.3'
+
     //GraphLib
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'com.github.Cutta:TagView:1.3'

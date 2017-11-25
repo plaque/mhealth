@@ -74,4 +74,6 @@
     <string name="medicine_details">Details on how medicine should be taken</string>
     <string name="phone_number">Phone number</string>
     <string name="email">Email</string>
+    <string name="manage_measurements">Manage measurements</string>
+    <string name="delete">Delete</string>
 </resources>
