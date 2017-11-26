@@ -68,8 +68,12 @@
     <string name="sms_sent">\nSms wysłany!</string>
     <string name="email_sent">\nEmail wysłany!</string>
     <string name="sms_first_part">Wykryliśmy prawdopodbny upadek użytkownika</string>
-    <string name="sms_second_part">Proszę skontaktuj się z nim najszybciej jak to tylko możliwe!</string>
+    <string name="sms_second_part">Prosimy skontaktuj się z nim najszybciej jak to tylko możliwe!</string>
+    <string name="sms_hour">o godzinie</string>
     <string name="results_name">Nazwa wyników</string>
     <string name="medicine_name">Nazwa leku</string>
     <string name="medicine_details">Szczegóły dotyczące przyjmowania leku</string>
+    <string name="phone_number">Zadzwoń</string>
+    <string name="manage_measurements">Zarządzaj pomiarami</string>
+    <string name="delete">Usuń</string>
 </resources>

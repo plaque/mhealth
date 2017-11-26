@@ -16,6 +16,7 @@ import plaque.mhealth.mHealthApp
 import plaque.mhealth.model.Settings
 import plaque.mhealth.retrofit.TokenInterceptor
 import plaque.mhealth.retrofit.UserRestAPI
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.timerTask
@@ -47,7 +48,7 @@ class FallDetectedActivity: AppCompatActivity() {
     }
 
     private fun callOff(handler: Handler){
-        handler.removeCallbacks({ sendNotification() })
+        handler.removeCallbacksAndMessages(null)
         finish()
     }
     
@@ -78,18 +79,20 @@ class FallDetectedActivity: AppCompatActivity() {
     }
 
     private fun sendSms(){
+        val format2 = SimpleDateFormat("HH:mm dd-MM-yyyy")
+        val cal = Calendar.getInstance()
+        cal.timeInMillis = System.currentTimeMillis()
+        val time = format2.format(cal.time)
         val user = realmService.getUser()
         val sms = SmsManager.getDefault()
         val smsContent = "${resources.getString(R.string.sms_first_part)} ${user?.name} ${user?.surname} " +
-                "${user?.email}. ${resources.getString(R.string.sms_second_part)}"
-        sms.sendTextMessage("531535908", null, smsContent, null, null )
+                "${user?.email} ${resources.getString(R.string.sms_hour)} $time. ${resources.getString(R.string.sms_second_part)}"
+        sms.sendMultipartTextMessage("531535908",
+                null, sms.divideMessage(smsContent), null, null)
+
 
 
         fall_detected.append(resources.getString(R.string.sms_sent))
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
 }

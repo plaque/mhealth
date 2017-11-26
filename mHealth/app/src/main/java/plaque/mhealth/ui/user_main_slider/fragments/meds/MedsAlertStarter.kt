@@ -14,6 +14,7 @@ import java.util.*
 class MedsAlertStarter(val context: Context?) {
 
     val alarmManager: AlarmManager
+    var id = 0
 
     init {
         alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -27,14 +28,14 @@ class MedsAlertStarter(val context: Context?) {
             }
         }
 
-        user.pupils?.forEach {
+       /* user.pupils?.forEach {
             var pupil = it
             it.notes?.forEach {
                 if(it.active){
                     startAlarm(pupil.email, it)
                 }
             }
-        }
+        }*/
     }
 
     private fun startAlarm(email: String, note: CyclicNote){
@@ -48,9 +49,7 @@ class MedsAlertStarter(val context: Context?) {
             val cal = Calendar.getInstance()
             cal.timeInMillis = System.currentTimeMillis()
             cal.set(Calendar.DAY_OF_WEEK, it)
-            val toBeId = "$email$it${note.title}${note.content}"
             note.hours.forEach{
-                val id = Math.abs(toBeId.hashCode() - it.hour + it.minute)
                 intent.putExtra("id", id)
                 val pendingIntent = PendingIntent.getBroadcast(context,
                         id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -60,8 +59,10 @@ class MedsAlertStarter(val context: Context?) {
                 if(cal.timeInMillis < System.currentTimeMillis()){
                     cal.add(Calendar.DATE, 7)
                 }
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis,
-                        24 * 7 * 60 * 60 * 1000, pendingIntent)
+                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis,
+                        7 * 24 * 60 * 60 * 1000, pendingIntent)
+                id++
+
             }
         }
 

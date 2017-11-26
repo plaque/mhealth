@@ -69,10 +69,11 @@
     <string name="email_sent">\nEmail sent!</string>
     <string name="sms_first_part">We detected probable fall from user</string>
     <string name="sms_second_part">Please get in contact with him as soon as possible!</string>
+    <string name="sms_hour">at</string>
     <string name="results_name">Results name</string>
     <string name="medicine_name">Name of medicine</string>
     <string name="medicine_details">Details on how medicine should be taken</string>
-    <string name="phone_number">Phone number</string>
+    <string name="phone_number">Call</string>
     <string name="email">Email</string>
     <string name="manage_measurements">Manage measurements</string>
     <string name="delete">Delete</string>
